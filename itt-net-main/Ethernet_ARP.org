@@ -1,0 +1,48 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:3
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: Ethernet und Address Resolution Protokoll (ARP)
+#+SUBTITLE: ITT-Netzwerke
+#+AUTHOR: Sebastian Meisel
+
+* Ethernet-Protokoll
+
+  Das Ethernet-Protokoll betrifft sowohl das *Physical* Layer (Bitübertragunsschicht) – Festlegung von Kabeln und Steckern – als auch das *Data Link* Layer (Sicherungsschicht).
+
+  Es fügt /Daten-Frames/ den ersten /Header/ hinzu. Dieser enhält nach einer Präamble als wichtigste Informationen, die *Ziel*- und *Quell-MAC-Adresse*.
+
+#+CAPTION: ARP-Request
+#+NAME: fig:request
+#+ATTR_HTML: :width 40%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700     
+[[file:Bilder/Wireshark/ARP_00.png]]
+
+* Address Resolution Protokoll (ARP)
+
+  *ARP* ist ein Layer-2-Protokoll. Es ordnet /IPv4-Adressen/, MAC-Adressen zu, in dem es per /Broadcast/ alle Rechner im Netzwerk anfragt, wer die entsprechende IP hat. Der Dazugehörige Befehl 
+
+
+Wenn ein Rechner die IP besitzt schickt er in einem Antwortpaket seine *MAC-Adresse*.
+
+ARP-Pakete enthalten keinen IP- oder TCP-/UDP-Header.
+
+#+CAPTION: ARP-
+#+NAME: fig:
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/Wireshark/ARP_01.png]]

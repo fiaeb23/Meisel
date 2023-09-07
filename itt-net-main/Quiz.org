@@ -1,0 +1,43 @@
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: Quiz
+#+SUBTITLE: IT-Technik Netzwerkgrundlagen
+#+AUTHOR: Sebastian Meisel
+
+* Auf welchem Layer arbeitet ? 
+
+TCP
+#+ATTR_REVEAL: :frag (appear)
+ * Transport Layer / Transportschicht (4)
+
+HTTP 
+#+ATTR_REVEAL: :frag (appear)
+ * Application Layer / Anwendungsschicht (7)
+
+
+ICMP
+#+ATTR_REVEAL: :frag (appear)
+ * Networklayer / Vermittlungsschicht (3)
+
+Ethernet
+#+ATTR_REVEAL: :frag (appear)
+ * Data Link Layer / Sicherungsschicht (2)
+ * Physical Layer / Übertragungsschicht (1)
+
+
+* Wie lautet die dezimale Netzwerkmaske?
+/21
+#+ATTR_REVEAL: :frag (appear)
+ - 255.255.248.0
+
+/27
+#+ATTR_REVEAL: :frag (appear)
+ - 255.255.255.224
+

@@ -1,0 +1,54 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: Virtual LAN
+#+SUBTITLE: IT-Technik Netzwerkgrundlagen
+#+AUTHOR: Sebastian Meisel
+
+
+* Virtual Local Area Network (VLAN)
+
+*VLANs* stellen eine Möglichkeit dar, /ein/ physisches /geswitchtes/ Netzwerk in mehrere *virtuelle Netzwerke* (!nicht zu verwechseln mit virtuellen Netzwerkschnittstellen!)  aufzuteilen. 
+
+Das *VLAN*-Protokoll ist in der *IEEE 802.1Q* definiert. 
+
+** Port-basiertes VLAN
+
+ Die einfachste Möglichkeit ein *VLAN* einzurichten, besteht darin an einem /Switch/, der VLAN-fähig ist, für jeden /Port/ (jede Netzwerkschnittstelle) festzulegen, zu welchen *VLAN* dieser und damit die angeschlossenen Geräte gehören.
+
+** Dynamisches VLAN
+
+ Die alternative ist es, das *VLAN dynamisch* zu konfigurieren. Das bedeutet, dass Geräte aufgrund ihrer *MAC-* oder *IP-Adresse* einem *VLAN* zugeordnet werden.
+ 
+ Es ist auch möglich einzelne Datenpakete aufgrund ihrer *TCP- / UDP-Portnummer* einem *VLAN* zuzuordnen.
+
+** Trunk: Tagged VLAN
+
+Sollen Daten zwischen zwei /Switchen/ oder einem /Switch/ und einem /Router/ für mehrere *VLANs* über eine *gemeinsame Datenleitung* transportiert werden, wird diese als *Trunk* bezeichnet. 
+
+Auf dem Switch wird ein /Port/ als *Trunk-Port* konfiguriert und festgelegt, welche *VLANs* über diese Leitung transportiert werden.
+
+Jedes Datenpaket bekommt nun (pro VLAN) einen /Tag/ – einen zusätzlichen Header, der als wichtigste Information die 12 Bit lange *[[fig:vlan_id][VLAN-ID]]* enthält. Damit können 2^12 = 4096 VLANs definiert werden.
+
+#+REVEAL: split
+
+#+CAPTION: Datenpaket mit 2 VLAN-Tags
+#+NAME: fig:vlan_id
+#+ATTR_HTML: :width 100%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/Wireshark/VLAN.png]]
+  

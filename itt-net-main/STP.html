@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Spanning Tree Protocol (STP)</title>
+<meta name="author" content="Sebastian Meisel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/league.css" id="theme"/>
+
+<link rel="stylesheet" href="./mystyle.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Spanning Tree Protocol (STP)</h1><p class="subtitle">IT Technik - Netzwerkgrundlagen</p>
+<h2 class="author">Sebastian Meisel</h2>
+</section>
+
+<section>
+<section id="slide-org913c998">
+<h2 id="org913c998">Spanning Tree Protocol (STP)</h2>
+<p>
+<b>STP</b> ist definiert als <i>IEEE 802.1d</i> Es verhindert Netzwerkprobleme, die durch <b>Loops</b> in
+redundaten Netzwerken entstehen können:
+</p>
+
+<ul>
+<li><b>Broadcaststürme</b></li>
+<li>korrupte MAC-Adresstabellen in Switches</li>
+<li>doppelte Frames</li>
+
+</ul>
+
+<p>
+Dies wird erreicht indem <i>dynamisch</i> Ports blockiert werden, sodass
+</p>
+
+<ul>
+<li>Loops aufgelöst werden.</li>
+<li>die aktuell schnellste Verbindung bestehen bleibt.</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Es gibt moderne Erweiterungen dieses Protokoll, die zuerst als proprietäre Protokolle von
+Cisco entwickelt wurden und dann in abgewandelter Form als offizielle Protokolle
+entwickelt wurden:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">IEEE 802.1</td>
+<td class="org-left">Cisco</td>
+<td class="org-left">Ziel</td>
+</tr>
+
+<tr>
+<td class="org-left">Rapid Spanning Tree Protocol (RSTP) [802.1w]</td>
+<td class="org-left">Rapid Per VLAN Spanning Tree (RPVST)</td>
+<td class="org-left">Schnellerer Verbindungsaufbau</td>
+</tr>
+
+<tr>
+<td class="org-left">Multiple Spanning Tree Protocol (MSTP) [802.1s]</td>
+<td class="org-left">Per VLAN Spanning Tree + (PVST)</td>
+<td class="org-left">Spanning Tree je VLAN(-Gruppe)</td>
+</tr>
+</tbody>
+</table>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orge6debff">
+<h2 id="orge6debff">Bridge Protocol Data Units (BPDU)</h2>
+<p>
+Jeder <i>Switch</i> (oder Router) – im STP <b>Bridge</b> genannt – sendet in <i>regelmäßigen Abständen</i> kleine <b><a href="#/slide-org72d1770">BPDU</a></b> genannte Datenpakete. Dies hat zum einen den Zweck, dass 
+</p>
+<ul>
+<li>die anderen <i>Bridges</i> sofort erkennen, wenn eine ausfällt.</li>
+<li>erkannt wird, wo es im Netzwerk Loops gibt.</li>
+
+</ul>
+
+<p>
+Außerdem enthalten sie Informationen, die dabei helfen, zu bestimmen, welches die aktuell schnellste Verbindung ist.
+</p>
+
+</section>
+<section id="slide-orge6debff-split">
+
+
+<div id="org72d1770" class="figure">
+<p><img src="Bilder/Wireshark/BPDU.png" alt="BPDU.png" width="100%" />
+</p>
+<p><span class="figure-number">Abbildung 1: </span>BPDU</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc4d0256">
+<h3 id="orgc4d0256">Bridge-Identifier (BID)</h3>
+<p>
+Die erste wichtigste Information ist die BID. Sie enthält drei Felder (umgekehrte Reihenfolge):
+</p>
+
+<ul>
+<li><b>MAC-Adresse</b> (3 Bytes / 24 Bits), z. B. fa:16:3e:ca:40:96</li>
+<li><b>System ID</b> (12 Bits): Wird von Cisco und MSTP für VLAN-ID verwendet.</li>
+<li><b>Priorität</b> (4 Bits): Sie wird als Vielfaches von 4096 angegeben.</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Im ursprünglichen <b>STP</b> entfällt die <b>System ID</b> und die Priorität ist 16 Bits, bzw. 2 Bytes lang.   
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org5e31fba">
+<h3 id="org5e31fba">Root-Bridge</h3>
+<p>
+Die BIDs sind die Grundlage der Bestimmung einer <b>Rootbridge</b>. Dies ist die <i>Bridge</i> (der
+Switch) mit der niedrigsten <b>BID</b>:
+</p>
+
+<ul>
+<li>Dies ist in der Regel die <i>Bridge</i> mit der kleinsten MAC-Adresse.</li>
+<li>Über die <b>Priorität</b> kann man gezielt steuern welche <i>Bridge</i> die <i>Root-Bridge</i> sein soll,
+in dem man ihr eine niedrigere Priorität gibt.</li>
+
+</ul>
+
+<p>
+Ist die <b>Root-Bridge</b> ermittelt wird ihre <b>BID</b> in den <b>BPDUs</b> geteilt.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org28d5c6f">
+<h3 id="org28d5c6f">Hello Time</h3>
+<p>
+Außerdem enthalten die <b>BPDUs</b> ein Feld für die <b>Hello Time</b>. Diese ist normalerweise 2
+(Sekunden) und sagt aus, in welchen Abständen jede <i>Bridge</i> <b>BPDUs</b> senden soll.
+</p>
+
+<aside class="notes">
+<p>
+Außerdem gibt es noch zwei Felder:
+</p>
+<ul>
+<li>Max-Age: Wie lange gilt die aktuelle Portkonfiguration</li>
+<li>Forward-Delay: Sagt aus wie lange jeder Port in den Zuständen LEARNING und LISTENING
+verbringen soll.</li>
+
+</ul>
+
+<p>
+Diese beiden Zustände dienen dazu, dass der Switch, das Netzwerk analysieren, um zu
+entscheiden, welche Rolle er einnehmen soll.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org00ecd26">
+<h2 id="org00ecd26">Portkosten</h2>
+<p>
+Welche <b>Rolle</b> ein Port einnimmt entscheidet <b>STP</b> anhand der Kosten. Es gibt 3 Rollen:
+</p>
+
+<ul>
+<li><b>BLOCKING</b>: An dem Port werden <b>nur BPDUs</b> empfangen, alle anderen Datenpakete werden
+geblockt.</li>
+<li><b>DESIGNATED</b>: Jeder normale Port, über den Datenpakete empfangen und gesendet werden.</li>
+<li><b>ROOT</b>: Der Port mit den geringsten <b>Kosten</b> in Richtung Root.</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Offiziell sind nur die beiden letzten <i>Rollen</i>, während <i>BLOCKING</i> ein Zustand ist.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org00ecd26-split">
+
+<p>
+Die Kosten berechnen sich so: Zunächst wird für jede Verbindung zwischen 2 Switches
+aufgrund der Bandbreite (der Schnittstelle mit der geringsten Bandbreite), die Kosten
+anhand folgender Tabelle festgelegt:
+</p>
+
+</section>
+<section id="slide-org00ecd26-split">
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Bandbreite</td>
+<td class="org-right">STP-Kosten</td>
+<td class="org-right">Neue Kosten</td>
+</tr>
+
+<tr>
+<td class="org-left">4 MB/s</td>
+<td class="org-right">250</td>
+<td class="org-right">250.000.000</td>
+</tr>
+
+<tr>
+<td class="org-left">10 MB/s</td>
+<td class="org-right">100</td>
+<td class="org-right">100.000.000</td>
+</tr>
+
+<tr>
+<td class="org-left">100 MB/s</td>
+<td class="org-right">19</td>
+<td class="org-right">200.000</td>
+</tr>
+
+<tr>
+<td class="org-left">1 GB/s</td>
+<td class="org-right">4</td>
+<td class="org-right">20.000</td>
+</tr>
+
+<tr>
+<td class="org-left">10 GB/s</td>
+<td class="org-right">2</td>
+<td class="org-right">2.000</td>
+</tr>
+
+<tr>
+<td class="org-left">100 GB/s</td>
+<td class="org-right">N/A</td>
+<td class="org-right">200</td>
+</tr>
+
+<tr>
+<td class="org-left">1 TB/s</td>
+<td class="org-right">N/A</td>
+<td class="org-right">20</td>
+</tr>
+</tbody>
+</table>
+
+<aside class="notes">
+<p>
+Die <i>Neuen Kosten</i> wurden eingeführt, um höhere Bandbreiten berücksichtigen zu können,
+werden aber noch von wenigen Geräten unterstützt. 
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org0ab29b9">
+<h3 id="org0ab29b9">Pfadkosten</h3>
+<p>
+Anschließend werden als Kosten vom aktuellen <b>Port</b> bis zur <b>Root-Bridge</b> addiert. 
+</p>
+
+<p>
+Dafür werden für jede Verbindung zwischen zwei Switches die Portkosten an beiden Switches
+verglichen. Der kleinste Wert bestimmt die <b>Pfadkosten</b> für diese Verbindung.
+</p>
+
+<p>
+Dann werden die <b>Pfadkosten</b> aller Verbindungen auf dem Weg zwischen dem aktuellen Switch
+und dem <i>Root-Switch</i> addiert.   
+</p>
+
+<p>
+Der <b>Port</b> an dem die Verbindung mit den <b>geringsten Pfadkosten</b> beginnt, wird der <b>Root-Port</b>.
+</p>
+
+<aside class="notes">
+<p>
+Haben 2 Ports die selben Kosten, entscheidet die Bridge-ID des nächsten Switches, welche Verbindung gewählt wird: die, die zum Switch mit der kleinsten Bridge-ID führt.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgdcb18df">
+<h3 id="orgdcb18df">Port-Blocking</h3>
+<p>
+Um <i>Loops</i> zu vermeiden müssen nun die <i>redundanten</i> Verbindungen geblockt werden. <i>Redundant</i>  sind Verbindungen <i>zwischen Switches</i>, die <i>nicht</i> am <i>Root-Port</i> anliegen und potentiell einen
+Loop schließen.
+</p>
+
+<p>
+Auf jeder dieser Verbindungen muss <b>ein</b> Switch seinen Port in den Blocking-Status versetzen. 
+</p>
+
+<aside class="notes">
+<p>
+Das geschieht bei dem Switch der:
+</p>
+
+<ul>
+<li>insgesamt die geringeren Pfadkosten zur Root-Bridge hat.</li>
+<li>der (bei gleichen Pfadkosten zur Root) die höher Bridge-ID hat.</li>
+
+</ul>
+
+</aside>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes]
+});
+
+</script>
+</body>
+</html>

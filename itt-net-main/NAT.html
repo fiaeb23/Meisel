@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Network Address Translation (NAT)</title>
+<meta name="author" content="Sebastian Meisel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/league.css" id="theme"/>
+
+<link rel="stylesheet" href="./mystyle.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Network Address Translation (NAT)</h1><p class="subtitle">IT-Technik Netzwerkgrundlagen</p>
+<h2 class="author">Sebastian Meisel</h2>
+</section>
+
+
+<section>
+<section id="slide-org7bc02a2">
+<h2 id="org7bc02a2">Wozu Network Address Translation (NAT)</h2>
+<p>
+Der Hauptgrund für den Einsatz von <b>NAT</b> besteht darin, dass aufgrund der Knappheit von <i>IPv4-Addressen</i> lokale Netzwerke in privaten Adressräumen (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) betrieben werden. Diese Adressen sind aber nicht im Internet routebar.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org92407ae">
+<h2 id="org92407ae">Was ist NAT?</h2>
+<p>
+<b>NAT</b> löst dieses Problem, indem am Internet-<i>Router</i> in jedem Datenpaket die IP-Adresse des internen Rechners durch seine eigene ersetzt.
+</p>
+
+<p>
+Bei der Antwort wird dieser Vorgang umgekehrt. 
+</p>
+
+<aside class="notes">
+<p>
+Bei TCP können die Datenpakete anhand ihrer Sequenz- und Acknowledgenummer einer bestimmten Verbindung zugeordnet werden.
+</p>
+
+<p>
+Bei UDP-Paketen wird meist die Portnummer zur Zuordnung verwendet.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org9f2ec1b">
+<h3 id="org9f2ec1b">Source-NAT (SNAT) / Masquerading</h3>
+<p>
+Es gibt zwei Formen des <b>NAT</b>. Wollen interne Rechner auf Dienste im Internet zugreifen, wird <b>SNAT</b> verwendet. Dabei wird die <i>Quell-IP</i> durch die des Routers ersetzt. Sie bleibt so gegenüber dem Internet verborgen, daher nennt man dies auch <a href="#/slide-orgdb32b16">Masquerading</a>.  
+</p>
+
+<aside class="notes">
+<p>
+Bei SNAT ist es nicht möglich von außen eine Verbindung zum internen Rechner aufzubauen. Die Verbindung muss immer vom internen Rechner ausgehen.
+</p>
+
+</aside>
+
+
+</section>
+<section id="slide-org9f2ec1b-split">
+
+<div id="orgdb32b16" class="figure">
+<p><img src="Bilder/Wireshark/NAT.png" alt="NAT.png" width="100%" />
+</p>
+<p><span class="figure-number">Abbildung 1: </span>HTTP Verbindung mit SNAT (Masquerading)</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org1fa17bc">
+<h3 id="org1fa17bc">Destination-NAT (DNAT) / Port-Forwarding</h3>
+<p>
+Die zweite Form dient dazu bestimmte Dienste (auf bestimmten Ports) auf Rechnern im privaten Adressraum von außen zugänglich zu machen.
+</p>
+
+<p>
+Dazu werden Datenpakete anhand des Zielports an Rechner im internen Netz weitergeleitet und die <i>Ziel-IP</i> ersetzt. Dies nennt sich <b>DNAT</b> oder <b>Port-Forwarding</b>
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org193d29e">
+<h2 id="org193d29e">Probleme</h2>
+<p>
+Die Manipulation der IP-Header durch den Router ist problematisch, da dies
+</p>
+
+<ul>
+<li>dem Prinzip einer <a href="https://de.wikipedia.org/wiki/Man-in-the-middle-Angriff">Man-in-the-Middle-Attacke</a> ähnelt.</li>
+<li>Peer-to-Peer-Protokolle dadurch gestört werden.</li>
+<li>IP-Telefonie-Protokolle damit Probleme haben.</li>
+
+</ul>
+
+<p>
+IPv6 schafft hier Abhilfe indem jedes Gerät im internen Netz eine global routbare Addresse bekommen kann.
+</p>
+
+<aside class="notes">
+<p>
+Viele Peer-to-Peer-Protokollen benutzen Techniken die unter dem Begriff <b>NAT-Traversal</b> zusammengefasst werden, um diese Probleme zu umgehen.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org40c7061">
+<h2 id="org40c7061">NAT for IPv6</h2>
+<p>
+Auch wenn es bei der Nutzung von <i>IPv6</i> nicht nötig ist <b>NAT</b> einzusetzen ist es möglich und unter verschiedenen Umständen sinnvoll.
+</p>
+
+<p>
+So macht es NAT möglich mehrere Rechner unter <b>einer</b> IP erreichbar zu machen. Dies kann zur Lastverteilung genutzt werden.
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes]
+});
+
+</script>
+</body>
+</html>

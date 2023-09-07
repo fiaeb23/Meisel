@@ -1,0 +1,193 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: IPv4
+#+SUBTITLE: ITT-Netzwerke
+#+AUTHOR: Sebastian Meisel
+
+* IPv4 Netzwerk durchrechnen
+
+Angenommen auf einem Windowrechner gibst du folgenden Befehl ein:
+
+#+BEGIN_SRC powershell
+ Get-NetIPAddress -AddressFamily IPv4 | Format-Table
+#+END_SRC
+
+um alle IPv4-Adressen zubekommen und als Tabelle auszugeben, bekommst du eine Ausgabe, wie
+diese: 
+
+#+BEGIN_EXAMPLE  
+ifIndex IPAddress     PrefixLength PrefixOrigin SuffixOrigin AddressState PolicyStore
+------- ---------     ------------ ------------ ------------ ------------ -----------
+10      192.168.56.23           28 Manual       Manual       Preferred    ActiveStore
+14      172.19.226.13           20 Manual       Manual       Preferred    ActiveStore
+1       127.0.0.1                8 WellKnown    WellKnown    Preferred    ActiveStore
+#+END_EXAMPLE
+
+Nun können wir mit diesen Werten rechnen:
+
+* 192.168.56.23 / 28
+
+Diese IP hat ein *Prefix* (auch CIDR genannt) von *28*. 
+
+D. h. 28 Bits sind für die Netzwerkadresse reserviert.
+
+Da jede Zahl in der Adresse durch 8 Bits dargestellt wird, sieht die Netzwerkmaske binär so aus:
+
+=1111 1111 . 1111 1111 . 1111 1111 . 1111 0000=
+
+** Anzahl der Hosts
+Die übrigen 4 Bits sind für die Hostadressen reserviert. Damit können =2^4 == 16= IPs
+adressiert werden. Da aber *eine IP* für die *Netzwerkadresse* benötigt wird und *eine IP* für
+die Broadcastadresse (um Pakete an alle Rechner im Netzwerk zu senden), bleiben =16 - 2 == 14= IP-Adressen für Hosts übrig.
+
+** Blocksize 
+
+Der wichtigste Wert, den wir nun berechnen müssen ist die *Blocksize*. Dafür müssen wir uns
+noch einmal die binäre Netzwerkmaske vor Augen führen:
+
+=1111 1111 . 1111 1111 . 1111 1111 . 1111 0000=
+
+=          8          16          24          32= 
+
+Das letzte /signifikante Bit/ (die letzte Eins) in der binären Netzwerkmaske befindet sich
+im *4. Oktett*: =1111 0000=. Das letzte /signifikante/ Bit in diesem Oktett ist das *5. Bit von
+rechts*. Jedes Bit steht für eine Zweierpotenz von 0 (rechts) bis 7 (links). Das 5. Bit
+steht also für =2^4 = 16.= Da das erste Bit von rechts für =2^0= steht, kann man für die
+Rechnung auch die *Anzahl der Hostbits im Oktett* nutzen. Dies kann man leicht ausrechnen
+indem man das *Prefix* nutzt und sich 
+  
+ 1. fragt: Was ist das *nächstgrößere Vielfache von 8*, z. B. =/28 < 32.= 
+ 2. das /Prefix/ von diesem Wert /subtrahierst/: z. B. =32 - 28 = 4.=
+ 3. die Zweierpotenz des Ergebnis berechnest: z B. =2^4 = 16.= 
+
+*16* ist also die *Blocksize* bei einem *Prefix* von */28*.
+
+** Netzwerkmaske
+
+Die *Blocksize* brauchen wir als erstes zur Berechnung der *Netzwerkmaske*.
+Zunächst müssen wir wieder überlegen, in welchem Oktett, das /letzte signifikante Bit/ (die
+letze 1) steht. Dafür gehen wir die Achtermalfolge durch und überlegen, bei jedem Wert, ob
+das *Prefix* größer ist:
+
+ - =28 > 8=? Ja! => 255
+ - =28 > 16=? Ja! => 255
+ - =28 > 24=? Ja! => 255
+ - =28 > 32=? Nein! => ~256 - 16 (Blocksize) = 240~
+
+Das *Prefix /28* steht als für die dezimal Netzwerkmaske: =255.255.255.240=.
+
+** Netzwerkadresse
+
+Auch für die *Netzwerkadresse* brauchen wir die *Blocksize*. Und wieder geht es darum, in
+welchem /Oktett/, das /letzte signifikante Bit/ steht. Alle Werte der IP davor, sind
+Bestandteil der *Netzwerkadresse*.
+
+Also in diesem Beispiel: =192.168.56.= 
+
+In dem Oktett mit dem /signifikanten Bit/ müssen wir den Wert für die Netzwerkadresse
+bestimmen. Dieser ist
+
+ 1, ein *Vielfaches der Blocksize*.
+ 2. kleiner als der Wert in der IP.
+
+Beispiel: =16 < 23= : Die Netzwerkadresse ist =192.168.56.16=.
+ 
+** Nächstes Netzwerk
+
+Um zu bestimmen wie groß das aktuelle Netzwerk ist, müssen wir wissen, wo das *nächste
+Netzwerk* beginnt. Dazu gehen wir von der aktuellen /Netzwerkadresse/ aus und erhöhen den
+Wert im letzten Oktett um die /Blocksize/: =192.168.56.32=.
+
+** Verfügbare IP-Adressen im Netzwerk
+
+Wie wir schon festgestellt haben [[* Anzahl der Hosts][(siehe oben)]] stehen uns =2^4 - 2 = 14= Hostadressen zur
+Verfügung. Das sind die Adressen ~192.168.56.17-192.168.56.30~. 
+
+Allerdings ist in der Regel die *1. Adresse* (~192.168.56.17~) für das *Standardgateway*, der Verbindung zu
+anderen Netzwerken (und in der Regel dem Internet), reserviert.
+
+Die letzte Adresse im Netzwerk ist die *Broadcastadresse*: ~192.168.56.31~. Darüber können
+/Netzwerkpakete/ an alle Hosts im Netzwerk gesendet werden. 
+
+* 172.19.226.13 / 20
+
+Beim 2. Beispiel gehen wir im Prinzip genauso vor, nur dass dieses Netzwerk ein *Prefix* von
+*20* hat. 
+
+** Blocksize 
+
+Wieder ist der wichtigste Wert die *Blocksize*. 
+
+=1111 1111 . 1111 1111 . 1111 0000 . 0000 0000=
+
+=          8          16          24          32= 
+
+Das letzte /signifikante Bit/ (die letzte Eins) in der binären Netzwerkmaske befindet sich
+diesmal im *3. Oktett*: =1111 0000=. Wir berechnen die *Blocksize* wieder auf der Grundlage des *Prefixes*:
+  
+ 1.  Was ist das *nächstgrößere Vielfache von 8*, z. B. =/20 < 24.= 
+ 2.  Davon das /Prefix/ /subtrahieren/:  =24 - 20 = 4.=
+ 3.  Die Zweierpotenz des Ergebnisses ist: =2^4 = 16.= 
+
+*16* ist also die *Blocksize* bei einem *Prefix* von */20*.
+
+** Netzwerkmaske
+
+Mit dieser  *Blocksize* berechnen wir die  *Netzwerkmaske*:
+
+ - =20 > 0=? Ja! => 255
+ - =20 > 16=? Ja! => 255
+ - =20 > 24=? Nein! => ~256 - 16 (Blocksize) = 240~ 
+ - =20 < 24=? Ja! => 0
+
+Das *Prefix /20* steht als für die dezimal Netzwerkmaske: =255.255.240.0=.
+
+** Netzwerkadresse
+
+Auch für die *Netzwerkadresse* brauchen wir die *Blocksize*. Und wieder geht es darum, in
+welchem /Oktett/, das /letzte signifikante Bit/ steht. Alle Werte der IP davor, sind
+Bestandteil der *Netzwerkadresse*.
+
+Also in diesem Beispiel: ~172.19.~
+
+In dem Oktett mit dem /signifikanten Bit/ müssen wir den Wert für die Netzwerkadresse
+bestimmen. Dieser ist
+
+ 1, ein *Vielfaches der Blocksize*.
+ 2. kleiner als der Wert in der IP.
+ 3. In allen folgenden Oktetten steht eine 0.
+
+Beispiel: =224 < 226= : Die Netzwerkadresse ist =172.19.224.0=.
+ 
+** Nächstes Netzwerk
+
+Um zu bestimmen wie groß das aktuelle Netzwerk ist, müssen wir wissen, wo das *nächste
+Netzwerk* beginnt. Dazu gehen wir von der aktuellen /Netzwerkadresse/ aus und erhöhen den
+Wert im *3. Oktett* um die /Blocksize/: ~224 + 16 = 240~. Alles danach ist wiederum *0*. Das
+*nächste Netzwerk* hat somit die Adresse: ~172.19.240.0~.   
+
+*k
+
+
+Diesmal sind von ~32~ nach Abzug der ~20~ Netzwerkbits noch ~12~ Hostbits übrig. Damit stehen
+~2^12 - 2 = 4094~ Bits zur Verfügung. 
+
+Das sind die Adressen ~172.19.224.1 - 172.19.239.254~
+
+Wiederum ist in der Regel die *1. Adresse* (~172.19.224.1~) für das *Standardgateway* reserviert.
+
+Die *Broadcastadresse* ist ~172.19.239.255~. 

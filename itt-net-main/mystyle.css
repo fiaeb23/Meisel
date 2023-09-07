@@ -1,0 +1,44 @@
+section {font-size: 85% }
+
+/* img { */
+/*     width: 50%; */
+/* } */
+
+.reveal .title {font-size: 300% }
+
+section p {
+    text-align: left;
+}
+
+section p.subtitle {
+    text-align: center;
+}
+
+div.figure p {
+    align: center;
+    text-align: center;
+    font-size: 40%;
+    text-color: darkgray;
+}
+
+ul {
+    text-align: left;
+    align: left;	     
+}
+
+
+ul li {
+    text-align: left;
+}
+
+.fragment .appear .visible {
+    text-align: left;
+}
+
+
+table {
+    position: absolute;
+    left: -15%;
+    width: 130%;
+    font-size: 65%;
+}

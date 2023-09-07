@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Virtual Private Network</title>
+<meta name="author" content="Sebastian Meisel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/league.css" id="theme"/>
+
+<link rel="stylesheet" href="./mystyle.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Virtual Private Network</h1><p class="subtitle">IT-Technik Netzwerkgrundlagen</p>
+<h2 class="author">Sebastian Meisel</h2>
+</section>
+
+<section>
+<section id="slide-org271def2">
+<h2 id="org271def2">Virtual Privat Network (VPN)</h2>
+<p>
+Unter einem <b>VPN</b> versteht man eine Reihe von Protokollen, die eine verschlüsselte Verbindung zwischen <b>einzelnen Geräten</b> oder ganzen <b>LANs</b> über das <b>Internet</b> oder ein anderes WAN ermöglichen.
+</p>
+
+<p>
+Die verschlüsselte Verbindung wird <b>Tunnel</b> genannt und wirkt aus Sicht der beteiligten Geräte wie ein direkte Verbindung. Man kann sich einen <b>VPN-Tunnel</b> als virtuelles Kabel vorstellen.
+</p>
+
+<aside class="notes">
+<p>
+Teilweise werden auch andere Formen von verschlüsseltem Fernzugriff unter dem Begriff <b>VPN</b> vermarktet. 
+</p>
+
+<p>
+Außerdem gibt es Lösungen, die die <b>VPN</b> zweckentfremden, um einen Tunnel zu einem entfernten Zugangspunkt (z. B.) in einem anderen Land herzustellen.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orge6a6dcf">
+<h2 id="orge6a6dcf">Protokolle</h2>
+<p>
+Das verbreiteste und erprobteste Protokoll zum Aufbau von <b>VPNs</b> ist das Protokoll <b>Internet Protocol Security</b>. Es arbeitet direkt auf dem <i>Networklayer (OSI Layer 3)</i>.
+</p>
+
+<p>
+Seit 2015 bietet das <b>Wireguard</b>-Protocol eine Alternativer, die <b>einfacher</b> einzurichten und deutlich <b>schneller</b> als IPsec. Letzteres gilt vor seit dieses Protokoll im Linuxkernel integriet ist.
+</p>
+
+<p>
+Die dritte relevante Alternative ist OpenVPN, dass ein <b>VPN</b> auf Grundlage von <b>SSL</b> aufbaut.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org89e33eb">
+<h3 id="org89e33eb">IPsec</h3>
+<p>
+IPsec nutzt verschiedene Komponenten, um …
+</p>
+
+<ul>
+<li>die Integrität (keine Manipulation),</li>
+<li>die Vertraulichkeit (kein Mitlesen),</li>
+<li>die Authentizität (Verifizierung des Absenders) …</li>
+
+</ul>
+
+<p>
+der Daten zu garantieren:
+</p>
+
+<ul>
+<li>Zugangskontrolle.</li>
+<li>Benutzerauthentifizierung.</li>
+<li>Schlüsselverwaltung.</li>
+<li>Schlüsselauthentifizierung.</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Bei Nutzung eines <b>NATs</b> werden in der Regel Technik zum <b>NAT-Traversal</b> angewendet.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org5b1148c">
+<h4 id="org5b1148c">IPsec-Header</h4>
+<ul>
+<li><b>Authentification Header (AH)</b>:
+<ul>
+<li>bestätigt (nur) die Integrität der Daten durch Hashing.</li>
+<li>wird in der Regel nicht allein verwendet.</li>
+
+</ul></li>
+
+</ul>
+<ul>
+<li class="fragment appear"><b>Encapsulation Security Payload (ESP)</b>:
+<ul>
+<li>Verschlüsselt die Daten.</li>
+<li>Wird ergänzt durch den <b>ESP-Trailer</b> und <b>ESP-Authenticator</b> am Ende des Datenpakets</li>
+<li>Wird allein oder gemeinsam mit dem <b>AH</b> verwendet.</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="slide-orgbe22e57">
+<h4 id="orgbe22e57">IPsec-Verbindungsaufbau</h4>
+<ol>
+<li>Aushandeln der Vertrauensstellung per <b>Internet Key Exange</b></li>
+
+</ol>
+<aside class="notes">
+<p>
+Dazu generiert das eine Ende von zwei VPN-Endpunkten eine Anfrage an das Zielsystem. Das Zielsystem antwortet und leitet den Schlüsselaustausch <b>IKE</b> ein. Beide Endpunkte handeln dabei Verschlüsselungs- und Authentisierungsverfahren aus. Über einen Schlüssel oder ein Zertifikat, das beide System kennen, wird eine Vertrauensstellung zueinander hergestellt. Für beide Seiten wird dann der digitale Master-Schlüssel erzeugt
+</p>
+
+</aside>
+<ol>
+<li>Festlegen der Verschlüsselungs- und Authentisierungsverfahren.</li>
+<li>Erzeugen und Austausch des <b>Masterschlüssels</b>.</li>
+<li>Austausch der mit dem <b>Masterschlüssel</b> (symetrisch) verschlüsselten Daten.</li>
+
+</ol>
+
+</section>
+<section id="slide-org018ec02">
+<h4 id="org018ec02">IPsec-Modi</h4>
+<ul>
+<li><b>Transportmodus</b>: Lediglich die Daten werden verschlüsselt. Die Header (Start-/ Zieladresse/ ~port) bleiben unverschlüsselt</li>
+
+<li><b>Tunnelmodus</b>: Auch die Headerdaten werden verschlüsselt.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org4d04aa4">
+<h3 id="org4d04aa4">Wireguard</h3>
+<p>
+Wireguard bietet gegenüber IPsec einige <b>Vorteile</b>  (wird aber von deutlich weniger Netzwerkgeräten unterstützt):
+</p>
+
+<ul>
+<li>Weniger Overhead.</li>
+<li>Weniger Komplexität.</li>
+<li>Modernere Verschlüsselungsverfahren:
+<ul>
+<li>schneller.</li>
+<li>(theoretisch) sicherer.</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd66a8cc">
+<h3 id="orgd66a8cc">VPN-Arten</h3>
+<div class="outline-text-3" id="text-orgd66a8cc">
+</div>
+</section>
+<section id="slide-orgbbe6e82">
+<h4 id="orgbbe6e82">Site-to-Site</h4>
+<p>
+Auch <b>LAN-to-LAN</b> oder <b>Gateway-to-Gateway</b>: Vertrauensstellung zwischen zwei Routern, die <b>VPN-Gateways</b> genannt werden. Zwei <b>LANs</b> werden mit einander verbunden. <b>Tunnelmodus</b>
+</p>
+
+
+<div id="org37a9180" class="figure">
+<p><img src="Bilder/Side-to-Side-VPN.png" alt="Side-to-Side-VPN.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 1: </span>Site-to-Site-VPN</p>
+</div>
+
+</section>
+<section id="slide-org3caafb9">
+<h4 id="org3caafb9">End-to-Site</h4>
+<p>
+Auch <b>Host-to-Gateway</b> oder <b>Remote-Access</b>: Vertrauensstellung zwischen einem Host und einem <b>VPN-Gateways</b>. Ein Rechner (z. B. im Homeoffice) wird mit einem <b>LAN</b> (z. B. Unternehmen) verbunden. In der Regel <b>Tunnelmodus</b>.
+</p>
+
+
+<div id="orga422911" class="figure">
+<p><img src="Bilder/Host-to-Side-VPN.png" alt="Host-to-Side-VPN.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 2: </span>End-to-Site-VPN</p>
+</div>
+
+</section>
+<section id="slide-orgc97d74b">
+<h4 id="orgc97d74b">End-to-End</h4>
+<p>
+Auch <b>Host-to-Host</b>, <b>Peer-to-Peer</b> oder <b>Remote-Desktop</b>: Vertrauensstellung zwischen zwei Hosts. Zwei Rechner werden mit einander verbunden. <b>Transportmodus</b>.
+</p>
+
+
+<div id="orgd788d2a" class="figure">
+<p><img src="Bilder/Host-to-Host-VPN.png" alt="Host-to-Host-VPN.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 3: </span>End-to-End-VPN</p>
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org9aff135">
+<h2 id="org9aff135">Pre-Shared-Keys</h2>
+<p>
+IPsec arbeitet zur Vertrauensstellung etweder mit Zertifikaten oder mit Pre-Shared-Keys, wobei Zertifikatesicherere sind.  
+Der Pre-Shared-Key ist ein beiden Seiten bekanntes Geheimnis (Passwort). Von diesem wird auf jeder Seite ein Hashwert mit einem zuvor ausgehandelten Hashverfahren gebildet, der dann übertragen und mit dem selbsterstellten Hashwert verglichen wird. Bei Übereinstimmung wird die Ipsec-Verbindung akzeptiert.Allerdings kann man (wenn der PSK nicht lang und komplex genug ist) mit Hilfe von Hashtables einen abgefangenen PSK rekonstruieren.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org6df14f5">
+<h2 id="org6df14f5">Symmetrische vs. Asymmetrische Verschlüsselung</h2>
+<ul>
+<li>Symmetrisch
+<ul>
+<li>beide benutzen den gleichen Schlüssel</li>
+<li>Problem ist der Schlüsselaustausch</li>
+<li>Sind schneller</li>
+
+</ul></li>
+<li>Asymmetrisch
+<ul>
+<li>Öffentlicher Schlüssel zum Verschlüsseln von Nachrichten an mich wird geteilt</li>
+<li>Private Schlüssel zum Entschlüsseln der Nachrichten</li>
+<li>Problem: Langsameres Verfahren</li>
+<li>Schlüsselaustausch in unverschlüsselten Netzwerken möglich</li>
+
+</ul></li>
+<li>Hybrid
+<ul>
+<li>Austausch eines symetrischen Schlüssels über eine asymmetrisch verschlüsselter Verbindung</li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes]
+});
+
+</script>
+</body>
+</html>

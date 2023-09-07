@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="300.14108mm"
+   height="214.75032mm"
+   viewBox="0 0 300.14108 214.75031"
+   version="1.1"
+   id="svg3859"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01, custom)"
+   sodipodi:docname="OSI_Modell.svg"
+   inkscape:export-filename="../66aee2c4/OSI_Modell.png"
+   inkscape:export-xdpi="299"
+   inkscape:export-ydpi="299"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview3861"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.71617777"
+     inkscape:cx="545.25569"
+     inkscape:cy="407.72"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs3856" />
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-15.533661,83.82962)">
+    <g
+       id="g6459">
+      <rect
+         style="fill:#000080;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"
+         id="rect4032"
+         width="300"
+         height="30"
+         x="15.533661"
+         y="100.9207"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="26.31455"
+         y="118.40496"
+         id="text4092"><tspan
+           sodipodi:role="line"
+           id="tspan4090"
+           style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="26.31455"
+           y="118.40496">1. Physical Layer</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="150.23601"
+         y="112.43124"
+         id="text4170"><tspan
+           sodipodi:role="line"
+           id="tspan4168"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="112.43124">Übertragunsmedien / Hub</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="150.23601"
+         y="122.48537"
+         id="text5417"><tspan
+           sodipodi:role="line"
+           id="tspan5415"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="122.48537">z. B IEEE 802.11</tspan></text>
+    </g>
+    <g
+       id="g6450"
+       transform="translate(0,0.48181057)">
+      <rect
+         style="fill:#000080;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"
+         id="rect4158"
+         width="300"
+         height="30"
+         x="15.533661"
+         y="68.700272"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="28.420851"
+         y="86.184532"
+         id="text4096"><tspan
+           sodipodi:role="line"
+           id="tspan4094"
+           style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="28.420851"
+           y="86.184532">2. Data Link Layer</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="150.23601"
+         y="81.210419"
+         id="text6180"><tspan
+           sodipodi:role="line"
+           id="tspan6178"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="81.210419">Switch</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="150.23601"
+         y="91.264542"
+         id="text6184"><tspan
+           sodipodi:role="line"
+           id="tspan6182"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="91.264542">Ethernet</tspan></text>
+    </g>
+    <g
+       id="g6441"
+       transform="translate(0,0.02893257)">
+      <text
+         xml:space="preserve"
+         style="font-size:8.27993px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="179.43405"
+         y="63.022068"
+         id="text4223"
+         transform="scale(1.1410909,0.87635438)"><tspan
+           sodipodi:role="line"
+           id="tspan4221"
+           style="font-size:8.27993px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="179.43405"
+           y="63.022068">UDP/TCP</tspan></text>
+      <rect
+         style="fill:#008000;fill-opacity:1;stroke:none;stroke-width:1.99999;stroke-linecap:round;stroke-linejoin:round"
+         id="rect4160"
+         width="300"
+         height="30"
+         x="15.674747"
+         y="37.414532"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="28.420851"
+         y="54.731102"
+         id="text4577"><tspan
+           sodipodi:role="line"
+           id="tspan4575"
+           style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="28.420851"
+           y="54.731102">3. Network Layer</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="150.23601"
+         y="49.460423"
+         id="text6223"><tspan
+           sodipodi:role="line"
+           id="tspan6221"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="49.460423">Router / Layer 3 Switch</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="150.23601"
+         y="59.514553"
+         id="text6227"><tspan
+           sodipodi:role="line"
+           id="tspan6225"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="59.514553">IP v4 / IPv6 / ICMP</tspan></text>
+    </g>
+    <g
+       id="g6469"
+       transform="translate(0,-0.48885441)">
+      <rect
+         style="fill:#cc9004;stroke:none;stroke-width:1.99999;stroke-linecap:round;stroke-linejoin:round"
+         id="rect4599"
+         width="300"
+         height="30"
+         x="15.674747"
+         y="6.1937008"
+         rx="5"
+         ry="5" />
+      <g
+         id="g6430">
+        <text
+           xml:space="preserve"
+           style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="28.420851"
+           y="23.510271"
+           id="text4603"><tspan
+             sodipodi:role="line"
+             id="tspan4601"
+             style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+             x="28.420851"
+             y="23.510271">4. Transport Layer</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="18.768755"
+           id="text6231"><tspan
+             sodipodi:role="line"
+             id="tspan6229"
+             style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+             x="150.23601"
+             y="18.768755">SPI Firewall</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="28.822882"
+           id="text6235"><tspan
+             sodipodi:role="line"
+             id="tspan6233"
+             style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+             x="150.23601"
+             y="28.822882">TCP/UDP</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g6422">
+      <rect
+         style="fill:#4c1000;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"
+         id="rect4162"
+         width="298"
+         height="28"
+         x="15.533661"
+         y="-83.82962"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="24.187181"
+         y="-67.493027"
+         id="text4104"><tspan
+           sodipodi:role="line"
+           id="tspan4102"
+           style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="24.187181"
+           y="-67.493027">4. Application Layer</tspan></text>
+      <rect
+         style="fill:#4c1000;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"
+         id="rect5390"
+         width="298"
+         height="28"
+         x="15.533661"
+         y="-54.196281"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="24.187181"
+         y="-37.859688"
+         id="text5394"><tspan
+           sodipodi:role="line"
+           id="tspan5392"
+           style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="24.187181"
+           y="-37.859688">6. Presentation Layer</tspan></text>
+      <rect
+         style="fill:#4c1000;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"
+         id="rect5398"
+         width="298"
+         height="28"
+         x="15.533661"
+         y="-24.033772"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="24.187181"
+         y="-7.6971788"
+         id="text5402"><tspan
+           sodipodi:role="line"
+           id="tspan5400"
+           style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="24.187181"
+           y="-7.6971788">5. Session Layer</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="150.23601"
+         y="-2.9271173"
+         id="text6286"><tspan
+           sodipodi:role="line"
+           id="tspan6284"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="-2.9271173">(SSH/TLS)</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="150.23601"
+         y="-32.031281"
+         id="text6290"><tspan
+           sodipodi:role="line"
+           id="tspan6288"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="-32.031281">(Xorg)</tspan></text>
+      <rect
+         style="fill:#4c1000;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"
+         id="rect6339"
+         width="119.66866"
+         height="87.546524"
+         x="193.86499"
+         y="-83.829613"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="221.71097"
+         y="-69.961182"
+         id="text6231-2"><tspan
+           sodipodi:role="line"
+           id="tspan6229-0"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="221.71097"
+           y="-69.961182">Clients/Server</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="221.71097"
+         y="-59.907051"
+         id="text6235-2"><tspan
+           sodipodi:role="line"
+           id="tspan6233-3"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="221.71097"
+           y="-59.907051">z. B. HTPP(S)/ QUIC</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="221.71097"
+         y="-51.002937"
+         id="text6388"><tspan
+           sodipodi:role="line"
+           id="tspan6386"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="221.71097"
+           y="-51.002937">Telnet/SSH</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="221.71097"
+         y="-42.225826"
+         id="text6392"><tspan
+           sodipodi:role="line"
+           id="tspan6390"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="221.71097"
+           y="-42.225826">SMTP/POP3/IMAP</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="221.71097"
+         y="-33.448715"
+         id="text6396"><tspan
+           sodipodi:role="line"
+           id="tspan6394"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="221.71097"
+           y="-33.448715">DNS/DHCP</tspan></text>
+    </g>
+    <g
+       id="g6485">
+      <rect
+         style="fill:#000080;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"
+         id="rect6471"
+         width="300"
+         height="30"
+         x="15.533661"
+         y="100.9207"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="26.31455"
+         y="118.40496"
+         id="text6475"><tspan
+           sodipodi:role="line"
+           id="tspan6473"
+           style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="26.31455"
+           y="118.40496">1. Physical Layer</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="150.23601"
+         y="112.43124"
+         id="text6479"><tspan
+           sodipodi:role="line"
+           id="tspan6477"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="112.43124">Übertragunsmedien / Hub</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="150.23601"
+         y="122.48537"
+         id="text6483"><tspan
+           sodipodi:role="line"
+           id="tspan6481"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="122.48537">z. B IEEE 802.11</tspan></text>
+    </g>
+    <g
+       id="g6501"
+       transform="translate(0,0.48181057)">
+      <rect
+         style="fill:#000080;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"
+         id="rect6487"
+         width="300"
+         height="30"
+         x="15.533661"
+         y="68.700272"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="26.739294"
+         y="86.184532"
+         id="text6491"><tspan
+           sodipodi:role="line"
+           id="tspan6489"
+           style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="26.739294"
+           y="86.184532">2. Data Link Layer</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="150.23601"
+         y="81.210419"
+         id="text6495"><tspan
+           sodipodi:role="line"
+           id="tspan6493"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="81.210419">Switch</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="150.23601"
+         y="91.264542"
+         id="text6499"><tspan
+           sodipodi:role="line"
+           id="tspan6497"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="91.264542">Ethernet</tspan></text>
+    </g>
+    <g
+       id="g6521"
+       transform="translate(0,0.02893257)">
+      <text
+         xml:space="preserve"
+         style="font-size:8.27993px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="179.43405"
+         y="63.022068"
+         id="text6505"
+         transform="scale(1.1410909,0.87635438)"><tspan
+           sodipodi:role="line"
+           id="tspan6503"
+           style="font-size:8.27993px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="179.43405"
+           y="63.022068">UDP/TCP</tspan></text>
+      <rect
+         style="fill:#008000;fill-opacity:1;stroke:none;stroke-width:1.99999;stroke-linecap:round;stroke-linejoin:round"
+         id="rect6507"
+         width="300"
+         height="30"
+         x="15.674747"
+         y="37.414532"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="26.838072"
+         y="54.731102"
+         id="text6511"><tspan
+           sodipodi:role="line"
+           id="tspan6509"
+           style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="26.838072"
+           y="54.731102">3. Network Layer</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="150.23601"
+         y="49.460423"
+         id="text6515"><tspan
+           sodipodi:role="line"
+           id="tspan6513"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="49.460423">Router / Layer 3 Switch</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="150.23601"
+         y="59.514553"
+         id="text6519"><tspan
+           sodipodi:role="line"
+           id="tspan6517"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="59.514553">IP v4 / IPv6 / ICMP</tspan></text>
+    </g>
+    <g
+       id="g6539"
+       transform="translate(0,-0.48885441)">
+      <rect
+         style="fill:#cc9004;stroke:none;stroke-width:1.99999;stroke-linecap:round;stroke-linejoin:round"
+         id="rect6523"
+         width="300"
+         height="30"
+         x="15.674747"
+         y="6.1937008"
+         rx="5"
+         ry="5" />
+      <g
+         id="g6537">
+        <text
+           xml:space="preserve"
+           style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="26.926971"
+           y="23.510271"
+           id="text6527"><tspan
+             sodipodi:role="line"
+             id="tspan6525"
+             style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+             x="26.926971"
+             y="23.510271">4. Transport Layer</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="18.768755"
+           id="text6531"><tspan
+             sodipodi:role="line"
+             id="tspan6529"
+             style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+             x="150.23601"
+             y="18.768755">SPI Firewall</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="28.822882"
+           id="text6535"><tspan
+             sodipodi:role="line"
+             id="tspan6533"
+             style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+             x="150.23601"
+             y="28.822882">TCP/UDP</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g6589">
+      <rect
+         style="fill:#4c1000;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"
+         id="rect6541"
+         width="298"
+         height="28"
+         x="15.533661"
+         y="-83.82962"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="26.660273"
+         y="-67.493027"
+         id="text6545"><tspan
+           sodipodi:role="line"
+           id="tspan6543"
+           style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="26.660273"
+           y="-67.493027">7. Application Layer</tspan></text>
+      <rect
+         style="fill:#4c1000;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"
+         id="rect6547"
+         width="298"
+         height="28"
+         x="15.533661"
+         y="-54.196281"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="26.62076"
+         y="-37.859688"
+         id="text6551"><tspan
+           sodipodi:role="line"
+           id="tspan6549"
+           style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="26.62076"
+           y="-37.859688">6. Presentation Layer</tspan></text>
+      <rect
+         style="fill:#4c1000;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"
+         id="rect6553"
+         width="298"
+         height="28"
+         x="15.533661"
+         y="-24.033772"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="26.84795"
+         y="-7.6971788"
+         id="text6557"><tspan
+           sodipodi:role="line"
+           id="tspan6555"
+           style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="26.84795"
+           y="-7.6971788">5. Session Layer</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="150.23601"
+         y="-2.9271173"
+         id="text6561"><tspan
+           sodipodi:role="line"
+           id="tspan6559"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="-2.9271173">(SSH/TLS)</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="150.23601"
+         y="-32.031281"
+         id="text6565"><tspan
+           sodipodi:role="line"
+           id="tspan6563"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="-32.031281">(Xorg)</tspan></text>
+      <rect
+         style="fill:#4c1000;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"
+         id="rect6567"
+         width="119.66866"
+         height="87.546524"
+         x="193.86499"
+         y="-83.829613"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="221.71097"
+         y="-69.961182"
+         id="text6571"><tspan
+           sodipodi:role="line"
+           id="tspan6569"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="221.71097"
+           y="-69.961182">Clients/Server</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="221.71097"
+         y="-59.907051"
+         id="text6575"><tspan
+           sodipodi:role="line"
+           id="tspan6573"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="221.71097"
+           y="-59.907051">z. B. HTPP(S)/ QUIC</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="221.71097"
+         y="-51.002937"
+         id="text6579"><tspan
+           sodipodi:role="line"
+           id="tspan6577"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="221.71097"
+           y="-51.002937">Telnet/SSH</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="221.71097"
+         y="-42.225826"
+         id="text6583"><tspan
+           sodipodi:role="line"
+           id="tspan6581"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="221.71097"
+           y="-42.225826">SMTP/POP3/IMAP</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="221.71097"
+         y="-33.448715"
+         id="text6587"><tspan
+           sodipodi:role="line"
+           id="tspan6585"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="221.71097"
+           y="-33.448715">DNS/DHCP</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:7.7611px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke-width:0.264583"
+       x="26.396395"
+       y="127.29924"
+       id="text6873"><tspan
+         sodipodi:role="line"
+         id="tspan6871"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="26.396395"
+         y="127.29924">Bitübertragungsschicht</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.7611px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke-width:0.264583"
+       x="26.768927"
+       y="95.020103"
+       id="text6877"><tspan
+         sodipodi:role="line"
+         id="tspan6875"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="26.768927"
+         y="95.020103">Sicherungsschicht</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.7611px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke-width:0.264583"
+       x="27.094894"
+       y="63.799282"
+       id="text6881"><tspan
+         sodipodi:role="line"
+         id="tspan6879"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="27.094894"
+         y="63.799282">Vermittlungsschicht</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.7611px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke-width:0.264583"
+       x="26.877583"
+       y="32.049274"
+       id="text6885"><tspan
+         sodipodi:role="line"
+         id="tspan6883"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="26.877583"
+         y="32.049274">Transportschicht</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.7611px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke-width:0.264583"
+       x="26.768927"
+       y="0.82844287"
+       id="text7021"><tspan
+         sodipodi:role="line"
+         id="tspan7019"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="26.768927"
+         y="0.82844287">Sitzungsschicht</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.7611px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke-width:0.264583"
+       x="26.396395"
+       y="-29.863222"
+       id="text7159"><tspan
+         sodipodi:role="line"
+         id="tspan7157"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="26.396395"
+         y="-29.863222">Darstellungsschicht</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.7611px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke-width:0.264583"
+       x="27.071609"
+       y="-59.496559"
+       id="text7163"><tspan
+         sodipodi:role="line"
+         id="tspan7161"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="27.071609"
+         y="-59.496559">Anwendungsschicht</tspan></text>
+  </g>
+</svg>

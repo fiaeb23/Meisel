@@ -1,0 +1,10 @@
+$pdflatex = 'xelatex --shell-escape %O %S';
+sub postprocess{ 
+    system("bash ./postprocess_tex"); 
+} 
+postprocess();
+
+$cleanup_mode=2;
+
+$emulate_aux = 1;
+$aux_dir = "latex.d";

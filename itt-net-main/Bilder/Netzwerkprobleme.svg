@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="300.14108mm"
+   height="214.75032mm"
+   viewBox="0 0 300.14108 214.75031"
+   version="1.1"
+   id="svg3859"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="Netzwerkprobleme.svg"
+   inkscape:export-filename="Netzwerkprobleme.png"
+   inkscape:export-xdpi="299"
+   inkscape:export-ydpi="299"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview3861"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.71617777"
+     inkscape:cx="423.77747"
+     inkscape:cy="414.70151"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs3856" />
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-15.533661,83.82962)">
+    <g
+       id="g6459">
+      <rect
+         style="fill:#000080;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"
+         id="rect4032"
+         width="300"
+         height="30"
+         x="15.533661"
+         y="100.9207"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="26.31455"
+         y="118.40496"
+         id="text4092"><tspan
+           sodipodi:role="line"
+           id="tspan4090"
+           style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="26.31455"
+           y="118.40496">1. Physical Layer</tspan></text>
+    </g>
+    <g
+       id="g6485"
+       style="display:inline">
+      <rect
+         style="display:inline;fill:#000080;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"
+         id="rect6471"
+         width="300"
+         height="30"
+         x="15.533661"
+         y="100.9207"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;display:inline;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="26.31455"
+         y="118.40496"
+         id="text6475"><tspan
+           sodipodi:role="line"
+           id="tspan6473"
+           style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="0"
+           y="0">1. Physical Layer</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;display:inline;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="150.23601"
+         y="112.43124"
+         id="text6479"><tspan
+           sodipodi:role="line"
+           id="tspan6477"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="0"
+           y="0">langsame Übertragunsmedien / Hubs</tspan><tspan
+           sodipodi:role="line"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="0"
+           y="0"
+           id="tspan2817" /></text>
+    </g>
+    <g
+       id="g6501"
+       transform="translate(0,0.48181057)">
+      <rect
+         style="fill:#000080;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"
+         id="rect6487"
+         width="300"
+         height="30"
+         x="15.533661"
+         y="68.700272"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="26.739294"
+         y="86.184532"
+         id="text6491"><tspan
+           sodipodi:role="line"
+           id="tspan6489"
+           style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="26.739294"
+           y="86.184532">2. Data Link Layer</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="150.88655"
+         y="78.564583"
+         id="text6495"><tspan
+           sodipodi:role="line"
+           id="tspan6493"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.88655"
+           y="78.564583">Kapazität der Switches</tspan></text>
+    </g>
+    <g
+       id="g6521"
+       transform="translate(0,0.02893257)">
+      <text
+         xml:space="preserve"
+         style="font-size:8.27993px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="179.43405"
+         y="63.022068"
+         id="text6505"
+         transform="scale(1.1410909,0.87635438)"><tspan
+           sodipodi:role="line"
+           id="tspan6503"
+           style="font-size:8.27993px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="179.43405"
+           y="63.022068">UDP/TCP</tspan></text>
+      <rect
+         style="fill:#008000;fill-opacity:1;stroke:none;stroke-width:1.99999;stroke-linecap:round;stroke-linejoin:round"
+         id="rect6507"
+         width="300"
+         height="30"
+         x="15.674747"
+         y="37.414532"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="26.838072"
+         y="54.731102"
+         id="text6511"><tspan
+           sodipodi:role="line"
+           id="tspan6509"
+           style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="26.838072"
+           y="54.731102">3. Network Layer</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="150.23601"
+         y="49.460423"
+         id="text6515"><tspan
+           sodipodi:role="line"
+           id="tspan6513"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="49.460423">Kapazität der Router / Layer 3 Switches</tspan><tspan
+           sodipodi:role="line"
+           style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="49.460423"
+           id="tspan2573" /></text>
+    </g>
+    <g
+       id="g6539"
+       transform="translate(0,-0.48885441)">
+      <rect
+         style="fill:#cc9004;stroke:none;stroke-width:1.99999;stroke-linecap:round;stroke-linejoin:round"
+         id="rect6523"
+         width="300"
+         height="30"
+         x="15.674747"
+         y="6.1937008"
+         rx="5"
+         ry="5" />
+      <g
+         id="g6537">
+        <text
+           xml:space="preserve"
+           style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="26.926971"
+           y="23.510271"
+           id="text6527"><tspan
+             sodipodi:role="line"
+             id="tspan6525"
+             style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+             x="26.926971"
+             y="23.510271">4. Transport Layer</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:7.05556px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="150.23601"
+           y="18.768755"
+           id="text6531"><tspan
+             sodipodi:role="line"
+             id="tspan6529"
+             style="font-size:7.05556px;fill:#ffffff;stroke:none;stroke-width:0.264583"
+             x="150.23601"
+             y="18.768755">Framedrops/ Resents</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g6589">
+      <rect
+         style="fill:#4c1000;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"
+         id="rect6541"
+         width="298"
+         height="28"
+         x="15.533661"
+         y="-83.82962"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="26.660273"
+         y="-67.493027"
+         id="text6545"><tspan
+           sodipodi:role="line"
+           id="tspan6543"
+           style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="26.660273"
+           y="-67.493027">7. Application Layer</tspan></text>
+      <rect
+         style="fill:#4c1000;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"
+         id="rect6547"
+         width="298"
+         height="28"
+         x="15.533661"
+         y="-54.196281"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="26.62076"
+         y="-37.859688"
+         id="text6551"><tspan
+           sodipodi:role="line"
+           id="tspan6549"
+           style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="26.62076"
+           y="-37.859688">6. Presentation Layer</tspan></text>
+      <rect
+         style="fill:#4c1000;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"
+         id="rect6553"
+         width="298"
+         height="28"
+         x="15.533661"
+         y="-24.033772"
+         rx="5"
+         ry="5" />
+      <text
+         xml:space="preserve"
+         style="font-size:9.87777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="26.84795"
+         y="-7.6971788"
+         id="text6557"><tspan
+           sodipodi:role="line"
+           id="tspan6555"
+           style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+           x="26.84795"
+           y="-7.6971788">5. Session Layer</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:7.7611px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke-width:0.264583"
+       x="26.396395"
+       y="127.29924"
+       id="text6873"><tspan
+         sodipodi:role="line"
+         id="tspan6871"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="26.396395"
+         y="127.29924">Bitübertragungsschicht</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.7611px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke-width:0.264583"
+       x="26.768927"
+       y="95.020103"
+       id="text6877"><tspan
+         sodipodi:role="line"
+         id="tspan6875"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="26.768927"
+         y="95.020103">Sicherungsschicht</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.7611px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke-width:0.264583"
+       x="27.094894"
+       y="63.799282"
+       id="text6881"><tspan
+         sodipodi:role="line"
+         id="tspan6879"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="27.094894"
+         y="63.799282">Vermittlungsschicht</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.7611px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke-width:0.264583"
+       x="26.877583"
+       y="32.049274"
+       id="text6885"><tspan
+         sodipodi:role="line"
+         id="tspan6883"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="26.877583"
+         y="32.049274">Transportschicht</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.7611px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke-width:0.264583"
+       x="26.768927"
+       y="0.82844287"
+       id="text7021"><tspan
+         sodipodi:role="line"
+         id="tspan7019"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="26.768927"
+         y="0.82844287">Sitzungsschicht</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.7611px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke-width:0.264583"
+       x="26.396395"
+       y="-29.863222"
+       id="text7159"><tspan
+         sodipodi:role="line"
+         id="tspan7157"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="26.396395"
+         y="-29.863222">Darstellungsschicht</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.7611px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;fill:#ffffff;stroke-width:0.264583"
+       x="27.071609"
+       y="-59.496559"
+       id="text7163"><tspan
+         sodipodi:role="line"
+         id="tspan7161"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="27.071609"
+         y="-59.496559">Anwendungsschicht</tspan></text>
+    <rect
+       style="fill:#4c1000;fill-opacity:1;stroke:none;stroke-width:1"
+       id="rect1229"
+       width="173.86177"
+       height="84.711525"
+       x="139.82985"
+       y="-82.880791"
+       rx="5"
+       ry="5" />
+    <text
+       xml:space="preserve"
+       style="font-size:10.2926px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle;fill:#ffffff;stroke-width:0.264583"
+       x="168.0632"
+       y="-55.120525"
+       id="text2495"><tspan
+         sodipodi:role="line"
+         id="tspan2493"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="168.0632"
+         y="-55.120525">Client:</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:sans-serif;fill:#ffffff;stroke-width:0.264583"
+       x="197.81769"
+       y="-69.112053"
+       id="text2549"><tspan
+         sodipodi:role="line"
+         id="tspan2547"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="197.81769"
+         y="-69.112053">- fehlerhafte Clientsoftware</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="197.81769"
+         y="-61.174553"
+         id="tspan2551">- fehlerhafte Hardware</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="197.81769"
+         y="-53.237053"
+         id="tspan2553">- langsame Netzwerkschnittstellte</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="197.81769"
+         y="-45.299553"
+         id="tspan2555">- geringe Kapazität (Bus/RAM/CPU)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10.2926px;line-height:1.25;font-family:sans-serif;text-align:start;text-anchor:start;fill:#ffffff;stroke-width:0.264583"
+       x="151.33018"
+       y="-18.078856"
+       id="text2559"><tspan
+         sodipodi:role="line"
+         id="tspan2557"
+         style="text-align:start;text-anchor:start;fill:#ffffff;stroke-width:0.264583"
+         x="151.33018"
+         y="-18.078856">Server:</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:sans-serif;fill:#ffffff;stroke-width:0.264583"
+       x="197.81769"
+       y="-32.070377"
+       id="text2569"><tspan
+         sodipodi:role="line"
+         id="tspan2561"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="197.81769"
+         y="-32.070377">- fehlerhafte Serversoftware</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="197.81769"
+         y="-24.132877"
+         id="tspan2563">- fehlerhafte Hardware</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="197.81769"
+         y="-16.195377"
+         id="tspan2565">- langsame Netzwerkschnittstellte</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="197.81769"
+         y="-8.2578773"
+         id="tspan2567">- geringe Kapazität (Bus/RAM/CPU)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:sans-serif;fill:#ffffff;stroke-width:0.264583"
+       x="150.8214"
+       y="61.303898"
+       id="text2646"><tspan
+         sodipodi:role="line"
+         id="tspan2644"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="150.8214"
+         y="61.303898">Aufwendiges / ineffizientes Routing</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:sans-serif;fill:#ffffff;stroke-width:0.264583"
+       x="150.89833"
+       y="88.195908"
+       id="text2766"><tspan
+         sodipodi:role="line"
+         id="tspan2764"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="150.89833"
+         y="88.195908">Kollisionen / Broadcaststürme / </tspan><tspan
+         sodipodi:role="line"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="150.89833"
+         y="96.133408"
+         id="tspan2815">große Broadcastdomäne</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:sans-serif;display:inline;fill:#ffffff;stroke-width:0.264583"
+       x="150.8813"
+       y="122.1105"
+       id="text2821"><tspan
+         sodipodi:role="line"
+         id="tspan2819"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="0"
+         y="0">elektromagnetische Störungen</tspan></text>
+  </g>
+</svg>

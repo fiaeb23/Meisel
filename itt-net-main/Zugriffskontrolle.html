@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Netzwerkzugangs­kontrolle</title>
+<meta name="author" content="Sebastian Meisel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/league.css" id="theme"/>
+
+<link rel="stylesheet" href="./mystyle.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Netzwerkzugangs­kontrolle</h1><p class="subtitle">ITT-Netzwerke</p>
+<h2 class="author">Sebastian Meisel</h2>
+</section>
+
+<section>
+<section id="slide-org287f906">
+<h2 id="org287f906">Media Access Control (MAC)</h2>
+<p>
+Wenn in einem Netzwerk mehrere Geräte eine gemeinsames <i>Übertragungsmedium</i> nutzen, muss der
+Zugriff auf dieses Medium geregelt werden, damit <i>Kollisionen</i> zwischen den Signalen
+vermieden oder wenigstens erkannt werden, da diese zu Datenverlust führen.
+</p>
+
+<aside class="notes">
+<p>
+Dieses Problem entsteht vor allem <i>Bustopologien</i> wie sie bei koaxial
+Kabeln vorkommen (Thin-Ethernet, aber auch dLAN/PowerLAN). In anderer Form entsteht
+dieses Problem bei kabellosen Verbindungen. Hier sind jeweils verschiedene Verfahren
+notwendig, um Kollisionen zu erkennen oder zu vermeiden.
+</p>
+
+<p>
+Bei <i>kabelgebundenen Verbindungen</i> die mehrer Datenleitungen nutzen (Dual-Simplex), wie die
+modernen CAT-Kabel- stellt sich dieses Problem nicht, außer wenn ein <i>Hub</i> zur Verbindung
+mehrerer Geräte genutzt wird-  
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org498f3e9">
+<h3 id="org498f3e9">Carrier Sense Multiple Access/Collision Detection (CSMA/CD)</h3>
+<p>
+Bei dieser Methode geht es darum Kollisionen zu erkennen und Datenpakete sooft zu senden,
+bis sie a) ankommen oder b) eine festgelegte maximale Anzahl von Versuchen überschritten wurde. 
+</p>
+
+<aside class="notes">
+
+<div class="figure">
+<p><img src="Bilder/CSMA-CD.png" alt="CSMA-CD.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 1: </span>PAP für CSMA/CD, <a href="https://commons.wikimedia.org/w/index.php?curid=83278865">Von Heimdall793 - Eigenes Werk, CC BY-SA 4.0</a></p>
+</div>
+
+</aside>
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgc6eff8d">
+<h3 id="orgc6eff8d">Carrier Sense Multiple Access/Collision Avoidance (CSMA/CA)</h3>
+<p>
+Dieses Verfahren kommt zum Einsatz, wenn es nicht möglich das <i>Medium</i> während des Sendens
+zu Überwachen, wie dies zum Beispiel bei Funkverbindungen wie <i>WLAN</i> der Fall ist.
+Dazu wird zuerst ein <i>Request to Send (RTS)</i>-Signal gesendet und auf ein <i>Clear to Send
+(CTS)</i>-Signal gewartet, bevor Daten gesendet werden. 
+</p>
+
+<aside class="notes">
+<p>
+Eigentlich <i>RTS/CTS</i> eine Erweiterung zu CSMA/CA. Zunächst wurde vor allem die Zeit
+begrenzt in der Signale gesendet wurden und der Empfang von Paketen bestätigt, um
+Kollisionen zu erkennen. <i>RTS/CTS</i> ist aber zuverlässiger und effektiver, weshalb es heute
+immer mit zum Einsatz kommt.
+</p>
+
+</aside>
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-org6c4ee76">
+<h3 id="org6c4ee76">Carrier Sense Multiple Access/Collision Resolution (CSMA/CR)</h3>
+<blockquote >
+<p>
+Carrier Sense Multiple Access/Collision Resolution (CSMA/CR) ist ein Verfahren, welches
+der Entdeckung und Auflösung von Kollisionen auf geteilten Medien dient. Es kommt bei
+Feldbussen wie dem Controller Area Network (CAN) zum Einsatz. 
+</p>
+<aside class="notes">
+<p>
+Bei CSMA/CR werden Kollisionen durch Bitarbitrierung erkannt. Dadurch wird erreicht, dass
+am Ende einer jeden Arbitrierungsphase lediglich der Teilnehmer, der über die höchste
+Nachrichtenpriorität verfügt, das Medium belegt. Kollisionen werden von Teilnehmern mit
+niedrigerer Priorität erkannt und führen dazu, dass sich diese Teilnehmer vom Kanal
+zurückziehen. Die Kollisionen haben dabei keinen Einfluss auf die Nachricht des
+Teilnehmers mit der höchsten Priorität, sodass diese Nachricht verzögerungsfrei gesendet
+werden kann. 
+</p>
+
+</aside>
+<p>
+&#x2013;  <a href="https://de.wikipedia.org/wiki/Carrier_Sense_Multiple_Access/Collision_Resolution">Wikipedia</a>
+</p>
+</blockquote>
+
+</section>
+</section>
+<section>
+<section id="slide-orge664909">
+<h3 id="orge664909">Vom Shared zum Switched Network</h3>
+<p>
+Während CAT-Kabel bei <i>Peer-to-Peer</i>- oder <i>Daisy-Chain</i>-Netzwerken durch ihren Aufbau
+Kollisionen verhindern, sieht das anders aus, wenn ein einfacher Netzwerkverteiler ein
+sogenannter <i>Hub</i> zum Einsatz kommt. 
+</p>
+
+<aside class="notes">
+
+<div class="figure">
+<p><img src="Bilder/Hub_Kollision.png" alt="Hub_Kollision.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 2: </span>Paket-Kollision am Hub im Shared Network</p>
+</div>
+
+</aside>
+
+
+<p>
+Dies wird in modernen Netzwerken durch intelligente Netzwerkverteiler, sogenannte <i>Switche</i>
+verteilen. Diese schalten intelligent zwischen den verschiedenen Verbindungen um und
+puffern Datenpakete, sodass Kollisionen vermieden werden.
+</p>
+
+<aside class="notes">
+
+<div class="figure">
+<p><img src="Bilder/Switch_no_Kollision.png" alt="Switch_no_Kollision.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 3: </span>Im Switched-Network treten keine Kollisionen auf.</p>
+</div>
+
+</aside>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes]
+});
+
+</script>
+</body>
+</html>

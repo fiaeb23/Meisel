@@ -1,0 +1,169 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: Spanning Tree Protocol (STP)
+#+SUBTITLE: IT Technik - Netzwerkgrundlagen
+#+AUTHOR: Sebastian Meisel
+
+* Spanning Tree Protocol (STP)
+
+      *STP* ist definiert als /IEEE 802.1d/ Es verhindert Netzwerkprobleme, die durch *Loops* in
+      redundaten Netzwerken entstehen können:
+
+      - *Broadcaststürme*
+      - korrupte MAC-Adresstabellen in Switches 
+      - doppelte Frames
+
+      Dies wird erreicht indem /dynamisch/ Ports blockiert werden, sodass
+
+      - Loops aufgelöst werden.
+      - die aktuell schnellste Verbindung bestehen bleibt.
+
+      #+BEGIN_NOTES
+       Es gibt moderne Erweiterungen dieses Protokoll, die zuerst als proprietäre Protokolle von
+       Cisco entwickelt wurden und dann in abgewandelter Form als offizielle Protokolle
+       entwickelt wurden:
+
+      | IEEE 802.1                                      | Cisco                                | Ziel                           |
+      | Rapid Spanning Tree Protocol (RSTP) [802.1w]    | Rapid Per VLAN Spanning Tree (RPVST) | Schnellerer Verbindungsaufbau  |
+      | Multiple Spanning Tree Protocol (MSTP) [802.1s] | Per VLAN Spanning Tree + (PVST)      | Spanning Tree je VLAN(-Gruppe) |
+      #+END_NOTES
+
+
+* Bridge Protocol Data Units (BPDU)  
+
+     Jeder /Switch/ (oder Router) – im STP *Bridge* genannt – sendet in /regelmäßigen Abständen/ kleine *[[fig:bpdu][BPDU]]* genannte Datenpakete. Dies hat zum einen den Zweck, dass 
+ - die anderen /Bridges/ sofort erkennen, wenn eine ausfällt. 
+ - erkannt wird, wo es im Netzwerk Loops gibt.
+
+Außerdem enthalten sie Informationen, die dabei helfen, zu bestimmen, welches die aktuell schnellste Verbindung ist.
+
+#+REVEAL: split
+
+     #+CAPTION: BPDU
+     #+NAME: fig:bpdu
+     #+ATTR_HTML: :width 100%
+     #+ATTR_LATEX: :width .65\linewidth
+     #+ATTR_ORG: :width 700
+[[file:Bilder/Wireshark/BPDU.png]]
+
+** Bridge-Identifier (BID)
+
+  Die erste wichtigste Information ist die BID. Sie enthält drei Felder (umgekehrte Reihenfolge):
+
+  - *MAC-Adresse* (3 Bytes / 24 Bits), z. B. fa:16:3e:ca:40:96 
+  - *System ID* (12 Bits): Wird von Cisco und MSTP für VLAN-ID verwendet.
+  - *Priorität* (4 Bits): Sie wird als Vielfaches von 4096 angegeben.
+
+#+BEGIN_NOTES
+ Im ursprünglichen *STP* entfällt die *System ID* und die Priorität ist 16 Bits, bzw. 2 Bytes lang.   
+#+END_NOTES
+
+
+** Root-Bridge 
+
+  Die BIDs sind die Grundlage der Bestimmung einer *Rootbridge*. Dies ist die /Bridge/ (der
+  Switch) mit der niedrigsten *BID*:
+
+  - Dies ist in der Regel die /Bridge/ mit der kleinsten MAC-Adresse.
+  - Über die *Priorität* kann man gezielt steuern welche /Bridge/ die /Root-Bridge/ sein soll,
+    in dem man ihr eine niedrigere Priorität gibt. 
+ 
+  Ist die *Root-Bridge* ermittelt wird ihre *BID* in den *BPDUs* geteilt.
+
+** Hello Time 
+ 
+  Außerdem enthalten die *BPDUs* ein Feld für die *Hello Time*. Diese ist normalerweise 2
+  (Sekunden) und sagt aus, in welchen Abständen jede /Bridge/ *BPDUs* senden soll.
+
+#+BEGIN_NOTES
+  Außerdem gibt es noch zwei Felder:
+  - Max-Age: Wie lange gilt die aktuelle Portkonfiguration
+  - Forward-Delay: Sagt aus wie lange jeder Port in den Zuständen LEARNING und LISTENING
+    verbringen soll.
+  
+  Diese beiden Zustände dienen dazu, dass der Switch, das Netzwerk analysieren, um zu
+  entscheiden, welche Rolle er einnehmen soll.
+#+END_NOTES
+ 
+* Portkosten
+
+ Welche *Rolle* ein Port einnimmt entscheidet *STP* anhand der Kosten. Es gibt 3 Rollen:
+
+  - *BLOCKING*: An dem Port werden *nur BPDUs* empfangen, alle anderen Datenpakete werden
+    geblockt.
+  - *DESIGNATED*: Jeder normale Port, über den Datenpakete empfangen und gesendet werden.
+  - *ROOT*: Der Port mit den geringsten *Kosten* in Richtung Root. 
+
+#+BEGIN_NOTES
+ Offiziell sind nur die beiden letzten /Rollen/, während /BLOCKING/ ein Zustand ist.
+#+END_NOTES
+ 
+#+REVEAL: split
+
+  Die Kosten berechnen sich so: Zunächst wird für jede Verbindung zwischen 2 Switches
+  aufgrund der Bandbreite (der Schnittstelle mit der geringsten Bandbreite), die Kosten
+  anhand folgender Tabelle festgelegt:
+
+#+REVEAL: split
+
+| Bandbreite | STP-Kosten | Neue Kosten |
+| 4 MB/s     |        250 | 250.000.000 |
+| 10 MB/s    |        100 | 100.000.000 |
+| 100 MB/s   |         19 |     200.000 |
+| 1 GB/s     |          4 |      20.000 |
+| 10 GB/s    |          2 |       2.000 |
+| 100 GB/s   |        N/A |         200 |
+| 1 TB/s     |        N/A |          20 |
+
+#+BEGIN_NOTES
+ Die /Neuen Kosten/ wurden eingeführt, um höhere Bandbreiten berücksichtigen zu können,
+ werden aber noch von wenigen Geräten unterstützt. 
+#+END_NOTES
+
+
+** Pfadkosten
+
+Anschließend werden als Kosten vom aktuellen *Port* bis zur *Root-Bridge* addiert. 
+
+Dafür werden für jede Verbindung zwischen zwei Switches die Portkosten an beiden Switches
+verglichen. Der kleinste Wert bestimmt die *Pfadkosten* für diese Verbindung.
+
+Dann werden die *Pfadkosten* aller Verbindungen auf dem Weg zwischen dem aktuellen Switch
+und dem /Root-Switch/ addiert.   
+
+Der *Port* an dem die Verbindung mit den *geringsten Pfadkosten* beginnt, wird der *Root-Port*.
+
+#+BEGIN_NOTES
+Haben 2 Ports die selben Kosten, entscheidet die Bridge-ID des nächsten Switches, welche Verbindung gewählt wird: die, die zum Switch mit der kleinsten Bridge-ID führt.
+#+END_NOTES
+
+** Port-Blocking
+
+ Um /Loops/ zu vermeiden müssen nun die /redundanten/ Verbindungen geblockt werden. /Redundant/  sind Verbindungen /zwischen Switches/, die /nicht/ am /Root-Port/ anliegen und potentiell einen
+ Loop schließen.
+
+ Auf jeder dieser Verbindungen muss *ein* Switch seinen Port in den Blocking-Status versetzen. 
+
+#+BEGIN_NOTES
+Das geschieht bei dem Switch der:
+
+ - insgesamt die geringeren Pfadkosten zur Root-Bridge hat.
+ - der (bei gleichen Pfadkosten zur Root) die höher Bridge-ID hat.
+#+END_NOTES
+
+
+  

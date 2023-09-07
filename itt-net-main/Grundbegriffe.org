@@ -1,0 +1,514 @@
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 1
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:		 H:4
+#+LaTeX_CLASS:		 orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+#+LANGUAGE: de
+#+OPTIONS: prop:t num:nil toc:nil
+#+AUTHOR: Sebastian Meisel
+#+DATE: November 2022
+#+TITLE: Grundbegriffe
+#+SUBTITLE: ITT-Netzwerke
+* Was ist ein Computernetzwerk
+#+ATTR_HTML: :width 20% :align right
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/Peer-to-Peer.png]]
+
+Ein *Netzwerk* ist die *Verbindung* von mindestens *zwei* *Computersystemen* über ein geeignetes *Medium*.
+
+Sind *zwei* Computer direkt miteinander verbunden spricht man von einem *Peer-to-Peer-Netzwerk*.
+
+#+ATTR_HTML: :width 20% :align right
+#+ATTR_LATEX: :width .5\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/Server-Client.png]]
+
+Dem gegenüber steht das *Server-Client-Netzwerk* bei dem mehrere Computer über einen *zentralen Rechner* miteinander verbunden sind.
+
+Der Zweck eines *Netzwerks* ist:
+#+ATTR_REVEAL: :frag (appear)
+ - der *Austausch von Daten*,
+ - die *gemeinsame Nutzung von Ressourcen*
+
+* Was sind Medien?
+
+Ein *Medium* dient dazu Signale von einem Computer zum anderen zu transportieren. Dabei unterscheidet man:
+#+ATTR_REVEAL: :frag (appear)
+ - *kabelgebundene* Medien: Kupferkabel, Glasfaser.
+ - *kabellose* Medien: Luft.
+
+#+ATTR_REVEAL: :frag (appear)
+Alle *Medien arbeiten *elektromagnetisch*, nämlich mit Strom, Licht oder Funkwellen.
+
+* Was bedeuten Server und Client?
+
+
+Ein *Server* ist ein *zentraler Rechner* in einem /Netzwerk/, der *Dienste* zur Verfügung stellt.
+
+*Clients* sind Rechner, die mit einem oder mehreren *Servern* verbunden sind und diese *Dienste*
+nutzen, indem sie:
+
+#+ATTR_REVEAL: :frag (appear)
+ - *Anfragen (Requests)* an den /Server/ stellen,
+ - *Daten (Response)* als Antwort des /Servers/ empfangen.
+
+#+BEGIN_NOTES
+ Man spricht auch in Bezug auf Software von *Clientsoftware* und *Serversoftware*.
+ Dies beschreibt die Funktion der Software, beide können aber auf demselben
+ Computer laufen.
+
+ Andererseits spricht man, wenn zwei *Clientprogramme* direkt über das Netzwerk
+ Daten austauschen von *Peer-to-Peer-Verbindungen*, auch wenn die Rechner physisch
+ über /Server/ miteinander kommunizieren.
+#+END_NOTES
+
+* Was sind Dienste?
+
+Ein *Dienst* ist eine Software, die:
+#+ATTR_REVEAL: :frag (appear)
+ - *ohne Benutzeroberfläche* arbeitet,
+ - *nicht zur lokalen Nutzung* gedacht ist
+ - sondern zum *Datenaustausch* über ein Netzwerk.
+
+Typische Beispiele sind:
+#+ATTR_REVEAL: :frag (appear)
+ - *E-Mailserver*: Zum Versenden und Empfangen von E-Mails.
+ - *Webserver*: Zum Abrufen von Internetseiten.
+ - *DNS-Server*: Zum Auflösen von /URLs/ in /IP-Adressen/.
+ - *DHCP-Server*: Zum Zuteilen von /IP-Adressen/ in Netzwerken.
+
+* Was sind Netzwerkadressen?
+
+ Damit /Daten/ in einem /Netzwerk/ an ein bestimmtes /Gerät/ zu senden, braucht dieses eine
+ Adresse. In /Netzwerken/ kommen mehrere Adressen zum Einsatz:
+
+#+ATTR_REVEAL: :frag (appear)
+ - *Hardwareadresse (MAC)*: Dient der Zuordnung einer Datenverbindung zu einem Gerät.
+#+BEGIN_NOTES
+     *MAC* steht für /Media Access Control/.
+     - Form:
+       - Die /MAC-Adresse/ ist 48 Bit, bzw. 6 Bytes lang.
+       - Sie wird in der Regel byte-weise, hexadezimal geschrieben.
+       - Die einzelnen Bytes werden dabei in der Regel durch Doppelpunkte oder Bindestriche
+       getrennt.
+       - z. B. AE:3F:23:12:D2:E3
+     - Funktion:
+       - *Eindeutige Kennzeichnung* eines /Gerätes/:
+	 - Jedes Gerät wird mit einer koordiniert vergebenen
+	   Adresse *international eindeutigen* ausgeliefert.
+	 - Der *Hersteller* ist in der /MAC-Adresse/ kodiert.
+	 - Diese Adresse kann aber bei der Kommunikation im
+	   Netz geändert und zum Beispiel durch eine zufällig
+	   generierte Adresse ersetzt werden, um die
+	   Nachverfolgung im Netz zu verhindern.
+       - *Zuordnung* von /Netzwerkpaketen/: Das Gerät entscheidet
+	 anhand der /MAC-Adresse/ welche Datenpakete für es
+	 selbst bestimmt sind. (Das ist auch mit /Media Access
+	 Controll/ gemeint).
+       - *Zugriffsbeschränkung* auf das Netzwerk: Die
+	 /MAC-Adresse/ kann genutzt werden um /Geräten/ den Zugang
+	 zu einem Netzwerk zu erlauben oder zu verwehren. Da
+	 /MAC-Adressen/ aber leicht geändert werden können,
+	 bietet diese Methode zu Zugangsbeschränkung nur
+	 unzureichenden Schutz.
+#+END_NOTES
+#+ATTR_REVEAL: :frag (appear)
+  - *Internetprotokoll-Adresse (IP)*: Dient dazu ein Gerät im
+    /Internet/ oder einem lokalen Netzwerk zu identifizieren.
+#+BEGIN_NOTES
+  Die *IP* macht es aufgrund ihrer Struktur möglich eine /Route/
+  zwischen zwei Geräten in einem komplexen Netzwerk zu
+  finden. Dazu teilt sie das /Netzwerk/ in verschieden /Subnetze/ ein.
+
+  - Form: Es gibt zur Zeit Versionen des /IP-Protokolls/:
+    - *IPv4*: Ist 32 Bit, bzw. 4 Bytes lang.
+      - Jedes Byte (auch *Oktett* genannt) wird durch eine Dezimalzahl[fn:1] zwischen 0 und
+	255 dargestellt.
+      - Die einzelnen /Oktetts/ werden durch Punkte getrennt.
+      - z. B. 192.168.0.14
+    - *IPv6*: Ist 128 Bit, bzw. 16 Bytes lang.
+      - Sie wird hexadezimal geschrieben.
+      - Sie ist in 8 Gruppen von jeweils 16 Bit, bzw. 2 Bytes eingeteilt, die durch
+	Doppelpunkte getrennt werden.
+      - z. B. 2003:12ef:a3ef:ee32:1235:fe42:3d1e:ff32
+#+END_NOTES
+#+ATTR_REVEAL: :frag (appear)
+  - *Unified Resource Locator (URL)*: Dienen dazu bestimmte Ressourcen, wie Webseiten,
+    FTP-Verzeichnisse, E-Mail-Nutzer zu adressieren.
+#+BEGIN_NOTES
+  Die *URL* wird vom Computer in eine *IP-Adresse* übersetzt, um den Rechner zu finden, der
+  die Ressource bereitstellt.
+
+  - Form: Die *URL* ist so gestaltet, dass sie von Menschen gelesen werden kann.
+    - Sie beginnt mit dem /Schema/ wie "http", "mailto" oder "ftp", gefolgt von einem
+      Doppelpunkt und zwei Schrägstrichen. Das Schema kann entfallen, wenn es durch die
+      Anwendung vorgegeben ist.
+    - Je nach Dienst folgt der *Nutzername* wie "sebastian.meisel", gefolgt von einem "@".
+    - Es folgt der *Name* des /Computers/ wie "www" oder "mailserver", gefolgt von einem
+      Punkt. Der sogenannte *Hostname* kann frei gewählt werden.
+    - Es folgen *Domäne* (z. B. "example") und nach einem weiteren Punkt die *Topleveldomain*
+      wie "de", "org" oder "com"
+    - Nach einem Schrägstrich können weitere Unterressourcen folgen.
+    - z. B. https://www.example.org/unterseite oder mailto://sebastian.meisel@viona-trainer.com.
+#+END_NOTES
+
+
+
+** Praxis
+Schauen wir uns nun in der Praxis an, wie man unter Windows die MAC- und
+IP-Adresse des Rechners anzeigen lässt.
+
+Öffne die Powershell (Windows-Taste + "Powershell").
+
+*** MAC-Adresse
+Gib folgenden Befehl ein, um die MAC-Adressen deiner Netzwerkschnittstellen zu
+erhalten:
+
+#+BEGIN_SRC powershell
+ Get-NetAdapter
+#+END_SRC
+
+Die Ausgabe sieht in etwa so aus:
+
+#+BEGIN_EXAMPLE
+Name                      In~ ifIndex Status       MacAddress             LinkSpeed
+----                      --~ ------- ------       ----------             ---------
+LAN-Verbindung            Pr~      15 Disconnected 00-FF-BA-11-F7-59         1 Gbps
+Ethernet 3                Vi~       6 Up           0A-00-27-00-00-06         1 Gbps
+vEthernet (WSL)           Hy~      50 Up           00-15-5D-55-78-9A        10 Gbps
+vEthernet (Default Swi... Hy~      42 Up           00-15-5D-FF-CE-54        10 Gbps
+Ethernet                  Re~       4 Up           00-D8-61-A4-4F-C2         1 Gbps
+#+END_EXAMPLE
+
+*** IP-Adresse
+
+Die IP-Adresse lässt sich auf zweierlei Weise anzeigen. Zunächst über ein alter
+Windows CMD-Programm:
+
+#+BEGIN_SRC powershell
+ ipconfig.exe
+#+END_SRC
+
+Die Ausgabe beginnt in etwa so (die Ausgabe für weitere Netzwerkschnittstellen folgt):
+
+#+BEGIN_EXAMPLE
+Windows-IP-Konfiguration
+
+
+Ethernet-Adapter Ethernet:
+
+   Verbindungsspezifisches DNS-Suffix:
+   Verbindungslokale IPv6-Adresse  . : fe80::d912:2ed1:fc47:4a77%4
+   IPv4-Adresse  . . . . . . . . . . : 192.168.24.81
+   Subnetzmaske  . . . . . . . . . . : 255.255.255.0
+   Standardgateway . . . . . . . . . : 192.168.24.1
+#+END_EXAMPLE
+
+#+REVEAL: split
+
+Die zweite Möglichkeit ist ein Powershell-Cmdlet:
+
+#+BEGIN_SRC powershell
+ Get-NetIPAddress | Format-Table
+#+END_SRC
+
+Ausgabe:
+
+#+BEGIN_EXAMPLE
+ ifIndex IPAddress                       PrefixLength PrefixOrigin SuffixOrigin~
+------- ---------                       ------------ ------------ ------------ ~
+6       fe80::33c2:8617:cd50:f18d%6               64 WellKnown    Link         ~
+50      fe80::fcfb:cbf4:a3ec:4a3c%50              64 WellKnown    Link         ~
+42      fe80::2443:9cd4:c6a4:bb13%42              64 WellKnown    Link         ~
+4       fe80::d912:2ed1:fc47:4a77%4               64 WellKnown    Link         ~
+15      fe80::a016:6571:9058:35a2%15              64 WellKnown    Link         ~
+1       ::1                                      128 WellKnown    WellKnown    ~
+6       192.168.137.1                             24 Manual       Manual       ~
+50      192.168.240.1                             20 Manual       Manual       ~
+42      172.31.48.1                               20 Manual       Manual       ~
+4       192.168.24.81                             24 Manual       Manual       ~
+15      169.254.182.216                           16 WellKnown    Link         ~
+1       127.0.0.1                                  8 WellKnown    WellKnown    ~
+#+END_EXAMPLE
+
+#+BEGIN_NOTES
+ Was '*Prefix'* und '*Suffix'* sind, lernen wir noch. Das /WellKnown/ darunter bezieht sich darauf,
+ dass dies standardisierte Adressen sind, die für /Localhost/-Adressen (für Dienste auf dem
+ eigenen Rechner) und als Platzhalter definiert sind, wenn keine /IP-Adresse/ vergeben wurde.
+#+END_NOTES
+
+
+*** IP-Adresse zu URL
+
+Für die Namensauflösung einer /URL-/ in eine /IP-Adresse/ gibt es drei
+Optionen:
+
+ 1. Die CMD-Programm nslookup.exe:
+#+BEGIN_SRC
+  nslookup.exe IBB.com
+#+END_SRC
+  Ausgabe:
+#+BEGIN_EXAMPLE
+Server:  sebastian-Tuxedo
+Address:  192.168.24.1
+Nicht autorisierende Antwort:
+Name:    IBB.com
+Address:  136.243.235.86
+#+END_EXAMPLE
+
+#+REVEAL: split
+#+LATEX: \setcounter{enumi}{1}
+#+ATTR_HTML: :start 2
+ 1. Das Powershell-Cmdlet Resolve-DnsName:
+#+BEGIN_SRC powershell
+ Resolve-DnsName IBB.com
+#+END_SRC
+Ausgabe:
+#+BEGIN_EXAMPLE
+Name                                           Type   TTL   Section    IPAddress
+----                                           ----   ---   -------    ---------
+IBB.com                                        A      2446  Answer     136.243.235.86
+#+END_EXAMPLE
+
+#+REVEAL: split
+#+ATTR_HTML: :start 3
+#+LATEX: \setcounter{enumi}{2}
+ 1. Das Powershell-Cmdlet Get-IPAdressInformation:
+#+BEGIN_SRC
+ Get-IPAddressInformation IBB.com
+#+END_SRC
+  Ausgabe:
+#+BEGIN_EXAMPLE
+status      : success
+country     : Germany
+countryCode : DE
+region      : SN
+regionName  : Saxony
+city        : Falkenstein
+zip         : 08223
+lat         : 50,475
+lon         : 12,365
+timezone    : Europe/Berlin
+isp         : Hetzner Online GmbH
+org         : JAR Media GmbH
+as          : AS24940 Hetzner Online GmbH
+query       : 136.243.235.86
+#+END_EXAMPLE
+
+#+BEGIN_NOTES
+ Die Ausgabe zeigt, dass sich mit den geeigneten Mitteln sehr detaillierte
+ Informationen aus einer (öffentlichen) IP-Adresse ableiten lassen. Hier lässt
+ sich z. B. die genaue Position des Rechenzentrums ermitteln in dem die Homepage
+ der IBB gehostet wird.
+#+END_NOTES
+
+* Was sind Netzwerkschnittstellen
+
+#+BEGIN_NOTES
+ Bei der Abfrage der /MAC-/, bzw. /IP-Adresse/ hast du gesehen, dass für den
+ Computer mehrere Adressen für verschiedene "Adapter" oder "Interfaces"
+ angezeigt wurden. Das sind verschiedene Bezeichnungen für /Netzwerkschnittstellen/.
+#+END_NOTES
+
+ Eine /Netzwerkschnittstelle/  ist
+#+ATTR_REVEAL: :frag (appear)
+ - ein physisches Gerät, über das der Computer mit  dem Internet verbunden ist.
+   - eine /Ethernetkarte/ für eine kabelgebundene Netzwerkverbindung.
+   - ein /WLAN-/ oder /Bluetooth-Adapter/ für eine kabellose Verbindung.
+ - ein /virtuelles Gerät/ zur Anbindung /virtueller Maschinen/ oder /Container/ an das
+   Netzwerk.
+ - ein /Loopbackdevice/ das Netzwerkdienste lokal auf dem eigenen Computer
+   bereitstellt.
+   #+BEGIN_NOTES
+    Das könnte ein lokaler DNS-Server sein, der /IP-Adressen/ zu /URLs/
+    zwischenspeichert. Auch lokale /Webserver/ sind ein häufiger Anwendungsfall.
+
+    /Loopbackdevices/ haben die /IP-Adresse/ 127.0.0.1[fn:2] (IPv4), bzw. ::1 (IPv6)
+   #+END_NOTES
+
+** Praxis
+
+Um nur die physischen /Netzwerkschnittstellen/ anzuzeigen, dient folgender Befehl:
+
+#+BEGIN_SRC powershell
+Get-NetAdapter -Physical
+#+END_SRC
+
+Ausgabe:
+
+#+BEGIN_EXAMPLE
+Name      InterfaceDescription~ ifIndex Status  MacAddress         LinkSpeed
+----      --------------------~ ------- ------  ----------         ---------
+Ethernet  Realtek PCIe GbE Fam~       4 Up      00-D8-61-A4-4F-C2     1 Gbps
+#+END_EXAMPLE
+
+Um alle - auch versteckten virtuelle /Netzwerkschnittstellen/ anzuzeigen, dient der folgende:
+
+#+REVEAL: split
+
+#+BEGIN_SRC
+Get-NetAdapter -IncludeHidden
+#+END_SRC
+
+Ausgabe:
+
+#+BEGIN_EXAMPLE
+Name       ~  InterfaceDescription   ifIndex Status ~  MacAddress         LinkSpeed
+----       ~  --------------------~  ------- ------ ~  ----------         ---------
+LAN-Verbind~  WAN Miniport (IP)   ~       18 Up     ~                         0 bps
+LAN-Verbind~  WAN Miniport (SSTP) ~       17 Discone~d                        0 bps
+LAN-Verbind~  Private Internet Acc~r      15 Discone~d 00-FF-BA-11-F7-59      1 Gbps
+LAN-Verbind~  WAN Miniport (Networ~       13 Up     ~                         0 bps
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Ethernet   ~  Realtek PCIe GbE Fam~        4 Up     ~  00-D8-61-A4-4F-C2      1 Gbps
+6to4 Adapte~                      ~        3 Not Prt~                         0 bps
+LAN-Verbind~  WAN Miniport (PPPOE)~        2 Discone~d                        0 bps
+#+END_EXAMPLE
+
+* Was sind Ports
+
+Auf einem Computer laufen in der Regel mehrere /Dienste/ wie NetBios, SSH oder
+RDP, die über das /Netzwerk/ kommunizieren.
+
+Außerdem laufen Programme, die mit verschiedenen /Servern/ wie Webserver,
+E-Mailserver, etc. kommunizieren
+
+Um /Datenpakete/ einzelnen /Diensten/ und /Clientanwendungen/ zuzuordnen werden
+sogenannte Ports genutzt. Das sind Nummern zwischen 1 und 2^16 die mit jedem
+/Datenpaket/ übertragen werden.
+
+#+BEGIN_NOTES
+  Für viele Dienste gibt es sogenannte "wohl bekannte" Ports, die ihnen fest
+  zugeordnet sind. Diese werden von der /International Assigned Numbers
+  Authority (IANA)/ zugewiesen und liegen im /reservierten Bereich/ *<1023*.
+
+  z. B. 20/21 FTP; 22 SSH; 25 SMTP; 53 DNS; 80 HTTP; 443 HTTPS.
+#+END_NOTES
+
+** Praxis
+Öffne die Powershell (Windows-Taste + "Powershell").
+Mit folgendem Befehl kann du die Ports anzeigen, auf denen Dein Computer im
+Netzwerk "lauscht".
+
+#+BEGIN_NOTES
+Das bedeutet er schaut, ob Datenpakete mit dieser Portnummer
+ankommen und verarbeitet sie dann.
+
+Die Lokale (IP-)Adresse 0.0.0.0 steht dafür, dass der Computer auf diesen Ports
+Verbindungen von jeder IP-Adresse annimmt.
+
+Jeder Port ist einem Prozess zugeordnet, der hier mit seiner Process-ID
+aufgelistet ist.
+
+Mit dem Befehl ~Get-Process -ID~ kannst du herausfinden, welcher Prozess, das
+jeweils ist.
+#+END_NOTES
+
+#+BEGIN_SRC powershell
+ Get-NetTCPConnection -State Listen -LocalAddress 0.0.0.0
+#+END_SRC
+
+Ausgabe
+
+#+BEGIN_EXAMPLE
+LocalAddress      LocalPort RemoteAddress     RemotePort State   ~  OwningProcess
+------------      --------- -------------     ---------- -----   ~  -------------
+0.0.0.0           61654     0.0.0.0           0          Listen  ~  956
+0.0.0.0           61651     0.0.0.0           0          Listen  ~  3964
+0.0.0.0           54950     0.0.0.0           0          Listen  ~  4572
+0.0.0.0           49668     0.0.0.0           0          Listen  ~  2580
+0.0.0.0           49667     0.0.0.0           0          Listen  ~  1596
+0.0.0.0           49666     0.0.0.0           0          Listen  ~  1496
+0.0.0.0           49665     0.0.0.0           0          Listen  ~  816
+0.0.0.0           49664     0.0.0.0           0          Listen  ~  984
+0.0.0.0           17500     0.0.0.0           0          Listen  ~  1268
+0.0.0.0           5040      0.0.0.0           0          Listen  ~  3656
+0.0.0.0           3389      0.0.0.0           0          Listen  ~  1252
+0.0.0.0           2179      0.0.0.0           0          Listen  ~  2384
+0.0.0.0           135       0.0.0.0           0          Listen  ~  1044
+0.0.0.0           22        0.0.0.0           0          Listen  ~  4464
+#+END_EXAMPLE
+
+
+* Was sind Netzwerkprotokolle
+
+  *Netzwerkprotokolle* sind Regeln und Formate, die bestimmen, wie in Computer in
+  Netzwerken kommunizieren.
+
+  Es gibt Protokolle, die beschreiben z. B.:
+    - wie über bestimmte /Medien/ Daten übertragen werden (z. B. Ethernet, IEEE 802.11).
+    - wie /IP-Adressen/ aufgebaut sind und verarbeitet werden (IPv4, IPv6).
+    - wie Webseiten aufgebaut sind und übertragen werden (HTTP5, HTTPS).
+
+#+BEGIN_NOTES
+  - Die Internetprotokolle wie IP, HTTP(S), TCP, etc. werden in sogenannten
+    /Requests For Comments (RFC)/ veröffentlicht.
+  - Die Protokolle, die technische Standards wie Ethernet, WLAN, etc. zur Übertragung durch physische
+    /Medien/ beschreiben werden vom /Institute of Electrical and Electronics
+    Engineers (/IEEE/) verwaltet.
+#+END_NOTES
+
+
+* Was ist Bandbreite?
+
+  Die *Bandbreite* sagt aus, wie viele /Datenbits/ über eine Netzwerkverbindung in einer
+  Sekunde übertragen werden kann.
+
+  In Netzwerken sind Kilo- Mega- oder Gigabit pro Sekunde als Einheiten üblich.
+
+#+BEGIN_NOTES
+  Die *Bandbreite* wird sowohl durch die /Netzwerkschnittstelle/ als auch durch das *Medium*
+  bestimmt.
+
+  So nimmt die *Bandbreite* bei kabellosen Verbindungen mit der Entfernung ab und kann durch
+  Hindernisse, wie Wände weiter verringert werden.
+
+  Teilweise unterscheidet sich auch die /Upload/- von der /Downloadgeschwindigkeit/.
+#+END_NOTES
+
+* Was ist Latenz?
+
+  Die Übertragung von /Daten/ über ein Netzwerk braucht Zeit. Diese Zeit nennt man *Latenz*
+  und sie wird in /Millisekunden (ms)/ gemessen.
+
+  Sie kann mit dem /ping/-Befehl ermittelt werden:
+#+BEGIN_SRC bash
+  ping IBB.com
+#+END_SRC
+
+#+BEGIN_EXAMPLE
+Ping wird ausgeführt für IBB.com [136.243.235.86] mit 32 Bytes Daten:
+Antwort von 136.243.235.86: Bytes=32 Zeit=41ms TTL=49
+Antwort von 136.243.235.86: Bytes=32 Zeit=44ms TTL=49
+Antwort von 136.243.235.86: Bytes=32 Zeit=41ms TTL=49
+Antwort von 136.243.235.86: Bytes=32 Zeit=38ms TTL=49
+
+Ping-Statistik für 136.243.235.86:
+    Pakete: Gesendet = 4, Empfangen = 4, Verloren = 0
+    (0% Verlust),
+Ca. Zeitangaben in Millisek.:
+    Minimum = 38ms, Maximum = 44ms, Mittelwert = 41ms
+#+END_EXAMPLE
+
+
+
+
+* Footnotes
+
+[fn:2] Theoretische eine beliebige Adresse zwischen 127.0.0.1 und
+127.255.255.254. In der Praxis wird aber (fast) nur die erste Adresse benutzt.
+
+[fn:1] Es ist auch eine binäre, oktale oder hexadezimale
+Schreibweise möglich.

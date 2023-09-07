@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Strukturierte Verkabelung</title>
+<meta name="author" content="Sebastian Meisel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/league.css" id="theme"/>
+
+<link rel="stylesheet" href="./mystyle.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Strukturierte Verkabelung</h1><p class="subtitle">IT Technik - Netzwerkgrundlagen</p>
+<h2 class="author">Sebastian Meisel</h2>
+</section>
+
+<section>
+<section id="slide-org15db5fe">
+<h2 id="org15db5fe">Strukturierte Verkabelung</h2>
+<p>
+Die <b>Strukturierte Verkabelung</b> wird auch <b>Universelle Kommunikationsverkabelung (UKV)</b>
+genannt. Es handelt sich dabei um verschiedene Normen (Europa <i>EN 50173</i> und <i>EN 5074</i>,
+international <i>ISO /</i> IEC 11801/), die festlegen, wie Netzwerk- und ähnliche Kabel <b>zwischen</b>
+und <b>in Gebäuden</b> verlegt werden.
+</p>
+
+<p>
+Dabei sind Fragen der 
+</p>
+
+<ul>
+<li>Reichweite der Kabel,</li>
+<li>Erweiterbarkeit,</li>
+<li>Wartbarkeit</li>
+
+</ul>
+
+<p>
+im Blick. 
+</p>
+
+</section>
+<section id="slide-org15db5fe-split">
+
+
+<div id="org85472fb" class="figure">
+<p><img src="Bilder/StrukturierteVerkablung.png" alt="StrukturierteVerkablung.png" width="100%" />
+</p>
+<p><span class="figure-number">Abbildung 1: </span>Bereiche der Strukturierten Verkabelung</p>
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org90c9f2d">
+<h3 id="org90c9f2d">Primärbereich</h3>
+<p>
+Der <b>Primärbereich</b> beschreibt die Verkabelung zwischen Gebäuden, z. B. auf einem  Firmengelände, einem Campus o. ä., zwischen <b>Gebäudeverteilern</b> (Switches oder Router) und einem Standortverteiler. 
+</p>
+
+<ul>
+<li>Große Kabellänge.</li>
+<li>Hohe Schutz vor/ Unempfindlichkeit gegen Feuchtigkeit notwendig.</li>
+
+</ul>
+
+<p>
+Daher sind hier vor allem <b>Glasfaserkabel</b> geeignet. 
+</p>
+
+<aside class="notes">
+<p>
+<i>Twisted-Pair-Kabel</i> können genutzt werden, bieten in diesem Bereich aber nur geringe
+Bandbreiten (z. B. VDSL: 26 MB/s).
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgf5d7669">
+<h3 id="orgf5d7669">Sekundärbereich</h3>
+<p>
+Der <b>Sekundärbereich</b> beschreibt die <i>vertikale</i> Verkabelung in einem Gebäude vom <b>Gebäudeverteiler</b> zu den <b>Etagenverteilern</b> (in der Regel Switches, bzw. Telefonanlagen) und zwischen diesen. 
+</p>
+
+<p>
+Hier sind <b>Glasfaser-</b>  und <b>Twisted-Pair-Kabel</b> gleicher Maßen geeignet. Der Anwendungsfall entscheidet.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org372ed25">
+<h3 id="org372ed25">Tertiärbereich</h3>
+<p>
+Der <b>Tertiärbereich</b> beschreibt die <i>horizontale</i> Verkabelung auf den Etagen eines Gebäudes vom <b>Etagenverteilern</b> zu den Anschlussdosen.
+</p>
+
+<p>
+Auch hier entscheidet der konkrete Anwendungsfall über die Nutzung von <b>Twisted-Pair-Kupferkabeln</b> und <b>Glasfaser</b>. 
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd56429a">
+<h2 id="orgd56429a">Collapsed vs. Distributed Backbone</h2>
+<p>
+Früher (sehr viel früher ;-) wurden die Etagenverteiler oft in einer Ringstruktur (Thin- oder Thick-Ethernet) angeordnet. Dabei mussten Router eingesetzt werden, sodass jede Etage ihr eigenes Subnetz bildete. Dieser Ring aus Routern, bildete ein sogenanntes <b>Distributed Backbone</b> („verteiltes Rückrad”).
+</p>
+
+<p>
+Demgegenüber setzt man heute meist auf <b>einen</b> Router als zentralen <i>Gebäude-</i> oder sogar <i>Standortverteiler</i>. Die <i>Etagen-</i> (oder auch Gebäudeverteiler) werden dem gegenüber als <i>Switches</i> umgesetzt. Dies ermöglicht eine zentrale Steuerung und die flexible Nutzung von <i>VLANS</i>. Außerdem ist diese kostengünstiger. Dieser Aufbau wird als <b>Collapsed Backbone</b> („Geschrumpftes Rückrad”) bezeichnet, da hier ein einzelner Router das Rückrad des Netzes bildet.
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes]
+});
+
+</script>
+</body>
+</html>

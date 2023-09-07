@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Simple Network Management Protocol</title>
+<meta name="author" content="Sebastian Meisel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/league.css" id="theme"/>
+
+<link rel="stylesheet" href="./mystyle.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Simple Network Management Protocol</h1><p class="subtitle">IT-Technik Netzwerkgrundlagen</p>
+<h2 class="author">Sebastian Meisel</h2>
+</section>
+
+<section>
+<section id="slide-org22f5639">
+<h2 id="org22f5639">Simple Network Management Protocol (SNMP)</h2>
+<p>
+<b>SNMP</b> ist ein weitverbreitetes, weil einfaches Protokoll zur
+</p>
+
+<ul>
+<li>Überwachung von Netzwerkgeräten</li>
+<li>Fehlererkennung / ~benachrichtigung</li>
+<li>Remotekonfiguration / ~steuerung</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org802aade">
+<h3 id="org802aade">Versionen</h3>
+<ul>
+<li><b>SNMPv1</b> (RFC 1155-1157): Das ursprüngliche Protokoll wird nicht benutzt</li>
+<li><b>SNMPv2</b>: GetBulk-Befehl zum Abruf mehrerer <i>Tabellen</i> mit einem Befehl. 
+<ul>
+<li><b>(SNMPv2p)</b> (RFC 1441-1447): Verschlüsselung des <i>Community Strings</i>. <b>deprecated</b></li>
+<li><b>(SNMPv2u)</b> (RFC 1909-1910): Authentifizierung durch Benutzernamen. <b>deprecated</b></li>
+<li><b>SNMPv2c</b> (RFC 1901-1908): Keine Sicherheitsfunktionen.</li>
+
+</ul></li>
+<li><b>SNMPv3</b> (RFC 3410-3418) : Authentifizierung und Verschlüsselung</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Da Protokoll hat sich vor allem wegen seiner Einfachen Nutzung durchgesetzt. Versuche die Sicherheit des Protokolls zu erhöhen sind immer mit einer erhöhten Komplexität verbunden.
+</p>
+
+<p>
+Das führt bis heute dazu, dass Verschlüsselung und Authentifizierung als minimale Sicherheitsfunktionen wenig Verbreitung finden. <b>SNMPv2p/u</b> sind gescheitert. <b>SNMPv3</b> wird zwar von den meisten neueren Geräten unterstützt aber zu wenig genutzt. 
+</p>
+
+<p>
+Böse Zungen meinen darum das Akronym des Protokolls stehe für:
+</p>
+
+<p>
+<i>Security is not my problem</i>.
+</p>
+
+<p>
+-<b>S</b> icherheit ist
+-<b>N</b> icht
+-<b>M</b> ein 
+-<b>P</b> roblem.
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgcdf81c1">
+<h2 id="orgcdf81c1">Funktionsweise</h2>
+
+<div id="org594a761" class="figure">
+<p><img src="Bilder/SNMP.png" alt="SNMP.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 1: </span>Funktionen des SNMP</p>
+</div>
+
+<aside class="notes">
+<p>
+Auf jedem Netzwerkgerät läuft ein <b>SNMP-Agent</b>, der: 
+</p>
+<ol>
+<li>vom <b>SNMP-Manager</b> auf einem zentralen Rechner mit einem der folgenden Befehle angesprochen werden kann:
+<ul>
+<li>GET: fragt Werte aus der <a href="#/slide-org09a0dde">Management Information Base (MIB)</a> ab.</li>
+<li>GET: fragt den nächsten Eintrag aus derselben Tabelle ab.</li>
+<li>GET-BULK: ("neu" ab Version 2) fragt alle Einträge einer Tabelle ab.</li>
+<li>SET: wenn Schreibzugriff erlaubt ist, setzt dieser Befehl den Wert für einen Eintrag in <b>MIB</b>.</li>
+
+</ul></li>
+<li>selbstständig <a href="#/slide-org555b622">Nachrichten</a> an den <b>SNMP-Manager</b> sendet.</li>
+
+</ol>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org09a0dde">
+<h3 id="org09a0dde">Management Information Base (MIB)</h3>
+<p>
+Die <b>MIB</b> ist eine Art simpler Datenbank in der Informationen, wie die IP oder der Status von Netzwerkschnittstellen von Netzwerkgeräten, wie Routern oder Switches gespeichert sind.
+</p>
+
+<p>
+Diese Informationen nennt man <b>Managed Objects</b>. Diese sind in einer <b>standardisierten</b> Baumstruktur gespeichert. Jedes <b>Managed Object</b> kann über einen <b>Object Identifier (OID)</b> identifiziert werden. Dies ist eine Zahlenkette (z. B. .1.3.6.1.2.1.2.2.1.7) der ein Name zugeordnet ist (z. B. .iso.org.dod.internet.mgmt.mib-2.interfaces.ifTable.ifEntry.ifAdminStatus).
+</p>
+
+<aside class="notes">
+<p>
+Der Befehl <code>GET-BULK .1.3.6.1.2.1.2.2.1.7</code> ruft den Status (Up/Down) aller Netzwerkschnittstellen eines Netzwerkgerätes ab.
+Der Befehl <code>GET .1.3.6.1.2.1.2.2.1.7</code> hingegen nur den der 1. Netzwerkschnittstelle. Die weiteren könnten dann nacheinander mit <code>GET-NEXT .1.3.6.1.2.1.2.2.1.7</code> abgerufen werden.
+Mit <code>SET .1.3.6.1.2.1.2.2.1.7 up</code> könnte eine Netzwerkschnittstelle aktiviert werden (wenn der Schreibzugriff aktiviert ist).
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org555b622">
+<h3 id="org555b622">Trap-Nachrichten</h3>
+<p>
+Folgende Nachrichten kann ein <b>SNMP-Agent</b> selbstständig senden:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Bedeutung</th>
+<th scope="col" class="org-left">Nachricht</th>
+<th scope="col" class="org-right">Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Kaltstart</td>
+<td class="org-left">caldStart</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-left">Warmstart</td>
+<td class="org-left">warmStart</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-left">Verbindung unterbrochen</td>
+<td class="org-left">linkDown</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-left">Verbindung hergestellt</td>
+<td class="org-left">linkUp</td>
+<td class="org-right">3</td>
+</tr>
+
+<tr>
+<td class="org-left">Authentifiierungsfehler</td>
+<td class="org-left">authentificationFailure</td>
+<td class="org-right">4</td>
+</tr>
+
+<tr>
+<td class="org-left">EPG-Nachbar verloren</td>
+<td class="org-left">epgNeighborLoss</td>
+<td class="org-right">5</td>
+</tr>
+
+<tr>
+<td class="org-left">firmenspezifisch</td>
+<td class="org-left">enterpriseSpecific</td>
+<td class="org-right">6</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes]
+});
+
+</script>
+</body>
+</html>

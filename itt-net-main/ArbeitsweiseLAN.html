@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Arbeitsweise Lokaler Netzwerke</title>
+<meta name="author" content="Sebastian Meisel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/league.css" id="theme"/>
+
+<link rel="stylesheet" href="./mystyle.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Arbeitsweise Lokaler Netzwerke</h1><p class="subtitle">ITT Netzwerke</p>
+<h2 class="author">Sebastian Meisel</h2>
+</section>
+
+<section>
+<section id="slide-orgb0ce75b">
+<h2 id="orgb0ce75b">Local Area Network (LAN)</h2>
+<p>
+Als <b>LAN</b> bezeichnet man ein lokales Netz z. B. in einer Wohnung, einem Gebäude oder einem Gelände.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org302ecea">
+<h2 id="org302ecea">Peer to Peer Netzwerk</h2>
+
+<div id="org998181e" class="figure">
+<p><img src="Bilder/LAN_P2P.png" alt="LAN_P2P.png" width="75%" />
+</p>
+<p><span class="figure-number">Abbildung 1: </span>Ping mit IPv6 ohne Konfiguration</p>
+</div>
+
+<p>
+Die einfachste Form eines Netzwerkes ist eine Peer-to-Peer Verbindung (meist)
+über ein CAT-Kabel.
+</p>
+
+<aside class="notes">
+<p>
+Ursprünglich war dafür ein spezielle Crossoverkabel notwendig. Dies wird heute meist nicht
+mehr benötigt, da sich moderne Netzwerkgeräte vor der Verbindung einigen können, auf
+welchen Adern sie senden, bzw. empfangen.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org302ecea-split">
+
+<p>
+Alle modernen Anwendungen benötigen eine IP-Adresse um zu kommunizieren. Bei <i>IPv6</i> bildet
+sich jedes Gerät automatisch eine sogenannte <i>Lokal-Link-Adresse</i>, die mit <i>FE80::</i> beginnt.
+Damit ist ohne Konfiguration direkt eine Kommunikation möglich.
+</p>
+
+<aside class="notes">
+<p>
+Mit dem Befehl <i>ping</i> lässt sich in jedem Betriebssystem prüfen, ob eine <i>IP-Adresse</i> oder URL
+im Netzwerk erreichbar ist:
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash"   ><code trim> ping FE80::34AE:34FE:FFFF:AE34
+</code></pre>
+</div>
+
+</aside>
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgba5821a">
+<h2 id="orgba5821a">Statische IPv4 Adressen</h2>
+
+<div id="org63649be" class="figure">
+<p><img src="Bilder/LAN_P2P_IPv4.png" alt="LAN_P2P_IPv4.png" width="100%" />
+</p>
+<p><span class="figure-number">Abbildung 2: </span>Ping mit IPv4-Adresse</p>
+</div>
+
+<p>
+Zur Nutzung von <i>IPv4</i> muss jedoch zunächst eine <i>statische</i> IP-Adresse konfigurieren.
+D. h. dass diese manuell festgelegt wurde (statt per DHCP) und sich somit auch nicht
+ändert. 
+</p>
+
+<aside class="notes">
+<p>
+Es gibt auch die Möglichkeit per DHCP eine IP-Adresse fest einer MAC-Adresse
+zuzuordnen. Sie ist dann eigentlich auch statisch. Aus Sicht des Betriebssystems könnte
+sie sich aber jederzeit ändern, weil sie nicht auf der Betriebsystemebene festgelegt
+wurde.
+</p>
+
+<p>
+Es gibt 3 IPv4-Adressbereiche, die für lokale Netze reserviert sind und im Internet nicht
+genutzt werden:
+</p>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><b>VON</b></td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><b>BIS</b></td>
+<td class="org-left"><b>Netzwerkmaske</b></td>
+</tr>
+
+<tr>
+<td class="org-left">10. <b>0.0.1</b></td>
+<td class="org-left">-</td>
+<td class="org-left">10. <b>255.255.254</b></td>
+<td class="org-left">255.0.0.0</td>
+</tr>
+
+<tr>
+<td class="org-left">172.16. <b>0.1</b></td>
+<td class="org-left">-</td>
+<td class="org-left">172.31. <b>255.254</b></td>
+<td class="org-left">255.255.0.0</td>
+</tr>
+
+<tr>
+<td class="org-left">192.168.0. <b>1</b></td>
+<td class="org-left">-</td>
+<td class="org-left">192.168.255. <b>254</b></td>
+<td class="org-left">255.255.255.0</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Wobei die fettgedruckten Bereich (im einfachsten Fall) für die Adressierung einzelner Rechner
+im Netzwerk zur Verfügung stehen. In Abbildung <a href="#/slide-org32b57c3">3</a> wird z. B. ein Rechner mit der
+statischen IP-Adresse <b>192.168.0.10</b> (und der Netzwerkmaske 255.255.255.0) konfiguriert.
+</p>
+
+
+<div id="org32b57c3" class="figure">
+<p><img src="Bilder/PT_static_IPv4.png" alt="PT_static_IPv4.png" width="50%" /> 
+</p>
+<p><span class="figure-number">Abbildung 3: </span>Statische IPv4 Adresse eines Rechners in Cisco Packettracer</p>
+</div>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org795fae6">
+<h2 id="org795fae6">Geteiltes Netzwerk (Shared Network)</h2>
+
+<div id="org4e1068e" class="figure">
+<p><img src="Bilder/LAN_Shared.png" alt="LAN_Shared.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 4: </span>Shared Network mit Hub</p>
+</div>
+
+
+<p>
+Will man mehr als zwei Geräte miteinander verbinden ist die einfachste Möglichkeit ein <i>Hub</i>
+genannter passiver Netzverteiler. Dieser leitet alle Datenpakete an alle Ports
+weiter. Hierdurch kann es unter anderem zu Paketkollisionen kommen, sodass diese Methode
+nicht empfehlenswert ist.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgf0b22bc">
+<h2 id="orgf0b22bc">Geswitchtes Netzwerk (Switched Network)</h2>
+
+<div id="org966ea22" class="figure">
+<p><img src="Bilder/LAN_Switched.png" alt="LAN_Switched.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 5: </span>Switched Network</p>
+</div>
+
+
+<p>
+Ein Switch arbeitet intelligent und kann z. B. Datenpakete geziehlt an ein Gerät mit einer
+spezifischen MAC-Adresse weiterleiten. 
+</p>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgf85c114">
+<h2 id="orgf85c114">DHCP-Server</h2>
+
+<div id="org01afc50" class="figure">
+<p><img src="Bilder/LAN_DHCP_Server.png" alt="LAN_DHCP_Server.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 6: </span>DHCP Server</p>
+</div>
+
+
+<p>
+Um neuen Geräten dynamisch eine neue IP-Adresse zuzuordnen braucht man einen  <i>Dynamic
+Host Configuration Protocol (DHCP)</i>-Server. 
+</p>
+
+<aside class="notes">
+<p>
+
+Dieser Dienst wir von einem Server bereitgestellt, der zunächst selbst eine <b>statische</b> IP
+benötigt, wofür meist die <i>erste</i> oder letzte IP im Netzwerk genutzt wird.
+</p>
+
+
+<div id="org9a34dda" class="figure">
+<p><img src="Bilder/PT_static_IP_Server.png" alt="PT_static_IP_Server.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 7: </span>Server mit IP 192.168.0.1</p>
+</div>
+
+<p>
+Auf dem Server wird nun ein <b>Adresspool</b> angelegt. Dabei wird festgelegt in welchem <b>Bereich</b>
+IP-Adressen durch den Server vergeben werden (z. B. ab 192.168.0.10 maximal 244, also bis
+192.168.0.254).
+</p>
+
+<p>
+Außerdem können weitere Informationen wie die Adresse des DNS-Servers an die Clients
+übermittelt werden.
+</p>
+
+
+<div id="org31b9913" class="figure">
+<p><img src="Bilder/PT_DHCP_Server_conf.png" alt="PT_DHCP_Server_conf.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 8: </span>DHCP Server Pool in Cisco Packettracer</p>
+</div>
+
+<p>
+Jeder Rechner, der eine <i>dynamische IP</i> bekommen soll, muss nun so konfiguriert werden,
+dass er DHCP nutzt.
+</p>
+
+
+<div id="orgb0710c2" class="figure">
+<p><img src="Bilder/PT_DHCP_Client.png" alt="PT_DHCP_Client.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 9: </span>DHCP-Client-Konfiguration in Cisco Packettracer</p>
+</div>
+
+<p>
+Jeder dieser Rechner bildet nun zunächst eine zufällig <i>Autoconf-IP</i> zwischen 169.254.0.1 und
+169.254.255.255. Dann tauscht er folgende Datenpakete mit dem DHCP-Server aus:
+</p>
+
+<ul>
+<li><b>D</b> iscover: <i>Anfrage an den Server</i> , ob es DHCP-Server im Netzwerk gibt.</li>
+<li><b>O</b> ffer: <i>Antwort des Server</i> , mit dem Angebot einer IP.</li>
+<li><b>R</b> equest: <i>Anfrage an den Server</i> , dass man die angebotene IP nutzen möchte.</li>
+<li><b>A</b> knowledge: <i>Antwort des Servers</i> , dass man die Adresse nun nutzen darf.</li>
+
+</ul>
+
+<p>
+Damit wird die <i>Autoconf-IP</i> durch die ordentliche IP-Adresse ersetzt.
+</p>
+
+</aside>
+
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgc54c496">
+<h2 id="orgc54c496">DNS-Server</h2>
+
+<div id="orgaf6eae9" class="figure">
+<p><img src="Bilder/LAN_DNS_Server.png" alt="LAN_DNS_Server.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 10: </span>DNS-Server</p>
+</div>
+
+<p>
+Sollen nun auch noch URLs genutzt werden, so wird ein <i>Domain Name Server (DNS)</i> benötigt,
+der einer URL eine IP-Adresse zuordnet.
+</p>
+
+<p>
+Der DNS-Server führt eine Liste von Einträgen, in denen (z. B.)der Name eines Rechners,
+bzw. dessen URL einer IPv4- oder IPv6-Adresse zugeordnet werden.
+</p>
+
+
+<aside class="notes">
+<p>
+Es gibt verschiedene Arten von Einträgen (<b>Record-Types</b>):
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Record-Type</td>
+<td class="org-left">Beschreibung</td>
+<td class="org-left">Beispiel</td>
+</tr>
+
+<tr>
+<td class="org-left">A</td>
+<td class="org-left">IPv4 Adresse</td>
+<td class="org-left">www  IN A 192.168.0.1</td>
+</tr>
+
+<tr>
+<td class="org-left">AAAA</td>
+<td class="org-left">IPv6 Adresse</td>
+<td class="org-left">www  IN AAAA 2003::1</td>
+</tr>
+
+<tr>
+<td class="org-left">MX</td>
+<td class="org-left">Mail-Server</td>
+<td class="org-left">     IN MX  10  mail.test.net</td>
+</tr>
+
+<tr>
+<td class="org-left">CNAME</td>
+<td class="org-left">Alias für anderen Namen</td>
+<td class="org-left">mail IN CNAME www</td>
+</tr>
+
+<tr>
+<td class="org-left">NS</td>
+<td class="org-left">Nameserver für diese Domain</td>
+<td class="org-left">     IN NS ns.example.com</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">ns   IN CNAME www</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Normaler Weise werden Einträge für eine bestimmte Domain, wie <i>test.net</i> eingetragen. Es
+wird nur der Hostname im Eintrag aufgeführt, also <i>www</i> für <i>www.test.net</i>
+</p>
+
+<p>
+Der Client muss die Adresse des Nameservers kennen, diese können statisch eingetragen
+werden oder per DHCP ausgeliefert werden (Siehe Abbildung <a href="#/slide-org31b9913">8</a>).
+</p>
+
+<p>
+Wird dann eine URL genutzt, sendet der Client eine Anfrage an den Nameserver und dieser
+antwortet mit der IP-Adresse (wenn er die URL kennt).
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org5250c18">
+<h2 id="org5250c18">Web-Server</h2>
+
+<div id="org0763080" class="figure">
+<p><img src="Bilder/LAN_Webserver.png" alt="LAN_Webserver.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 11: </span>Web-Server</p>
+</div>
+
+<p>
+Dies ermöglicht nun, das bequeme nutzen weiterer Ressourcen, wie zum Beispiel eines
+Webservers im lokalen Netz. 
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes]
+});
+
+</script>
+</body>
+</html>

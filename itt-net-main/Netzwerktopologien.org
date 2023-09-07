@@ -1,0 +1,284 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 1
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: Netzwerktopologien
+#+SUBTITLE: ITT-Netwerke
+#+AUTHOR: Sebastian Meisel
+
+* Einführung
+Mit *Topologie* wird beschrieben, wie /Computersysteme/ in einem
+/Netzwerk/ miteinander verbunden werden.
+
+#+CAPTION: Peer-to-Peer-Netzwerk
+#+ATTR_HTML: :width 30%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/Peer-to-Peer-Netzwerk.png]]
+
+
+Die einfachste Topologie haben wir bereits kennengelernt:
+Bei *Peer-to-Peer-Netzwerk* werden zwei Computer direkt
+miteinander verbunden.
+
+#+BEGIN_NOTES
+Man unterscheidet zwischen
+ - *physischer Topologie*: Das ist die tatsächliche Anordnung
+   der Netzwerkgeräte und ihrer Verbindungen.
+ - *logischer Topologie*: Dies beschreibt, auf welchem Weg die
+   einzelnen Geräte Daten miteinander austauschen. 
+Beides ist oft - aber nicht immer - dasselbe.
+
+Eine weitere wichtige Unterscheidung ist die, zwischen
+*kabelgebundenen* und *kabellosen* Topologien.
+#+END_NOTES
+
+
+* Kabelgebundene Topologien
+** Daisy-chain (veraltet)
+
+ #+CAPTION: Daisy-chain-topologie
+ #+ATTR_HTML: :width 75%
+ #+ATTR_LATEX: :width .65\linewidth
+ #+ATTR_ORG: :width 700
+ [[file:Bilder/Daisychain.png]]
+
+ #+BEGIN_NOTES
+  Bei einer *Daisychain-*, auch *Linien-* oder *offenen Ringtopologie* werden eine Reihe von
+  /Computern/  jeweils mit dem nächsten direkt verbunden.
+
+  * Vorteile: 
+    - einfach (billig) einzurichten.
+  * Nachteile:
+    - Single point of failure: Wenn ein Gerät oder eine Verbindung ausfällt, ist das Ganze
+      Netzwerk unterbrochen.
+    - Alle transportierten Daten werden von jedem Computer verarbeitet:
+      - Erhöht Latenz.
+      - Unsicher.
+    - Jedes Gerät braucht zwei /Netzwerkschnittstellen/. 
+ 
+ #+END_NOTES
+
+** Ring-Topologie (veraltet)
+
+ #+CAPTION: Ring Topologie
+ #+ATTR_HTML: :width 50%
+ #+ATTR_LATEX: :width .65\linewidth
+ #+ATTR_ORG: :width 700
+ [[file:Bilder/Ring_Topologie.png]]
+
+ #+BEGIN_NOTES
+  Die *Ringtopologie* ist im Prinzip eine geschlossene /Daisychain/ (oder umgekehrt).
+  Sie hat weitgehend dieselben Vor- und Nachteile, aber:
+  - Bei einer Unterbrechung an einer Stelle, können die Daten in der anderen Richtung
+    weitergeleitet werden. 
+
+  Diese Topologie wurde vom /Tokenringprotokoll/, das vor /Ethernet/ genutzt wurde.
+
+ #+END_NOTES
+
+** Bustopologie (veraltet)
+
+ #+CAPTION: Bustopologie
+ #+ATTR_HTML: :width 50%
+ #+ATTR_LATEX: :width .65\linewidth
+ #+ATTR_ORG: :width 700
+ [[file:Bilder/Bustopologie.png]]
+
+ #+BEGIN_NOTES
+  #+CAPTION:
+  #+ATTR_HTML: :width 50%
+  #+ATTR_LATEX: :width .65\linewidth
+  #+ATTR_ORG: :width 700
+ 
+
+  Die *Bustopologie* ist eine weitere Variante der /Daisychain / Ringtopologie/. Wie diese wird sie heute fast
+  nicht mehr verwendet.
+  
+  Dabei werden die Daten über /eine/ gemeinsame Datenleitung (den Bus) übertragen. Die einzelnen
+  Geräte werden über ein T-Stück angeschlossen. 
+
+  * Vorteile (neben denen der /Daisychain/) 
+    - Nur eine Netzwerkschnittstelle am Endgerät notwendig.
+  * Nachteile
+    - Die Geräte können den Bus nur abwechselnd nutzen.
+    - Die Enden des Bus müssen Abschlusswiderständen versehen werden, um Reflexionen zu verhindern.
+
+ #+END_NOTES
+
+** Stern-Topologie
+
+ #+CAPTION: Stern-Topologie
+ #+ATTR_HTML: :width 50%
+ #+ATTR_LATEX: :width .65\linewidth
+ #+ATTR_ORG: :width 700
+ [[file:Bilder/Sterntopologie.png]]
+
+ #+BEGIN_NOTES
+  Die in /lokalen/ Netzwerken am häufigsten eingesetzte Netzwerktopologie ist die
+  *Sterntopologie*.
+
+  Hierbei werden alle /Computer/ mit einem zentralen /Hub/ oder /Switch/ verbunden. Das sind
+  Geräte, die Datenpakete in mehrere Richtungen weiterleiten können.
+
+ - Vorteile/Nachteile
+     
+  * Vorteile:
+    - Einfach (erleichtert die Fehlersuche).
+    - Leicht erweiterbar.
+    - Der Ausfall eines /Endgeräts/ oder Verbindung wirkt sich nur an einer Stelle aus.
+    - Geringe Latenz.
+  * Nachteile:
+    -Mit dem /Hub // /Switch/ gibt es auch hier einen Single Point of Failure. 
+ #+END_NOTES
+
+** Baumtopologie
+
+ #+CAPTION: Baumtopologie
+ #+ATTR_HTML: :width 75%
+ #+ATTR_LATEX: :width .65\linewidth
+ #+ATTR_ORG: :width 700
+ [[file:Bilder/Treetopologie.png]]
+
+ #+BEGIN_NOTES
+  Die *Baumtopologie* ist der /Sterntopologie/ ähnlich, aber klarer strukturiert und
+  hierarchisch aufgebaut.
+  Sie wird häufig in großen Gebäuden genutzt.
+
+  * Vorteile (über die der /Sterntopologie/ hinaus)
+    - Durch die Nutzung von Switches werden die Netzwerksignale immer wieder verstärkt und
+      große Distanzen können überwunden werden.
+    - Einfaches Routing.
+  * Nachteile (über die der /Sterntopologie/ hinaus)
+    - der gesamte Datenverkehr wird über die Wurzel geleitet: 
+      * Hohe Last.
+      * Teilweise lange Übertragungswege (hohe Latenz). 
+ #+END_NOTES
+
+*** Ringerweiterte Baumtopologie
+  #+CAPTION: Ringerweiterte Treetopologie
+  #+ATTR_HTML: :width 50%
+  #+ATTR_LATEX: :width .65\linewidth
+  #+ATTR_ORG: :width 700
+  [[file:Bilder/RingerweiterteTreetopologie.png]]
+
+  #+BEGIN_NOTES
+   * Dies ist /eine/ Lösung, um:
+     - die Wurzel eines Baumes zu entlasten.
+     - die Übertragungswege zu verkürzen.
+     - Durch /Redundanz/ Netzwerkausfälle zu vermeiden.   
+   * Nachteile:
+     - Erhöhte Komplexität erschwert die Fehlersuche.
+     - Die /Redundanz/ würde zu /Broadcaststürmen/ führen, wenn dies nicht durch technische
+       Maßnahmen verhindert wird. 
+  #+END_NOTES
+
+
+
+** Meshtopologien
+#+CAPTION: Teilmesh-Topologie
+#+ATTR_HTML: :width 35%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/Teilmesh.png]]
+
+#+BEGIN_NOTES
+
+In einem *vermaschten* (*Mesh-)Netzwerk* ist jedes Gerät mit einem oder mehreren anderen
+Geräten verbunden. 
+
+ * Vorteile:
+   - Zusätzliche /Redundanz/ verringert die Wahrscheinlichkeit von Netzwerkausfällen, da es
+     keinen /Single Point of Failure/ gibt.
+ * Nachteile:
+   - Hohe Komplexität erschwert Fehlersuche.
+   - Aufwendiges Routing.
+   - Die /Redundanz/ würde zu /Broadcaststürmen/ führen, wenn dies nicht durch technische
+     Maßnahmen verhindert wird.
+
+ Das Internet ist zwar kein perfektes *Full Mesh,* kommt dem aber recht nahe. So ist eine
+ extrem hohe Ausfallsicherheit gegeben. 
+#+END_NOTES
+
+
+*** Full mesh
+#+CAPTION: Full mesh
+#+ATTR_HTML: :width 40%
+#+ATTR_LATEX: :width .45\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/Vollmesh.png]]
+
+#+BEGIN_NOTES
+ In einem *vollvermaschtes (Full-Mesh-)Netzwerk* sind alle Geräte mit allen anderen
+ verbunden. Dies verstärkt gegenüber einen einfachen /Mesh/ sowohl die Vor- als auch die
+ Nachteile. 
+
+ Als *physische Topologie* kommt es sehr selten vor. Teilweise wird es in Rechenzentren vor.
+ Die *logische Topologie* der meisten Netzwerke entspricht jedoch einem *Full Mesh*.
+#+END_NOTES
+
+* Kabellose Topologien
+** Ad-hoc vs. Infrastruktur
+
+# #+CAPTION: Infrastructur-WLAN
+#+ATTR_HTML: :width 40% :align left
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/Infrastructure_WLAN.png]]
+
+# #+CAPTION: Ad-hoc-WLAN
+#+ATTR_HTML: :width 40% :align right
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/WLAN_Ad_hoc.png]]
+
+
+
+
+#+BEGIN_NOTES
+ Mit *Ad-hoc* wird z. B. bei /WLAN-Verbindungen/ eine /Peer-to-Peer/-Verbindung verstanden.
+ Demgegenüber bezeichnet *Infrastructur* eine /Sterntopologie/ in der Geräte /kabellos/ über ein
+ zentrales Gerät wie einen /Accesspoint/ oder /WLAN-Router/ mit einem /kabelgebundenen/ Netzwerk
+ verbunden sind.
+#+END_NOTES
+
+** Mesh
+
+ Ein *Mesh* ist bei /kabellosen/ Netzwerken (vor allem WLANs) etwas anderes als in
+ /kabelgebundenen/ Netzwerk.
+
+ Hier sind /Accesspoints/ in einer /Mesh-Topologie/ kabellos verbunden, bilden aber ein
+ *gemeinsames* Netzwerk, sodass sich andere Geräte wie Smartphones dynamisch mit *jedem* dieser
+ Accesspoints verbinden können, um stets die beste Empfangsleistung zu haben  
+
+** Zelltopologie
+#+CAPTION: Zelltopologie
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/Zelltopologie.png]]
+
+#+BEGIN_NOTES
+ Von einer *Zelltopologie* spricht man, wenn es sich /kabellose/ Geräte in einem bestimmten
+ Bereich (/Zelle/) um eine zentralen /Sender / Empfänger/ (Funkmast, Accesspoint) mit diesem
+ verbinden.
+
+ Letztlich sind alle /kabellosen/ Topologien, die nicht auf /Richtfunk/ basieren, Varianten
+ der /Zelltopologie/. 
+
+ Herausfordernd ist bei dieser Topologie der Bereich, wo sich die Zellen überlappen und
+ gegenseitig stören.
+#+END_NOTES
+  

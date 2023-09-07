@@ -1,0 +1,204 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: Internet Protocol Version 6 (IPv6)
+#+SUBTITLE: IT-Technik Netzwerkgrundlagen
+#+AUTHOR: Sebastian Meisel
+
+* Aufbau einer IPv6-Adresse
+
+Ein *IPv6-Adresse* ist *128 Bit* lang. Sie besteht aus zwei Teilen von je 64 Bit, die mit 4 mal 4 Hexadezimale[fn:1] Zeichen (4 x 16 Bits) geschrieben werden, die jeweils durch einen Doppelpunkt getrennt werden:
+
+ - *Netzwerkanteil*:  z. B. 2001:1234:5678:9ABC
+ - (Host-)​*Identifier*: z. B. DEF0:1234:5678:9ABC
+
+ergibt: 2001:1234:5678:9ABC​*:*​DEF0:1234:5678:9ABC 
+
+** Kürzungsregeln 
+
+ Um Ipv6-Adressen kürzer zu schreiben, gibt es zwei Regeln:
+
+ 1) *Nullen nach Doppelpunkten* dürfen immer weggelassen werden: 
+    - 2001:0001:0023:0456:7000:8000:0009:0A00 wird zu:
+    - 2001:1:23:456:7000:8000:9:A00
+ 2) *Einmalig* dürfen aufeinander folgende *Blöcke aus Nullen* weggelassen und durch *zwei Doppelpunkte* ersetzt werden:
+    - 2001:0000:0000:0000:7000:0000:0000:0A00 wird zu:
+    - 2001​*::*​7000:0000:0000:A00 oder 2001:0000:0000:0000:7000​*::*​A00 
+
+** Präfix
+
+  Das *Präfix* (engl. prefix) kennzeichnet den *Teil, des Netzwerkanteils*, der vom /Internet Service Provider (ISP)/ zugeteilt wurde. Er wird nach der Adresse in Bits nach einem Schägstrich gekennzeichnet:
+
+ - 2001:0001:0023:0456:7000:8000:0009:0A00/32: 32 Bit, also die beiden ersten 16-Bit-Blöcke sind vom ISP vorgegeben. 
+ - 2001:0001:0023:0456:7000:8000:0009:0A00/48: 48 Bit, also die drei ersten 16-Bit-Blöcke sind vom ISP vorgegeben. 
+ - 2001:0001:0023:0456:7000:8000:0009:0A00/56: 56 Bit, also die drei ersten 16-Bit-Blöcke + die zwei ersten Stellen des vierten Blocks (70) sind vom ISP vorgegeben. 
+ - 2001:0001:0023:0456:7000:8000:0009:0A00/64: 64 Bit, also der gesamte Netzwerkanteil ist vom ISP vorgegeben.
+
+
+* Arten von IP-Adressen mit unterschiedlichen Scopes
+
+IPv6 unterscheidet IP-Adressen unter anderem danach, wie weit sie gültig, bzw. eindeutig (unique) sind.
+
+Neben den Global eindeutigen /(Unique)-Global-Unicast/-Adressen, die im Internet geroutet werden gibt es:
+ 
+ - *eine* Lokalhost-Adresse (*::1*), die auf den eigenen Rechner verweist.
+ - /Link-Local/-Adressen, die bis zum nächsten Router gültig ist.
+ - /(Unique)-Local-Unicast/-Adressen, die nur im eigenen Netzwerk geroutet werden, aber nicht im Internet. 
+ 
+Zusätzlich gibt es *Multicast*-Adressen, über die mehrere Geräte mit einer bestimmten Funktion (z. B. alle Router) angesprochen werden können.
+
+#+BEGIN_NOTES
+Alle diese besonderen Adressen (außer den /Global-Unicast/- und der Lokalhost-Adresse) beginnen mit einem "*F*".
+#+END_NOTES
+
+** Link Local Addresses 
+
+/Link-lokale Adressen/ beginnen mit *fe80::* und werden für jede Netzwerkschnittstelle automatisch gebildet. 
+Sie werden *nicht geroutet*, sondern sind *bis zum nächsten Router* gültig. Man kann sich darüber mit allen Geräten verbinden, die 
+  - IPv6 unterstützen.
+  - mit denen man direkt oder
+  - über einen Switch oder Hub verbunden ist.
+
+Um diese Adresse zu verwenden muss immer ein *Zone-Identifier* mit einem Prozentzeichen angegeben werden. Dies ist die Netzwerkschnittstelle, über die das Gerät erreichbar ist. 
+
+#+BEGIN_NOTES
+ Unter Windows ist das die InterfaceID als Zahl; unter Linux eine Devicebezeichnung, wie %eth0 oder %ens1f1.
+
+Im Beispiel ist der Rechner ~fe80::9b96:d84:6aa4:60d~ unter Windows über das Interface mit der ~InterfaceID 4~ erreichbar.
+
+#+BEGIN_EXAMPLE
+[18.02 20:10]PS C:\Users\User> ping fe80::9b96:d84:6aa4:60d
+
+Ping wird ausgeführt für fe80::9b96:d84:6aa4:60d mit 32 Bytes Daten:
+Zielhost nicht erreichbar.
+Zielhost nicht erreichbar.
+Zielhost nicht erreichbar.
+Antwort von fe80::9b96:d84:6aa4:60d: Zeit=1ms
+
+[18.02 20:12]PS C:\Users\User> ping fe80::9b96:d84:6aa4:60d%4
+
+Ping wird ausgeführt für fe80::9b96:d84:6aa4:60d%4 mit 32 Bytes Daten:
+Antwort von fe80::9b96:d84:6aa4:60d%4: Zeit<1ms
+Antwort von fe80::9b96:d84:6aa4:60d%4: Zeit<1ms
+Antwort von fe80::9b96:d84:6aa4:60d%4: Zeit<1ms
+Antwort von fe80::9b96:d84:6aa4:60d%4: Zeit<1ms
+#+END_EXAMPLE
+
+#+END_NOTES 
+
+
+
+**** Extended Unique Identifiers (EUI-64)
+
+Der *Identifier* (= der Hostanteil) wird in der Regel zufällig gebildet. Es gibt aber auch einen Standard (EUI-64), wie er aus der MAC-Adresse gebildet werden kann:
+
+ 1) MAC-Adresse (6 Bytes, 2 Hexadezimale Stellen je Byte, durch Doppelpunkte oder Bindestriche getrennt): 80:fa:5b:5c:df:4d.
+ 2) In der Mitte (nach dem 3. Byte) *FF:FE* einfügen:  80:fa:5bFF:FE5c:df:4d.[fn:2]
+ 3) Je zwei Byte zu einem Block zusammenfügen: 80fa:5bff:fe5c:df4d.
+ 4) Die zweite Stelle des 1. Bytes in Binärzahl umwandeln: 1. Byte: 80 -> 2. Stelle: 0 -> Binär: 0000.
+ 5) 2. Stelle von links (der Binärzahl) "flippen" (0 →1, 1→0): 0010.
+ 6) Binärzahl wieder in Hexadezimalzahl umwandeln: 0+0+2+0 = 2 -> 82fa:5bff:fe5c:df4d.
+ 7) FE80:: voranstellen: FE80::82fa:5bff:fe5c:df4d.
+ 8) Wenn möglich kürzen: Hier nicht möglich.
+
+#+BEGIN_NOTES
+ Zweites Beispiel: 
+
+ 1) MAC-Adresse (6 Bytes, 2 Hexadezimale Stellen je Byte, durch Doppelpunkte oder Bindestriche getrennt): 02:42:d1:eb:a7:12.
+ 2) In der Mitte (nach dem 3. Byte) *FF:FE* einfügen:  02:42:d1FF:FEeb:a7:12.[fn:2]
+ 3) Je zwei Byte zu einem Block zusammenfügen: 0242:d1ff:feeb:a712.
+ 4) Die zweite Stelle des 1. Bytes in Binärzahl umwandeln: 1. Byte: 02 -> 2. Stelle: 2 -> Binär: 0010.
+ 5) 2. Stelle von links (der Binärzahl) "flippen" (0 →1, 1→0): 0000.
+ 6) Binärzahl wieder in Hexadezimalzahl umwandeln: 0+0+0+0 = 2 -> 0042:d1ff:feeb:a712.
+ 7) FE80:: voranstellen: FE80::0042:d1ff:feeb:a712.
+ 8) Wenn möglich kürzen: fe80::42:d1ff:feeb:a712.
+
+ Diese Methode um Identifier zu bilden kann auch für /Global/- und /Local-Unicast/-Adressen verwendet werden, kommt dort aber noch seltener zum Einsatz.
+ In diesem Fall, müsste statt fe80:: ein anderer Netzwerkanteil vorangestellt werden.
+#+END_NOTES
+
+** (Unique) Local Unicast Addresses 
+
+Etwas weiter reichen die *Local-Unicast*-Adressen. Sie können im *LAN*, aber *nicht übers Internet* geroutet werden, da sie nur im lokalen Netz einzigartig sind.
+
+Sie beginnen mit ~fc~ oder ~fd~, da der resiervte Adressbereich ~fc00::0 - fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff~ (~fc00::/7~) umfasst.
+
+#+BEGIN_NOTES
+Sie entsprechen den /privaten Adresseräumen/ in /IPv4/ (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16). Im Gegensatz zu IPv4 ist ihr Einsatz im LAN  aber nicht notwendig, da jedes Gerät eine weltweit eindeutige Global-Unicast-Adresse bekommen kann.
+
+Haupteinsatzbereich sind Netzwerkgeräte, wie Router, Switche und Netzwerkdrucker, die sich dezidiert nicht mit dem Internet verbinden und von dort aus nicht erreichbar sein sollen. Außerdem werden diese Adressen genutzt, wenn man NAT einsetzen möchte.
+
+Sie können auch zusätzlich zu /Global-Unicast/-Adressen eingesetzt werden, um mehr Subnetze zu verwirklichen.
+#+END_NOTES
+
+
+
+** (Unique) Global Unicast Addresses
+
+Schließlich gibt die weltweit eindeutigen /Global-Unicast/-Adressen, die mit einem durch die [[https://www.iana.org][Internet Assigned Numbers Authority (IANA)]] vergebenen und durch den /ISP/ zugeteilten Präfix beginnen.
+
+Dieses beginnt mit ~2~ oder ~3~ und umfasst den Adressbereich ~2000::0 - 3fff:ffff:ffff:ffff:ffff:ffff:ffff:ffff~ (~2000::/3).
+
+** Multicast Addresses
+
+
+In IPv6 gibt es *keine Broadcastadressen*, stattdessen wird sehr viel stärker, als bei IPv4 auf *Multicast*-Adressen gesetzt. Das sind Adressen, über die man bestimmte *Geräteklassen* in einem bestimmten *Scope* erreichen kann.
+
+#+REVEAL: split
+
+Multicast-Adressen beginnen mit ~ff0~ gefolgt von einer Zahl, die den *Scope*, also den Gültigkeitsbereich kennzeichnen:
+
+| Scope | Name               | Bedeutung                       |
+|     1 | Node-Local         | Localhost-Dienste               |
+|     2 | Link-Local         | Bis zum Router                  |
+|     5 | Site-Local         | LAN                             |
+|     8 | Organization-Local | Alle Standorte der Organisation |
+|     E | Global             | Internet                        |
+
+
+#+REVEAL: split
+
+Je nach Scope, sind verschiedene Geräteklassen ansprechbar. Eine umfassende Aufzählung findet sich auf der entsprechenden Seite der [[https://www.iana.org/assignments/ipv6-multicast-addresses/ipv6-multicast-addresses.xhtml][IANA]].
+
+| Beispiel  | Name                              | Bedeutung                                              |
+| ff01::1   | All Nodes                         | Alle Netzwerkschnittstellen am aktuellen Gerät         |
+| ff02::1:2 | All DHCP Relay Agents and Servers | Alle direkt verbundenen DHCP-Relay-Agents oder Server. |
+| ff05::2   | All Routers                       | Alle Router im LAN                                     |
+| ff05::1:3 | All DHCP Servers                  | Alle DHCP-Server im LAN                                |
+
+
+* Footnotes
+
+[fn:2] Die Groß- und Kleinschreibung dient nur der Sichtbarkeit der Einfügung.  
+
+[fn:1] Hexdezimale Zahlen haben 16 Zahlen: 0 - 15, wobei die Zahlen ab 10 durch die Buchstaben A, B, C, D, E und F ersetzt werden.
+Hexadezimale Zahlen lassen sich besonders leicht in binäre umrechnen, da 16 die vierte Potenz von Zwei ist. Jede hexadezimale Stelle wird dabei durch *4 Bits* dargestellt, die (von rechts nach links) für die Zweierpotenzen 1 (2^0), 2 (2^1), 4 (2^2) und 8 (2^3) stehen:
+~0: 0000 = 0+0+0+0~, 
+~1: 0001 = 0+0+0+1~, 
+~2: 0010 = 0+0+2+0~, 
+~3: 0011 = 0+0+2+1~, 
+~4: 0100 = 0+4+0+0~, 
+~5: 0101 = 0+4+0+1~, 
+~6: 0110 = 0+4+2+0~, 
+~7: 0111 = 0+4+2+1~, 
+~8: 1000 = 8+0+0+0~, 
+~9: 1001 = 8+0+0+1~, 
+~A: 1010 = 8+0+2+0~, 
+~B: 1011 = 8+0+2+1~, 
+~C: 1100 = 8+4+0+0~, 
+~D: 1101 = 8+4+0+1~, 
+~E: 1110 = 8+4+2+0~, 
+~F: 1111 = 8+4+2+1~. 

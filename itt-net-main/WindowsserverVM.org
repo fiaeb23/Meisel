@@ -1,0 +1,253 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: Installation Windowsserver unter HyperV
+#+SUBTITLE: ITT-Netzwerke
+#+AUTHOR: Sebastian Meisel
+
+* Vorbereitung der Installation in HyperV
+
+So HyperV noch nicht mit dem Server verbunden ist, muss man rechts unter ~Aktionen~ die
+[[fig:connect][Verbindung mit dem Server herstellen]]. Im neuen Fenster wählt man ~Lokaler Computer~ und
+bestätigt die Auswahl mit ~[OK]~.
+CAPTION: Verbindung mit dem Server herstellen
+#+NAME: fig:connect
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvPrepare_01.png]]
+
+Nun wählen wir rechts unter ~Aktionen~ [[fig:newvm][Neu → Virtuellen Computer]] und bestätigen mit ~[Weiter]~.
+#+CAPTION: Neu → Virtuellen Computer
+#+NAME: fig:newvm
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvPrepare_02.png]]
+
+Unter [[fig:name][Name und Pfad angeben]] tragen wir nun einen sinnvollen Namen, z. B. "WinSrv" ein.
+#+CAPTION: Name und Pfad angeben
+#+NAME: fig:name
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvPrepare_03.png]]
+
+Unter [[fig:gen][Generation angeben]] wählen wir ~2. Generation~ und bestätigen mit ~Weiter~.
+#+CAPTION: Generation angeben
+#+NAME: fig:gen
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvPrepare_04.png]]
+
+Unter [[fig:ram][Speicher zuweisen]] überprüft man, dass die Checkbox vor ~Dynamischen Arbeitsspeicher für diesen virtuellen Computer verwenden~ , gewählt ist. Viele Weisen der VM von Anfang an ~2048 MB~ zu, das ist aber nicht notwendig, da sie den Speicher zugewiesen bekommt, den sie braucht. Wir bestätigen mit ~Weiter~.
+#+CAPTION: Speicher zuweisen
+#+NAME: fig:ram
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvPrepare_05.png]]
+
+Unter [[fig:network][Netzwerk konfigurieren]] wählt man im Dropdownmenü ~Verbindung~ den Eintrag ~Default Switch~ und bestätigt mit ~Weiter~.
+#+CAPTION: Netzwerk konfigurieren
+#+NAME: fig:network
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvPrepare_06.png]]
+
+Nun muss man eine [[fig:disk][Virtuelle Festplatte erstellen]]. Diese begrenzen wir unter ~Größe~ auf ~40~ GB.
+#+CAPTION: Virtuelle Festplatte erstellen
+#+NAME: fig:disk
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvPrepare_07.png]]
+
+Unter [[fig:install_options][Installationsoptionen]] wählen wir die Option ~Installation von einer startbaren Imagedatei installieren~. Da klickt man neben ~Imagedatei (ISO)~ auf durchsuchen und wählt das ISO-Image des Windowservers aus dem Downloadsordner. Und schließt die Vorbereitung mit ~[Fertig stellen]~ ab.
+#+CAPTION: Installationsoptionen
+#+NAME: fig:install_options
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvPrepare_08.png]]
+
+Nun wählt man rechts in HyperV unter dem Servernamen den Menüpunkt [[fig:vm_config][Einstellungen]]. Im neuen Fenster wählt man links ~Integrationsdienste~. Rechts setzt man den Haken in der Checkbox vor ~Gastdienste~.
+#+CAPTION: Einstellungen
+#+NAME: fig:vm_config
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvPrepare_10.png]]
+
+Abschließend wählt man rechts in HyperV unter dem Server [[fig:connect][Verbinden]]. Im neuen Fenster muss man nun auf ~Starten~ klicken und danach *SOFORT!* eine Taste drücken, um vom ISO-Image zu starten.
+#+CAPTION: Verbinden
+#+NAME: fig:connect
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvPrepare_11.png]]
+
+
+* Installation des Images
+
+Der Installtionsvorgang beginnt mit der [[fig:local][Auswahl der Sprach- und Tastatureinstellungen]]. Hier können die Standwerte übernommen werden. Mit ~[Weiter]~ wird der Installationsvorgang fortgesetzt.
+
+#+CAPTION: Lokalisation bestätigen
+#+NAME: fig:local
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvInstall_01.png]]oo
+
+Dann wird der [[fig:start][Beginn der Installation]] bestätigt.
+#+CAPTION: Installation beginnen
+#+NAME: fig:start
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvInstall_02.png]]
+
+Als nächstes muss die [[fig:type][Art des Servers]] gewählt werden. Hier wird der *2. Punkt*:
+~Windows Server 2022 Standard Evalutation (Desktopdarstellung)~ gewählt.
+Mit ~[Weiter]~ wird die Auswahl bestätigt.
+#+CAPTION: Serverauswahl
+#+NAME: fig:type
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvInstall_03.png]]
+
+Dann muss mit einem *Häkchen* in der /Checkbox/ den [[fig:licence][Linzensbedingungen]] zugestimmt und mit
+~[Weiter]~ bestätigt werden.
+#+CAPTION: Bestätigung der Linzensbedingungen
+#+NAME: fig:licence
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvInstall_04.png]]
+
+Als [[fig:custom][Installationsart]] mit die *2. Option* ~Benutzerdefiniert: Nur Microsoft Server
+Betriebssystem installieren (Erweitert)~ gewählt und mit ~[Weiter]~ bestätigt werden.
+#+CAPTION: Installationsart wählen
+#+NAME: fig:custom
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvInstall_05.png]]
+
+Als nächstes wird der komplette nicht zugewiesene [[fig:storage][Speicherplatz]] vor die Installations
+vorgesehen und mit ~[Weiter]~ das Fortsetzen der Installation bestätigt. 
+#+CAPTION: Festplatte
+#+NAME: fig:storage
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvInstall_06.png]]
+
+Nun startet die eigentliche [[fig:installation][Installation]] des Betriebssystems.
+#+CAPTION: Installation des Betriebssystems
+#+NAME: fig:installation
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvInstall_07.png]]
+
+Im Anschluss muss ein komplexes [[fig:password][Passwort für den Administratoraccount]] gesetzt und mit
+~[Fertig stellen]~ bestätigt werden.
+#+CAPTION: Passwort setzten
+#+NAME: fig:password
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvInstall_08.png]]
+
+Im Anschluss kann man sich mit dem gesetzten Passwort [[fig:login][anmelden]].
+#+CAPTION: Anmelden
+#+NAME: fig:login
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvInstall_09.png]]
+
+#+LaTeX: \clearpage
+
+* Statische IP
+
+Nun muss eine *statische IP* für den Server konfiguriert werden. Dafür muss man die
+[[fig:ip_start][Netzwerkeinstellungen]] über einen /Rechtsklick/ auf das /Netzwerksymbol/ in der Taskleiste und
+einen /Linksklick/ auf ~Netzwerkeinstellungen~ öffnen.
+#+CAPTION: Netzwerkeinstellungen
+#+NAME: fig:ip_start
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvStaticIP_01.png]]
+
+In den [[fig:status][Einstellungen]] muss man nun unter ~Erweiterte Netzwerkeinstellungen~ den ersten Punkt
+~Adapteroptionen ändern~ wählen.
+#+CAPTION: Netzwerkstatus
+#+NAME: fig:status
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvStaticIP_02.png]]
+
+#+LaTeX: \clearpage
+** Netzwerkverbindung einrichten
+ Im neu geöffnete Fenster [[fig:links][Netzwerkverbindungen]] muss man nun mit einem /Rechtsklick/ auf die
+ ~Ethernet~-Verbindung den Menüpunkt ~Eigenschaften~ wählen.
+ 
+ #+CAPTION: Netzwerkverbindungen
+ #+NAME: fig:links
+ #+ATTR_HTML: :width 50%
+ #+ATTR_LATEX: :width .65\linewidth
+ #+ATTR_ORG: :width 700
+ [[file:Bilder/HyperV/WinSrvStaticIP_03.png]]
+ 
+
+Es öffnet sich das Menü [[fig:ethernet_options][Eigenschaften von Ethernet]]. Darin wählt man den Punkt
+~Internetprotokoll Version 4 (TCP/IPv4)~.
+
+ #+CAPTION: Eigenschaften von Ethernet
+ #+NAME: fig:ethernet_options
+ #+ATTR_HTML: :width 50%
+ #+ATTR_LATEX: :width .65\linewidth
+ #+ATTR_ORG: :width 700
+ [[file:Bilder/HyperV/WinSrvStaticIP_04.png]]
+
+Es öffnet sich nun das Fenster in dem wir die eigentlichen Einstellung für die
+[[fig:ipv4][IPv4-Konfiguration]] vornehmen. Dafür nutzen wir die berechneten [[file:IPv4.pdf][IPv-Adressen]] (← Berechnung
+siehe Link)
+für unser Netzwerk:
+
+ - *IP-Adresse*: Letzte (nutzbare) IP im Netzwerk
+ - *Subnetzmaske*: Netzwerkmaske.
+ - *Standardgateway*: Adresse des Host = 1. verfügbare IP-Adresse.
+ - *Bevorzugter DNS-Server*: Adresse des Hosts = 1. verfügbare IP-Adresse.
+ - *Alternativer DNS-Server*: öffentlicher DNS-Server, wie 1.1.1.1 oder 8.8.8.8 .
+
+Sowohl ~Eigenschaften von Internetprotokoll Version 4 (TCP/IPv4)~ als ~Eigenschaften von
+Ethernet~ müssen mit ~[OK]~ geschlossen werden.
+
+ #+CAPTION: Eigenschaften von INternetprotokoll Version 4 (TCP/IPv4)
+ #+NAME: fig:ipv4
+ #+ATTR_HTML: :width 50%
+ #+ATTR_LATEX: :width .65\linewidth
+ #+ATTR_ORG: :width 700
+ [[file:Bilder/HyperV/WinSrvStaticIP_05.png]]
+

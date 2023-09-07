@@ -1,0 +1,83 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: Wide Area Network (WAN)
+#+SUBTITLE: IT-Technik
+#+AUTHOR: Sebastian Meisel
+
+* Zugang zum WAN
+
+Während eine Organisation die Infrastruktur für ein /LAN/ in der Regel selbst aufbauen und verwalten kann, werden /WANs/ in der Regel von  /Internet Service Providern (ISPs)/ verwaltet. 
+
+Diese Aufgabe wurde zunächst von Unternehmen übernommen, die bereits eine Infrastruktur aufgebaut hatten, die aber ursprünglich für andere Zwecke aufgebaut worden war.
+
+Dies waren zunächst /Telefonanbieter/, später auch /Kabelfernsehanbieter/. Dies bestimmte lange die Technik die für den Zugang zum Internet zur Verfügung stand.
+
+Erst mit /VDSL/ und schließlich mit dem /Glasfasernetz/ wurde eine dezidierte /WAN-Infrastruktur/.
+
+** Digital Subscriber Line (DSL)
+
+Die aktuell vorherrschende Technik beim /WAN/-Zugang über Kupferkabel ist DSL. Typisch für diese Technik - die zunächst auf ISDN aufbaute - ist, dass es /unterschiedliche Übertragungsraten/ gibt für:
+
+ - *Downstream*: das Herunterladen von Daten aus dem WAN/Internet. Hierfür wird eine *höhere Übertragungsrate* bereitgestellt, da dies in der Regel die Hauptübertraungsrichtung ist. 
+ - *Upstream*: das Laden von Daten in das WAN/Internet. Hierfür steht eine meist deutlich *geringere Übertraungsrate* zur Verfügung. Das ist vor allem dann problematisch, wenn Dienste (Webserver, Emailserver, etc.) über den Anschluss zur Verfügung gestellt werden sollen, oder zum Beispiel Backups über die Leitung verwirklicht werden sollen.
+
+
+#+BEGIN_NOTES
+ Diese Unterscheidung gab es bei der analogen Übertragung über das Telefonnetz und bei den ersten digitalen Anschlüssen über ISDN noch nicht.
+ Mit VDSL2 und bei Glasfaseranschlüssen stehen ebenfalls für Up- und Downstream dieselben Übertragungsraten zur Verfügung.
+
+|Übertragungsverfahren|Frenquenzbereich |Datenübertragungsrate|
+|POTS (Analog)|300 Hz – 3,4 kHz|bis ca. 56 kbit/s[fn:1]   |
+|ISDN|0 Hz – 120 kHz|2 × 64 kBit/s Nutzkanal + 16 kBit/s Steuerkanal|
+|ADSL (ADSL-over-ISDN)|138 kHz – 1,1 MHz|Down: max. 8 Mbit/s, Up: 1 Mbit/s   |
+|ADSL2+ (ADSL-over-ISDN)|138 kHz – 2,2 MHz|Down: max. 24 Mbit/s, Up: 1 Mbit/s|
+|ADSL2+ (ADSL-over-POTS; in Deutschland nicht in Verwendung)|26 kHz – 2,2 MHz|Down: max. 25 Mbit/s, Up: 3,5 Mbit/s|
+|ADSL2+ (Annex-J)|0 Hz – 2,2 MHz|Down: max. 25 Mbit/s, Up: 3,5 Mbit/s|
+|VDSL|138 kHz – 12 MHz|Down: max. 50 Mbit/s, Up: 10 Mbit/s|
+|VDSL2|– 30 MHz|Down: max. 200 Mbit/s, Up: 200 Mbit/s[fn:2]  |
+#+END_NOTES 
+** Kabelinternet
+
+   Auch bei der Nutzung der /Koaxialkabel/ die zur Übertragung von Kabel-TV genutzt werden, gibt es *unterschiedliche Datenübertragungsraten* für *Down-* und *Upstream*. Allerdings können hier höhere Reichweiten und höhere Übertragungsraten (bis zu 10 Gbs Down / 6 Gbs Up) erreicht werden.
+
+#+BEGIN_NOTES
+Das wichtigste Protokoll, dass für Kabelinternet genutzt wird ist *Data Over Cable Service Interface Specification (DOCSIS)*. Die genannten Übertragungsraten beziehen sich auf die neueste Version /DOSIS 4.0/.
+#+END_NOTES 
+
+** Glasfaser
+
+Auch Glasfaseranschlüsse bieten sehr hohe Datenraten von bis zu mehreren Gbs. Diese hängen in der Regel vom Preis ab, aber auch davon um welche *Art* Glasfaseranschluss es sich handelt:
+
+ - *Fiber to the curb (FTTC)*: Glasfaser endet am Verteilerkasten auf der Straße. Die einzelnen Gebäude sind über Kupferleitungen angebunden.
+ - *Fiber to the building (FTTB)*: Glasfaser endet am zentralen Anschluss im Gebäude. Die einzelnen Einheiten (Büros/Wohnungen) sind über Kupferkabel angebunden.
+ - *Fiber to the home (FTTH)*: Glasfaser führt bis in jede Einheit (echter Glasfaseranschluss).
+
+** Point-to-Point Protocol over Ether (PPPoE) / over ATM (PPPoA)
+
+Ein weiteres Problem bei der Nutzung der /WAN-Infrastruktur/ eines /ISPs/ ist, dass der Service Provider für seine Dienstleistung bezahlt werden will. Daher muss eine *Authentifizierung* des Nutzers erfolgen, sodass sichergestellt ist, dass nur Clients die Leitungen nutzen können, die dafür auch bezahlt haben.
+
+Dies wird in der Regel über das *Point-to-Point Protocol* gewährleistet. Dieses arbeitet auf dem Data-Link-Layer/Sicherungsschicht (OSI-Layer 2). Meist baut es auf dem *Ethernet-*, teilweise auch auf dem ATM-Protokoll auf.
+
+#+BEGIN_NOTES
+Genaugenommen wird bei der Übertragung meist das ATM-Protokoll verwendet. Bei PPPoE wird aber /zusätzlich/ ein Ethernet-Header übertragen, was die Kompatibilität erhöht, aber auch leicht den Overhead.
+#+END_NOTES
+
+* Footnotes
+
+
+[fn:1] typisch 4 kByte/s – 5 kByte/s 
+[fn:2] mit VDSL Profil 30a 

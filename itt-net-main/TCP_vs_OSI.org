@@ -1,0 +1,77 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: TCP- vs. OSI-Referenzmodell
+#+SUBTITLE: ITT-Netzwerke
+#+AUTHOR: Sebastian Meisel
+
+* TCP-Referenzmodell
+
+#+CAPTION: TCP-Referenzmodell
+#+ATTR_HTML: :width 75%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/TCP_Modell.png]]
+
+#+REVEAL: split
+
+Das TCP-Refenzmodell betrachtet die Übertragung von Datenpaketen vor allem unter dem
+Gesichtspunkt, der Header, die den übertragenen Daten weitere /Schichten/ hinzufügen:
+
+ - Eine Dienstprogramm erzeugt Daten.
+ - Es fügt zum Transport einen UDP- oder TCP-Header hinzu, der Quell- und Zielport
+   enthält.
+ - Dann werden die Quell- und Ziel-IP-Adressen (v4 oder v6) hinzugefügt, um zu
+   adressieren für welchen Rechner in welchem Netzwerk das Datenpaket bestimmt ist.
+ - Die Quell- und Ziel-Hardware-Adresse (MAC-Adresse) wird beim Transport zwischen den
+   verschiedenen Netzwerkgeräten immer wieder ausgetauscht.
+
+#+REVEAL: split
+
+Umgekehrt werden beim Transport des Datenpaketes die Schichten von außen nach innen
+verarbeitet:
+
+ - Innerhalb eines Netzwerkes interessiert zunächst nur die *MAC-Adresse* des nächsten
+   Gerätes, an das das Paket weitergereicht werden muss.
+ - Muss es das Netzwerk verlassen, muss die *IP-Adresse** betrachtet werden, um zu
+   entscheiden, wohin das Datenpaket weitergeleitet werden muss (Routing).
+ - Erreicht das Paket den Zielrechner, lauscht die empfangene Anwendung auf dem
+   entsprechenden *Port*
+ - Die Anwendung kann dann die Daten auswerten.
+
+
+* OSI-Refenzmodell
+
+#+CAPTION: OSI-Referenzmodell
+#+ATTR_HTML: :width 75%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/OSI_Modell.png]]
+
+
+#+REVEAL: split
+
+Das OSI-Modell baut zwar auf dem TCP-Referenzmodell auf, hat aber einen abstrakteren
+Ansatz. Es ist besser geeignet, um:
+
+ - Hardware, wie Kabel, Switch oder Router einer Schicht zuzuordnen. 
+ - Die verschiedenen Protokolle einzuordnen.
+
+Die wichtigste Erweiterung ist das hinzufügen des *Physical Layers*
+Die Aufspaltung des *Application Layers* in *Session-, Presentation-* und *Application Layer*
+hat sich hingegen nicht bewährt.
+
+

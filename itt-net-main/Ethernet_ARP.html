@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Ethernet und Address Resolution Protokoll (ARP)</title>
+<meta name="author" content="Sebastian Meisel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/league.css" id="theme"/>
+
+<link rel="stylesheet" href="./mystyle.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Ethernet und Address Resolution Protokoll (ARP)</h1><p class="subtitle">ITT-Netzwerke</p>
+<h2 class="author">Sebastian Meisel</h2>
+</section>
+
+<section>
+<section id="slide-org965fd77">
+<h2 id="org965fd77">Ethernet-Protokoll</h2>
+<p>
+Das Ethernet-Protokoll betrifft sowohl das <b>Physical</b> Layer (Bitübertragunsschicht) – Festlegung von Kabeln und Steckern – als auch das <b>Data Link</b> Layer (Sicherungsschicht).
+</p>
+
+<p>
+Es fügt <i>Daten-Frames</i> den ersten <i>Header</i> hinzu. Dieser enhält nach einer Präamble als wichtigste Informationen, die <b>Ziel</b>- und <b>Quell-MAC-Adresse</b>.
+</p>
+
+
+<div class="figure">
+<p><img src="Bilder/Wireshark/ARP_00.png" alt="ARP_00.png" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org8b1f817">
+<h2 id="org8b1f817">Address Resolution Protokoll (ARP)</h2>
+<p>
+<b>ARP</b> ist ein Layer-2-Protokoll. Es ordnet <i>IPv4-Adressen</i>, MAC-Adressen zu, in dem es per <i>Broadcast</i> alle Rechner im Netzwerk anfragt, wer die entsprechende IP hat. Der Dazugehörige Befehl 
+</p>
+
+
+<p>
+Wenn ein Rechner die IP besitzt schickt er in einem Antwortpaket seine <b>MAC-Adresse</b>.
+</p>
+
+<p>
+ARP-Pakete enthalten keinen IP- oder TCP-/UDP-Header.
+</p>
+
+
+<div class="figure">
+<p><img src="Bilder/Wireshark/ARP_01.png" alt="ARP_01.png" />
+</p>
+</div>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes]
+});
+
+</script>
+</body>
+</html>

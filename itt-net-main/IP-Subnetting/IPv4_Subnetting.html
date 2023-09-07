@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Subnetting-Rechner</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body id="body">
+    <button id="toggle-dark-mode">Darkmode</button>
+    
+    <h1>Subnetting-Rechner</h1>
+
+    <p>
+        Subnetting ist der Prozess, durch den ein Netzwerk in kleinere, effizientere Netzwerke aufgeteilt wird.
+        Die Anzahl der möglichen Subnetze wird durch die Anzahl der Subnetzbits bestimmt.
+    </p>
+    <p>
+        Wichtig: Jedes zusätzliche Subnetzbit verdoppelt die Anzahl der möglichen Subnetze, halbiert jedoch die Anzahl der verfügbaren IP-Adressen pro Subnetz.
+    </p>
+
+    <div>
+        Netzwerkbits: <span id="network-value">0</span>
+        <input id="network-slider" type="range" min="8" max="30" value="8">
+    </div>
+
+    <div>
+        Subnetzbits: <span id="subnet-value">0</span>
+        <input id="subnet-slider" type="range" min="0" max="30" value="0">
+    </div>
+
+    <div id="output"></div>
+    <div id="info"></div>
+
+    <h3 id="Beispiel">Beispiel</h3>
+    <div id="example" class="grid"></div>
+
+    <script src="IPv4_script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Wide Area Network (WAN)</title>
+<meta name="author" content="Sebastian Meisel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/league.css" id="theme"/>
+
+<link rel="stylesheet" href="./mystyle.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Wide Area Network (WAN)</h1><p class="subtitle">IT-Technik</p>
+<h2 class="author">Sebastian Meisel</h2>
+</section>
+
+<section>
+<section id="slide-org1c07775">
+<h2 id="org1c07775">Zugang zum WAN</h2>
+<p>
+Während eine Organisation die Infrastruktur für ein <i>LAN</i> in der Regel selbst aufbauen und verwalten kann, werden <i>WANs</i> in der Regel von  <i>Internet Service Providern (ISPs)</i> verwaltet. 
+</p>
+
+<p>
+Diese Aufgabe wurde zunächst von Unternehmen übernommen, die bereits eine Infrastruktur aufgebaut hatten, die aber ursprünglich für andere Zwecke aufgebaut worden war.
+</p>
+
+<p>
+Dies waren zunächst <i>Telefonanbieter</i>, später auch <i>Kabelfernsehanbieter</i>. Dies bestimmte lange die Technik die für den Zugang zum Internet zur Verfügung stand.
+</p>
+
+<p>
+Erst mit <i>VDSL</i> und schließlich mit dem <i>Glasfasernetz</i> wurde eine dezidierte <i>WAN-Infrastruktur</i>.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org964504b">
+<h3 id="org964504b">Digital Subscriber Line (DSL)</h3>
+<p>
+Die aktuell vorherrschende Technik beim <i>WAN</i>-Zugang über Kupferkabel ist DSL. Typisch für diese Technik - die zunächst auf ISDN aufbaute - ist, dass es <i>unterschiedliche Übertragungsraten</i> gibt für:
+</p>
+
+<ul>
+<li><b>Downstream</b>: das Herunterladen von Daten aus dem WAN/Internet. Hierfür wird eine <b>höhere Übertragungsrate</b> bereitgestellt, da dies in der Regel die Hauptübertraungsrichtung ist.</li>
+<li><b>Upstream</b>: das Laden von Daten in das WAN/Internet. Hierfür steht eine meist deutlich <b>geringere Übertraungsrate</b> zur Verfügung. Das ist vor allem dann problematisch, wenn Dienste (Webserver, Emailserver, etc.) über den Anschluss zur Verfügung gestellt werden sollen, oder zum Beispiel Backups über die Leitung verwirklicht werden sollen.</li>
+
+</ul>
+
+
+<aside class="notes">
+<p>
+Diese Unterscheidung gab es bei der analogen Übertragung über das Telefonnetz und bei den ersten digitalen Anschlüssen über ISDN noch nicht.
+Mit VDSL2 und bei Glasfaseranschlüssen stehen ebenfalls für Up- und Downstream dieselben Übertragungsraten zur Verfügung.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Übertragungsverfahren</td>
+<td class="org-left">Frenquenzbereich</td>
+<td class="org-left">Datenübertragungsrate</td>
+</tr>
+
+<tr>
+<td class="org-left">POTS (Analog)</td>
+<td class="org-left">300 Hz – 3,4 kHz</td>
+<td class="org-left">bis ca. 56 kbit/s<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></td>
+</tr>
+
+<tr>
+<td class="org-left">ISDN</td>
+<td class="org-left">0 Hz – 120 kHz</td>
+<td class="org-left">2 × 64 kBit/s Nutzkanal + 16 kBit/s Steuerkanal</td>
+</tr>
+
+<tr>
+<td class="org-left">ADSL (ADSL-over-ISDN)</td>
+<td class="org-left">138 kHz – 1,1 MHz</td>
+<td class="org-left">Down: max. 8 Mbit/s, Up: 1 Mbit/s</td>
+</tr>
+
+<tr>
+<td class="org-left">ADSL2+ (ADSL-over-ISDN)</td>
+<td class="org-left">138 kHz – 2,2 MHz</td>
+<td class="org-left">Down: max. 24 Mbit/s, Up: 1 Mbit/s</td>
+</tr>
+
+<tr>
+<td class="org-left">ADSL2+ (ADSL-over-POTS; in Deutschland nicht in Verwendung)</td>
+<td class="org-left">26 kHz – 2,2 MHz</td>
+<td class="org-left">Down: max. 25 Mbit/s, Up: 3,5 Mbit/s</td>
+</tr>
+
+<tr>
+<td class="org-left">ADSL2+ (Annex-J)</td>
+<td class="org-left">0 Hz – 2,2 MHz</td>
+<td class="org-left">Down: max. 25 Mbit/s, Up: 3,5 Mbit/s</td>
+</tr>
+
+<tr>
+<td class="org-left">VDSL</td>
+<td class="org-left">138 kHz – 12 MHz</td>
+<td class="org-left">Down: max. 50 Mbit/s, Up: 10 Mbit/s</td>
+</tr>
+
+<tr>
+<td class="org-left">VDSL2</td>
+<td class="org-left">– 30 MHz</td>
+<td class="org-left">Down: max. 200 Mbit/s, Up: 200 Mbit/s<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></td>
+</tr>
+</tbody>
+</table>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-org27538ec">
+<h3 id="org27538ec">Kabelinternet</h3>
+<p>
+Auch bei der Nutzung der <i>Koaxialkabel</i> die zur Übertragung von Kabel-TV genutzt werden, gibt es <b>unterschiedliche Datenübertragungsraten</b> für <b>Down-</b> und <b>Upstream</b>. Allerdings können hier höhere Reichweiten und höhere Übertragungsraten (bis zu 10 Gbs Down / 6 Gbs Up) erreicht werden.
+</p>
+
+<aside class="notes">
+<p>
+Das wichtigste Protokoll, dass für Kabelinternet genutzt wird ist <b>Data Over Cable Service Interface Specification (DOCSIS)</b>. Die genannten Übertragungsraten beziehen sich auf die neueste Version <i>DOSIS 4.0</i>.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgba0f547">
+<h3 id="orgba0f547">Glasfaser</h3>
+<p>
+Auch Glasfaseranschlüsse bieten sehr hohe Datenraten von bis zu mehreren Gbs. Diese hängen in der Regel vom Preis ab, aber auch davon um welche <b>Art</b> Glasfaseranschluss es sich handelt:
+</p>
+
+<ul>
+<li><b>Fiber to the curb (FTTC)</b>: Glasfaser endet am Verteilerkasten auf der Straße. Die einzelnen Gebäude sind über Kupferleitungen angebunden.</li>
+<li><b>Fiber to the building (FTTB)</b>: Glasfaser endet am zentralen Anschluss im Gebäude. Die einzelnen Einheiten (Büros/Wohnungen) sind über Kupferkabel angebunden.</li>
+<li><b>Fiber to the home (FTTH)</b>: Glasfaser führt bis in jede Einheit (echter Glasfaseranschluss).</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org9841d3f">
+<h3 id="org9841d3f">Point-to-Point Protocol over Ether (PPPoE) / over ATM (PPPoA)</h3>
+<p>
+Ein weiteres Problem bei der Nutzung der <i>WAN-Infrastruktur</i> eines <i>ISPs</i> ist, dass der Service Provider für seine Dienstleistung bezahlt werden will. Daher muss eine <b>Authentifizierung</b> des Nutzers erfolgen, sodass sichergestellt ist, dass nur Clients die Leitungen nutzen können, die dafür auch bezahlt haben.
+</p>
+
+<p>
+Dies wird in der Regel über das <b>Point-to-Point Protocol</b> gewährleistet. Dieses arbeitet auf dem Data-Link-Layer/Sicherungsschicht (OSI-Layer 2). Meist baut es auf dem <b>Ethernet-</b>, teilweise auch auf dem ATM-Protokoll auf.
+</p>
+
+<aside class="notes">
+<p>
+Genaugenommen wird bei der Übertragung meist das ATM-Protokoll verwendet. Bei PPPoE wird aber <i>zusätzlich</i> ein Ethernet-Header übertragen, was die Kompatibilität erhöht, aber auch leicht den Overhead.
+</p>
+
+</aside>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes]
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: Einflussfaktoren der Netzwerkgeschwindigkeit
+#+SUBTITLE: IT-Technik Netzwerkgrundlagen
+#+AUTHOR: Sebastian Meisel
+
+* Was beeinflusst die Geschwindigkeit eines Netzwerkes?
+
+Obwohl man bei der Netzwerkgeschwindigkeit zunächst an die Übertragungsraten der Übertragungsmedien denkt, wird diese in Wirklichkeit von vielen Faktoren beeinflusst.
+
+Auf allen Schichten des [[fig:osi][OSI-Referenzmodels]] gibt es Faktoren, die die Geschwindigkeit des Netzwerkes negativ beeinflussen können.
+
+#+REVEAL: split
+#+CAPTION: Negativ Faktoren auf den Schichten des OSI-Modells
+#+NAME: fig:osi
+#+ATTR_HTML: :width 100%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/Netzwerkprobleme.png]]
+
+#+REVEAL: split
+
+Zu den Faktoren gehören z. B.:
+ - Entfernung zwischen Geräten
+ - Übertragungsrate des Netzwerks
+ - Interferenzen und Störungen
+ - Kapazität und Auslastung des Netzwerks
+ - Qualität der Netzwerkausrüstung
+ - Anzahl von Benutzern und Geräten auf dem Netzwerk
+ - Art der verwendeten Übertragungstechnologie (z. B. WLAN, Ethernet)
+ - Übertragungsprotokoll (z. B. TCP / IP, UDP)
+ - Hardware-Konfiguration (z. B. Router, Switch, Modem)
+ - Netzwerksicherheit (z. B. Firewall, Encryption)
+
+**  Maximale Transmission Unit / Maximal (TCP) Segment Size / Window Size 
+
+ Dies sind Werte, die die optimale Übertragung von Daten im Netzwerk garantieren sollen, sodass:
+
+ - die Kapazität der Netzwerkgeräte nicht überschritten wird.
+ - die Kapazität zur Verarbeitung der Daten auf Client und Serverseite nicht überschritten wird.
+
+*** Maximale Transmission Unit (MTU)
+
+ Router und Switche können nur /Frames/ eine bestimmten Größe verarbeiten. In der Regel sind *1500* Bytes. 
+
+#+BEGIN_NOTES
+Sie kann aber auch kleiner sein. Die kleinste mögliche /MTU/ sind 576 Bytes.
+#+END_NOTES
+
+ Kommt ein Frame an einem Router an, der zu groß ist muss dieser *fragmentiert* also in mehrere Teile aufgeteilt und später wieder zusammengesetzt werden. Dies verlangsamt die Datenübertragung. 
+
+#+BEGIN_NOTES
+Kommt es in einem Netzwerk zu häufigen Fragementierungen kann es helfen die /MTU/ des Netzwerks zu messen und die Einstellungen so anzupassen, dass kleinere Datenpakete versendet werden, damit diese nicht fragmentiert werden müssen. Für jede Netzwerkschnittstelle kann die MTU angepasst werden.
+#+END_NOTES
+
+Eine zu kleine /MTU/ führt außerdem zu einem ungünstigen Verhältnis zwischen /Headerdaten/ und /Payload/, also den Daten, die eigentlich übertragen werden sollen. 
+
+#+BEGIN_NOTES
+Dadurch müssen zum Transport derselben Daten mehr Datenpakete übertragen werden, was die Übertragung nochmal verlangsamt. 
+
+Daher kann es sinnvoll sein, bei einem Netzwerk mit einer kleinen /MTU/ das Bottlneck zu suchen, also das Netzwerkgerät, dass diese verursacht, und dieses auszutauschen.
+
+Die MTU lässt sich unter anderem mit dem ~ping~-Befehl testen, z. B. (Windows):
+
+#+BEGIN_SRC powershell
+  ping -f -l 1475 192.168.0.1
+#+END_SRC
+
+Dabei verhindert die Option ~-f~ die Fragementierung der Frames. Die Option ~-l~ widerum gibt an, wie viele Bytes als /Payload/ übertragen werden sollen. Diesen Wert kann man nun solange senken, bis die Datenpakete (ohne Fragementierung) übertragen werden. 
+
+Zu dem Wert, den man dabei zuletzt mit ~-l~ übergeben hat muss man noch die Headerbytes *addieren*:
+  - 8 Bytes für den ICMP-Headerbytes.
+  - 20 Bytes für den IPv4-Header.
+
+Wenn also der Befehle ~ping -f -l 1472 192.168.0.1~ Pakete ohne Fehler überträgt, während der Befehlt ~ping -f -l 1473 192.168.0.1~ den Fehler ~Paket müsste fragmentiert werden, DF-Flag ist jedoch gesetzt.~ ausgibt, dann ist die /MTU/ ~1472 + 8 + 20 = 1500 Bytes~.
+ 
+#+END_NOTES
+
+**** Maximum (TCP) Segment Size (MSS)
+
+Dieser Wert wird beim TCP-Handshake festgelegt und sagt, wie groß das /Payload/ eines TCP-Frames sein darf. Dieser Wert entspricht in der Regel der /MTU/ - /IP-Header/ - /TCP-Header/. 
+
+#+BEGIN_NOTES
+Dabei hängt die Größe des IP-Header davon ab, ob IPv4 (20 Bytes) oder IPv6 (40 Bytes) verwendet wird. Die Größe des /TCP-Headers/ hängt von der Anzahl der gesetzten Optionen ab.
+#+END_NOTES
+
+Zu große Frames werden verworfen und müssen noch einmal (kleiner) gesendet werden.
+
+**** (TCP) Window Size (Window)
+
+Dieser Wert soll sicherstellen, dass sowohl der Client als auch der Server die notwendige Kapazität hat, die ankommenden Daten zu verarbeiten. Darum wird festgelegt, wie viele Daten am Stück gesendet werden dürfen.
+
+Der TCP-Header sieht für diesen Wert 2 Byte vor, sodass hier maximal ~2^16-1 = 65.535 Bytes~ festgelegt werden können. 
+
+#+BEGIN_NOTES
+Moderne Rechner können aber deutlich mehr Daten verarbeiten. Darum gibt es die TCP-Option Window-Scale, über die man einen Faktor festlegen kann, der mit der ursprünglichen Window-Size multipliziert wird, sodass eine maximale Window-Size von ca. einem 1GB möglich ist.
+
+Nachdem dieser Wert erreicht ist, muss der Sender auf eine Paket des Senders warten, dass bestätigt, dass er wieder zum Empfangen von Daten bereit ist, bevor neue Daten gesendet werden können, sodass eine zu kleine Window-Size, die Übertragung ausbremsen kann.  
+#+END_NOTES

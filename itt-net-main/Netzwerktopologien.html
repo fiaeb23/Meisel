@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Netzwerktopologien</title>
+<meta name="author" content="Sebastian Meisel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/league.css" id="theme"/>
+
+<link rel="stylesheet" href="./mystyle.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Netzwerktopologien</h1><p class="subtitle">ITT-Netwerke</p>
+<h2 class="author">Sebastian Meisel</h2>
+</section>
+
+<section>
+<section id="slide-orge56d0ad">
+<h2 id="orge56d0ad">Einführung</h2>
+<p>
+Mit <b>Topologie</b> wird beschrieben, wie <i>Computersysteme</i> in einem
+<i>Netzwerk</i> miteinander verbunden werden.
+</p>
+
+
+<div class="figure">
+<p><img src="Bilder/Peer-to-Peer-Netzwerk.png" alt="Peer-to-Peer-Netzwerk.png" width="30%" />
+</p>
+<p><span class="figure-number">Abbildung 1: </span>Peer-to-Peer-Netzwerk</p>
+</div>
+
+
+<p>
+Die einfachste Topologie haben wir bereits kennengelernt:
+Bei <b>Peer-to-Peer-Netzwerk</b> werden zwei Computer direkt
+miteinander verbunden.
+</p>
+
+<aside class="notes">
+<p>
+Man unterscheidet zwischen
+</p>
+<ul>
+<li><b>physischer Topologie</b>: Das ist die tatsächliche Anordnung
+der Netzwerkgeräte und ihrer Verbindungen.</li>
+<li><b>logischer Topologie</b>: Dies beschreibt, auf welchem Weg die
+einzelnen Geräte Daten miteinander austauschen.</li>
+
+</ul>
+<p>
+Beides ist oft - aber nicht immer - dasselbe.
+</p>
+
+<p>
+Eine weitere wichtige Unterscheidung ist die, zwischen
+<b>kabelgebundenen</b> und <b>kabellosen</b> Topologien.
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org16de82b">
+<h2 id="org16de82b">Kabelgebundene Topologien</h2>
+<div class="outline-text-2" id="text-org16de82b">
+</div>
+</section>
+<section id="slide-orgc02f38c">
+<h3 id="orgc02f38c">Daisy-chain (veraltet)</h3>
+
+<div class="figure">
+<p><img src="Bilder/Daisychain.png" alt="Daisychain.png" width="75%" />
+</p>
+<p><span class="figure-number">Abbildung 2: </span>Daisy-chain-topologie</p>
+</div>
+
+<aside class="notes">
+<p>
+Bei einer <b>Daisychain-</b>, auch <b>Linien-</b> oder <b>offenen Ringtopologie</b> werden eine Reihe von
+<i>Computern</i>  jeweils mit dem nächsten direkt verbunden.
+</p>
+
+<ul>
+<li>Vorteile: 
+<ul>
+<li>einfach (billig) einzurichten.</li>
+
+</ul></li>
+<li>Nachteile:
+<ul>
+<li>Single point of failure: Wenn ein Gerät oder eine Verbindung ausfällt, ist das Ganze
+Netzwerk unterbrochen.</li>
+<li>Alle transportierten Daten werden von jedem Computer verarbeitet:
+<ul>
+<li>Erhöht Latenz.</li>
+<li>Unsicher.</li>
+
+</ul></li>
+<li>Jedes Gerät braucht zwei <i>Netzwerkschnittstellen</i>.</li>
+
+</ul></li>
+
+</ul>
+
+</aside>
+
+</section>
+<section id="slide-org52e51d3">
+<h3 id="org52e51d3">Ring-Topologie (veraltet)</h3>
+
+<div class="figure">
+<p><img src="Bilder/Ring_Topologie.png" alt="Ring_Topologie.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 3: </span>Ring Topologie</p>
+</div>
+
+<aside class="notes">
+<p>
+Die <b>Ringtopologie</b> ist im Prinzip eine geschlossene <i>Daisychain</i> (oder umgekehrt).
+Sie hat weitgehend dieselben Vor- und Nachteile, aber:
+</p>
+<ul>
+<li>Bei einer Unterbrechung an einer Stelle, können die Daten in der anderen Richtung
+weitergeleitet werden.</li>
+
+</ul>
+
+<p>
+Diese Topologie wurde vom <i>Tokenringprotokoll</i>, das vor <i>Ethernet</i> genutzt wurde.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org0ca404f">
+<h3 id="org0ca404f">Bustopologie (veraltet)</h3>
+
+<div class="figure">
+<p><img src="Bilder/Bustopologie.png" alt="Bustopologie.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 4: </span>Bustopologie</p>
+</div>
+
+<aside class="notes">
+<p>
+Die <b>Bustopologie</b> ist eine weitere Variante der <i>Daisychain / Ringtopologie</i>. Wie diese wird sie heute fast
+nicht mehr verwendet.
+</p>
+
+<p>
+Dabei werden die Daten über <i>eine</i> gemeinsame Datenleitung (den Bus) übertragen. Die einzelnen
+Geräte werden über ein T-Stück angeschlossen. 
+</p>
+
+<ul>
+<li>Vorteile (neben denen der <i>Daisychain</i>) 
+<ul>
+<li>Nur eine Netzwerkschnittstelle am Endgerät notwendig.</li>
+
+</ul></li>
+<li>Nachteile
+<ul>
+<li>Die Geräte können den Bus nur abwechselnd nutzen.</li>
+<li>Die Enden des Bus müssen Abschlusswiderständen versehen werden, um Reflexionen zu verhindern.</li>
+
+</ul></li>
+
+</ul>
+
+</aside>
+
+</section>
+<section id="slide-org714cf25">
+<h3 id="org714cf25">Stern-Topologie</h3>
+
+<div class="figure">
+<p><img src="Bilder/Sterntopologie.png" alt="Sterntopologie.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 5: </span>Stern-Topologie</p>
+</div>
+
+<aside class="notes">
+<p>
+Die in <i>lokalen</i> Netzwerken am häufigsten eingesetzte Netzwerktopologie ist die
+<b>Sterntopologie</b>.
+</p>
+
+<p>
+Hierbei werden alle <i>Computer</i> mit einem zentralen <i>Hub</i> oder <i>Switch</i> verbunden. Das sind
+Geräte, die Datenpakete in mehrere Richtungen weiterleiten können.
+</p>
+
+<ul>
+<li>Vorteile/Nachteile
+
+<ul>
+<li>Vorteile:
+<ul>
+<li>Einfach (erleichtert die Fehlersuche).</li>
+<li>Leicht erweiterbar.</li>
+<li>Der Ausfall eines <i>Endgeräts</i> oder Verbindung wirkt sich nur an einer Stelle aus.</li>
+<li>Geringe Latenz.</li>
+
+</ul></li>
+<li>Nachteile:
+-Mit dem <i>Hub /</i> <i>Switch</i> gibt es auch hier einen Single Point of Failure.</li>
+
+</ul></li>
+
+</ul>
+
+</aside>
+
+</section>
+<section id="slide-orgeb0b381">
+<h3 id="orgeb0b381">Baumtopologie</h3>
+
+<div class="figure">
+<p><img src="Bilder/Treetopologie.png" alt="Treetopologie.png" width="75%" />
+</p>
+<p><span class="figure-number">Abbildung 6: </span>Baumtopologie</p>
+</div>
+
+<aside class="notes">
+<p>
+Die <b>Baumtopologie</b> ist der <i>Sterntopologie</i> ähnlich, aber klarer strukturiert und
+hierarchisch aufgebaut.
+Sie wird häufig in großen Gebäuden genutzt.
+</p>
+
+<ul>
+<li>Vorteile (über die der <i>Sterntopologie</i> hinaus)
+<ul>
+<li>Durch die Nutzung von Switches werden die Netzwerksignale immer wieder verstärkt und
+große Distanzen können überwunden werden.</li>
+<li>Einfaches Routing.</li>
+
+</ul></li>
+<li>Nachteile (über die der <i>Sterntopologie</i> hinaus)
+<ul>
+<li>der gesamte Datenverkehr wird über die Wurzel geleitet: 
+<ul>
+<li>Hohe Last.</li>
+<li>Teilweise lange Übertragungswege (hohe Latenz).</li>
+
+</ul></li>
+
+</ul></li>
+
+</ul>
+
+</aside>
+
+</section>
+<section id="slide-org0dc6ac7">
+<h4 id="org0dc6ac7">Ringerweiterte Baumtopologie</h4>
+
+<div class="figure">
+<p><img src="Bilder/RingerweiterteTreetopologie.png" alt="RingerweiterteTreetopologie.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 7: </span>Ringerweiterte Treetopologie</p>
+</div>
+
+<aside class="notes">
+<ul>
+<li>Dies ist <i>eine</i> Lösung, um:
+<ul>
+<li>die Wurzel eines Baumes zu entlasten.</li>
+<li>die Übertragungswege zu verkürzen.</li>
+<li>Durch <i>Redundanz</i> Netzwerkausfälle zu vermeiden.</li>
+
+</ul></li>
+<li>Nachteile:
+<ul>
+<li>Erhöhte Komplexität erschwert die Fehlersuche.</li>
+<li>Die <i>Redundanz</i> würde zu <i>Broadcaststürmen</i> führen, wenn dies nicht durch technische
+Maßnahmen verhindert wird.</li>
+
+</ul></li>
+
+</ul>
+
+</aside>
+
+
+
+</section>
+<section id="slide-orgb5511d4">
+<h3 id="orgb5511d4">Meshtopologien</h3>
+
+<div class="figure">
+<p><img src="Bilder/Teilmesh.png" alt="Teilmesh.png" width="35%" />
+</p>
+<p><span class="figure-number">Abbildung 8: </span>Teilmesh-Topologie</p>
+</div>
+
+<aside class="notes">
+<p>
+
+</p>
+
+<p>
+In einem <b>vermaschten</b> (<b>Mesh-)Netzwerk</b> ist jedes Gerät mit einem oder mehreren anderen
+Geräten verbunden. 
+</p>
+
+<ul>
+<li>Vorteile:
+<ul>
+<li>Zusätzliche <i>Redundanz</i> verringert die Wahrscheinlichkeit von Netzwerkausfällen, da es
+keinen <i>Single Point of Failure</i> gibt.</li>
+
+</ul></li>
+<li>Nachteile:
+<ul>
+<li>Hohe Komplexität erschwert Fehlersuche.</li>
+<li>Aufwendiges Routing.</li>
+<li>Die <i>Redundanz</i> würde zu <i>Broadcaststürmen</i> führen, wenn dies nicht durch technische
+Maßnahmen verhindert wird.</li>
+
+</ul></li>
+
+</ul>
+
+<p>
+Das Internet ist zwar kein perfektes <b>Full Mesh,</b> kommt dem aber recht nahe. So ist eine
+extrem hohe Ausfallsicherheit gegeben. 
+</p>
+
+</aside>
+
+
+</section>
+<section id="slide-orga58ce68">
+<h4 id="orga58ce68">Full mesh</h4>
+
+<div class="figure">
+<p><img src="Bilder/Vollmesh.png" alt="Vollmesh.png" width="40%" />
+</p>
+<p><span class="figure-number">Abbildung 9: </span>Full mesh</p>
+</div>
+
+<aside class="notes">
+<p>
+In einem <b>vollvermaschtes (Full-Mesh-)Netzwerk</b> sind alle Geräte mit allen anderen
+verbunden. Dies verstärkt gegenüber einen einfachen <i>Mesh</i> sowohl die Vor- als auch die
+Nachteile. 
+</p>
+
+<p>
+Als <b>physische Topologie</b> kommt es sehr selten vor. Teilweise wird es in Rechenzentren vor.
+Die <b>logische Topologie</b> der meisten Netzwerke entspricht jedoch einem <b>Full Mesh</b>.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orga95adc4">
+<h2 id="orga95adc4">Kabellose Topologien</h2>
+<div class="outline-text-2" id="text-orga95adc4">
+</div>
+</section>
+<section id="slide-org05b8f81">
+<h3 id="org05b8f81">Ad-hoc vs. Infrastruktur</h3>
+
+<div class="figure">
+<p><img src="Bilder/Infrastructure_WLAN.png" alt="Infrastructure_WLAN.png" width="40%" align="left" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="Bilder/WLAN_Ad_hoc.png" alt="WLAN_Ad_hoc.png" width="40%" align="right" />
+</p>
+</div>
+
+
+
+
+<aside class="notes">
+<p>
+Mit <b>Ad-hoc</b> wird z. B. bei <i>WLAN-Verbindungen</i> eine <i>Peer-to-Peer</i>-Verbindung verstanden.
+Demgegenüber bezeichnet <b>Infrastructur</b> eine <i>Sterntopologie</i> in der Geräte <i>kabellos</i> über ein
+zentrales Gerät wie einen <i>Accesspoint</i> oder <i>WLAN-Router</i> mit einem <i>kabelgebundenen</i> Netzwerk
+verbunden sind.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-orgd054cc1">
+<h3 id="orgd054cc1">Mesh</h3>
+<p>
+Ein <b>Mesh</b> ist bei <i>kabellosen</i> Netzwerken (vor allem WLANs) etwas anderes als in
+<i>kabelgebundenen</i> Netzwerk.
+</p>
+
+<p>
+Hier sind <i>Accesspoints</i> in einer <i>Mesh-Topologie</i> kabellos verbunden, bilden aber ein
+<b>gemeinsames</b> Netzwerk, sodass sich andere Geräte wie Smartphones dynamisch mit <b>jedem</b> dieser
+Accesspoints verbinden können, um stets die beste Empfangsleistung zu haben  
+</p>
+
+</section>
+<section id="slide-orgcdbb4de">
+<h3 id="orgcdbb4de">Zelltopologie</h3>
+
+<div class="figure">
+<p><img src="Bilder/Zelltopologie.png" alt="Zelltopologie.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 12: </span>Zelltopologie</p>
+</div>
+
+<aside class="notes">
+<p>
+Von einer <b>Zelltopologie</b> spricht man, wenn es sich <i>kabellose</i> Geräte in einem bestimmten
+Bereich (<i>Zelle</i>) um eine zentralen <i>Sender / Empfänger</i> (Funkmast, Accesspoint) mit diesem
+verbinden.
+</p>
+
+<p>
+Letztlich sind alle <i>kabellosen</i> Topologien, die nicht auf <i>Richtfunk</i> basieren, Varianten
+der <i>Zelltopologie</i>. 
+</p>
+
+<p>
+Herausfordernd ist bei dieser Topologie der Bereich, wo sich die Zellen überlappen und
+gegenseitig stören.
+</p>
+
+</aside>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes]
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: Wichtigste CLI- Befehle
+#+SUBTITLE: ITT-Netzwerke
+#+AUTHOR: Sebastian Meisel
+
+
+* Dateien und Verzeichnisse
+
+Alle CMD-Befehle und die meisten einfachen (einfach probieren) Linux Befehle funktionieren
+auch in der Powershell. Sie sind als /Alias/ für die eigentlichen Powershell Cmdlets
+umgesetzt, dass heißt, man gibt z. B. den Linux-Befehl ~ls~ ein, in der Powershell wird aber
+~Get-ChildItem~ ausgeführt.   
+
+| Was?                  | Linux (& MacOS)   | Windows (CMD)     | Windows Powershell                   |
+|-----------------------+-------------------+-------------------+--------------------------------------|
+| Dateien anzeigen      | ls                | dir               | Get-ChildItem                        |
+| aktuelles Verzeichnis | pwd               | cd                | Get-Location                         |
+| Verzeichnis wechseln  | cd /Verzeichnis/    | cd /Verzeichnis/    | Set-Location /Verzeichnis/             |
+| Verzeichnis erstellen | mkdir /Verzeichnis/ | mkdir /Verzeichnis/ | New-Item -Type Directory /Verzeichnis/ |
+| Verzeichnis löschen   | rmdir /Verzeichnis/ | rmdir /Verzeichnis/ | Remove-Item /Verzeichnis/              |
+| Datei erstellen       | touch /Datei/       | copy con /Datei/    | New-Item -Type File /Datei/            |
+| Datei löschen         | rm /Datei/          | del /Datei/         | Remove-Item /Datei/                    |
+|                       |                   |                   |                                      |
+
+
+
+ 

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>UDP &amp; TCP</title>
+<meta name="author" content="Sebastian Meisel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/league.css" id="theme"/>
+
+<link rel="stylesheet" href="./mystyle.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">UDP &amp; TCP</h1><p class="subtitle">Untertitel</p>
+<h2 class="author">Sebastian Meisel</h2>
+</section>
+
+<section>
+<section id="slide-orga24cc2a">
+<h2 id="orga24cc2a">User Datagram Protocol (UDP)</h2>
+<p>
+<b>UDP</b> ist ein Layer-4-Protokoll, d. h. es arbeitet auf der <i>Transportschicht</i>.
+Bei <b>UDP</b> werden in jedem Frame Daten transportiert. Der <b>UDP-Header</b> ist lediglich 8-Bytes lang und enthält die folgenden Informationen:
+</p>
+
+<p>
+1 Quellport: Welcher Port wurde vom Sender benutzt
+2 Zielport: An welchem Port soll der Frame den Empfänger erreichen.
+3 Länge: Wie viele Bytes ist das <b>UDP-Paket</b> inklusive UPD-Header (aber ohne die Headerdaten der unteren Layer) lang.
+4 Prüfsumme: Dient der Überprüfung der Datenintegrität.  
+</p>
+
+<p>
+Vorteile:
+</p>
+<ul>
+<li>sehr schnell</li>
+<li>wenig Overhead</li>
+
+</ul>
+
+<p>
+Nachteile:
+</p>
+<ul>
+<li>Der Verlust von Paketen wird nicht erkannt (bzw. muss von der Anwendung erkannt werden).</li>
+<li>Datenpakete können in der falschen Reihenfolge ankommen.</li>
+
+</ul>
+
+
+<div id="org49e4b17" class="figure">
+<p><img src="Bilder/Wireshark/UDP.png" alt="UDP.png" width="50%" /> 
+</p>
+<p><span class="figure-number">Abbildung 1: </span>UDP-Frame</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org2b871f2">
+<h2 id="org2b871f2">Transport Controll Protocol (TCP)</h2>
+<p>
+<b>TCP</b> ist ebenfalls ein Layer-4-Protokoll. Es zeichnet sich aber dadurch aus, dass es Mechanismen zur Verfügung stellt, die sicherstellen, dass:
+</p>
+
+<ul>
+<li>der Verlust von Datenpaketen erkannt und Datenpakete erneut gesandt werden.</li>
+<li>die Datenpakete immer in der vorgesehenen Reihenfolge beim Empfänger ankommen.</li>
+
+</ul>
+
+<p>
+Allerdings sind dazu eine Vielzahl zusätzlicher Pakete notwendig, die diese Protokoll relativ langsam machen und zu einem großer Overhead führen:
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org41393a5">
+<h3 id="org41393a5">Verbindungsaufbau (tree way handshake)</h3>
+<p>
+Zu Beginn jeder <i>TCP-Verbindung</i> wird 3-fach Handschlag (<b>three way handshake</b>)
+ausgetauscht, dies geschieht über die <b>Flags</b>, das sind 8 Bits, die den Status der
+Verbindung anzeigen:
+</p>
+
+</section>
+<section id="slide-org36a2f1d">
+<h4 id="org36a2f1d">SYN</h4>
+<p>
+Das erste Paket ist die Anfrage eine Verbindung aufzubauen. Das 2. Bit ist gesetzt.
+Um diese Verbindung zu identifizieren und die Reihenfolge der Pakete festzulegen, sendet
+er eine zufällig (große) Zahl an <b>Sequenznummer</b> im Header.
+</p>
+
+
+<div class="figure">
+<p><img src="Bilder/Wireshark/TCP-00.png" alt="TCP-00.png" />
+</p>
+</div>
+
+
+</section>
+<section id="slide-org6ce22dc">
+<h4 id="org6ce22dc">SYN-ACK</h4>
+<p>
+Nimmt der Empfänger des SYN-Pakets die Verbindung an, sendet er ein SYN-ACK-Packet
+zurück. Das 2. und 5. Bit sind gesetzt.
+</p>
+
+<p>
+Er <i>addiert zu Sequenznummer des Senders 1</i> hinzu und sendet diese Zahl im Header als <b>Acknowledgementnummer</b>.
+</p>
+
+<p>
+Nun bildet er ein eigene zufällige <b>Sequenznummer.</b>
+</p>
+
+
+<div class="figure">
+<p><img src="Bilder/Wireshark/TCP-01.png" alt="TCP-01.png" />
+</p>
+</div>
+
+</section>
+<section id="slide-org237d0d0">
+<h4 id="org237d0d0">ACK</h4>
+<p>
+Der 1. Sender bestätigt nun den Empfang des SYN-ACK-Pakets mit dem ACK-Paket: Nur noch das 5. Bit ist gesetzt. 
+</p>
+
+<p>
+Er <i>addiert zu Sequenznummer des Empfängers 1</i> hinzu und sendet diese Zahl im Header als <b>Acknowledgementnummer</b>.
+</p>
+
+<p>
+Die <i>Acknowledgementnummer des Empfängers</i> benutzt er nun selbst wieder als Sequenznummer. Dieser Austausch von Sequenz- und Acknowledgementnummer wiederholt sich bei jedem weiteren Paket, sodass dieses:
+</p>
+
+<ol>
+<li>immer einer Verbindung zugeordnet werden kann.</li>
+<li>die Reihenfolge der Paket feststeht.</li>
+<li><p>
+der Verlust eines Pakets sofort erkannt wird.
+</p>
+
+
+<div class="figure">
+<p><img src="Bilder/Wireshark/TCP-02.png" alt="TCP-02.png" />
+</p>
+</div></li>
+
+</ol>
+
+</section>
+</section>
+<section>
+<section id="slide-orga7600a1">
+<h3 id="orga7600a1">Daten senden / Verbindung aufrecht erhalten</h3>
+<div class="outline-text-3" id="text-orga7600a1">
+</div>
+</section>
+<section id="slide-org982edb8">
+<h4 id="org982edb8">PUSH</h4>
+<p>
+Die meisten Anwendungsprotokolle, wie HTTP(S), FTP, SSH, oder IMAP bauen auf TCP auf.
+Nach dem der <i>Handshake</i> abgeschlossen ist, können endlich Daten übertragen werden. Pakete die Daten enthalten setzen das ACK-bit (5.) und das PUSH-Bit (4.). 
+</p>
+
+
+<div class="figure">
+<p><img src="Bilder/Wireshark/TCP-03.png" alt="TCP-03.png" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgb669f10">
+<h4 id="orgb669f10">Keep-Alive</h4>
+<p>
+Werden längere Zeit (Millisekunden) keine Daten gesendet, wird ein Keep-Alive-Paket gesendet, dass eigentlich ein eingeschobenes ACK-Paket ist (5. Bit gesetzt). Und keine Daten enthält. Es stellt sicher, dass die Verbindung weiter besteht.
+</p>
+
+
+<div class="figure">
+<p><img src="Bilder/Wireshark/TCP-04.png" alt="TCP-04.png" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org2549023">
+<h3 id="org2549023">Verbindung beenden</h3>
+<div class="outline-text-3" id="text-org2549023">
+</div>
+</section>
+<section id="slide-org4bc1749">
+<h4 id="org4bc1749">FIN-ACK</h4>
+<p>
+Hat der Sender alle Daten gesendet, sendet er Paket bei dem das FIN-Bit (1.) und das ACK-Bit (5.) gesetzt sind. Der Empfänger sendet ein FIN-ACK-Paket, wenn er alle Daten empfangen hat. 
+ <img src="Bilder/Wireshark/TCP-05.png" alt="TCP-05.png" />
+</p>
+
+</section>
+<section id="slide-orgb26e332">
+<h4 id="orgb26e332">RST</h4>
+<p>
+Eine Seite kann die Verbindung auch einseitig beenden, wenn z. B. das Browserfenster einer HTTP-Seite geschlossen wird. Um dies anzuzeigen wird ein Paket gesendet bei das Reset-Bit (3.) gesetzt ist.
+ <img src="Bilder/Wireshark/TCP-06.png" alt="TCP-06.png" />
+</p>
+
+</section>
+<section id="slide-org8b9c3a2">
+<h4 id="org8b9c3a2">TCP-Optionen</h4>
+<p>
+Der TCP-Header ist mindestens 20 Byte groß. Der Header der SYN- und SYN-ACK-Pakete enthalten jedoch in der Regel zusätzliche Optionen, die bestimmen, wie Daten zwischen beiden Seiten ausgetauscht werden, z. B. wie viele Daten am Stück gesendet werden dürfen. Dadurch wird der TCP-Header bis zu 60 Bytes groß werden kann. 
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgbbafa22">
+<h2 id="orgbbafa22">QUIC</h2>
+<p>
+2021 wurde ein neues Protokoll veröffentlicht, dass selbst <b>UDP</b> nutzt, aber <b>TCP</b> ablösen soll. Es soll sozusagen die Schnelligkeit von UDP und die Zuverlässigkeit von TCP kombinieren. QUIC-Pakete sind zudem grundsätzlich verschlüsselt. <b>QUIC</b> wird bisher von <b>HTTP/3</b> und <b>DNS over QUIC (DoQ)</b> als Anwendungsprotokollen verwendet und vor allem von großen Tech-Firmen wie Alpha (Google, Youtube, etc.)und Meta (Facebook, Instagram, etc.) genutzt.  
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes]
+});
+
+</script>
+</body>
+</html>

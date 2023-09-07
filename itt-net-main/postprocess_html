@@ -1,0 +1,31 @@
+#!/bin/bash
+
+
+function standard() {
+    # Orthografische Anführungszeichen
+    sed -E '/</!{s|"\b|„|g;s|\b"|“|g}' ${F} -i
+    # Geschütztes Leerzeichen vor Gedankenstrich
+    sed -E '/</!{s/ (-|–|—)/ –/g}' ${F} -i
+}
+
+
+F='Mainboard.html'
+standard
+
+sed -E 's/(>Übertragungsrate)/ colspan=7\1/' ${F} -i
+
+sed -E 's/(>8b\/10b)/ colspan=2\1/' ${F} -i
+sed -E 's/(>128b\/130b)/ colspan=3\1/' ${F} -i
+sed -E 's/(>PAM-4)/ colspan=2\1/' ${F} -i
+
+sed -E 's/(>Disparity)/ colspan=2\1/' ${F} -i
+sed -E 's/(>keine Datensicherung)/ colspan=3\1/' ${F} -i
+sed -E 's/(>CRC)/ colspan=2\1/' ${F} -i
+
+sed -E 's/(>Takt \(MHz\))/ colspan=2\1/' ${F} -i
+sed -E 's/(>Pins)/ colspan=3\1/' ${F} -i
+
+sed -E '/<colgroup>/,/<\/colgroup>/d' ${F} -i
+
+F='vanNeumannArchitektur.html'
+standard

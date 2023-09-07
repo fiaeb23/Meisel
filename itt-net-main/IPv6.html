@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Internet Protocol Version 6 (IPv6)</title>
+<meta name="author" content="Sebastian Meisel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/league.css" id="theme"/>
+
+<link rel="stylesheet" href="./mystyle.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Internet Protocol Version 6 (IPv6)</h1><p class="subtitle">IT-Technik Netzwerkgrundlagen</p>
+<h2 class="author">Sebastian Meisel</h2>
+</section>
+
+<section>
+<section id="slide-org263783b">
+<h2 id="org263783b">Aufbau einer IPv6-Adresse</h2>
+<p>
+Ein <b>IPv6-Adresse</b> ist <b>128 Bit</b> lang. Sie besteht aus zwei Teilen von je 64 Bit, die mit 4 mal 4 Hexadezimale<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> Zeichen (4 x 16 Bits) geschrieben werden, die jeweils durch einen Doppelpunkt getrennt werden:
+</p>
+
+<ul>
+<li><b>Netzwerkanteil</b>:  z. B. 2001:1234:5678:9ABC</li>
+<li>(Host-)​<b>Identifier</b>: z. B. DEF0:1234:5678:9ABC</li>
+
+</ul>
+
+<p>
+ergibt: 2001:1234:5678:9ABC​<b>:</b>​DEF0:1234:5678:9ABC 
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgafc0e83">
+<h3 id="orgafc0e83">Kürzungsregeln</h3>
+<p>
+Um Ipv6-Adressen kürzer zu schreiben, gibt es zwei Regeln:
+</p>
+
+<ol>
+<li><b>Nullen nach Doppelpunkten</b> dürfen immer weggelassen werden: 
+<ul>
+<li>2001:0001:0023:0456:7000:8000:0009:0A00 wird zu:</li>
+<li>2001:1:23:456:7000:8000:9:A00</li>
+
+</ul></li>
+<li><b>Einmalig</b> dürfen aufeinander folgende <b>Blöcke aus Nullen</b> weggelassen und durch <b>zwei Doppelpunkte</b> ersetzt werden:
+<ul>
+<li>2001:0000:0000:0000:7000:0000:0000:0A00 wird zu:</li>
+<li>2001​<b>::</b>​7000:0000:0000:A00 oder 2001:0000:0000:0000:7000​<b>::</b>​A00</li>
+
+</ul></li>
+
+</ol>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc9f062f">
+<h3 id="orgc9f062f">Präfix</h3>
+<p>
+Das <b>Präfix</b> (engl. prefix) kennzeichnet den <b>Teil, des Netzwerkanteils</b>, der vom <i>Internet Service Provider (ISP)</i> zugeteilt wurde. Er wird nach der Adresse in Bits nach einem Schägstrich gekennzeichnet:
+</p>
+
+<ul>
+<li>2001:0001:0023:0456:7000:8000:0009:0A00/32: 32 Bit, also die beiden ersten 16-Bit-Blöcke sind vom ISP vorgegeben.</li>
+<li>2001:0001:0023:0456:7000:8000:0009:0A00/48: 48 Bit, also die drei ersten 16-Bit-Blöcke sind vom ISP vorgegeben.</li>
+<li>2001:0001:0023:0456:7000:8000:0009:0A00/56: 56 Bit, also die drei ersten 16-Bit-Blöcke + die zwei ersten Stellen des vierten Blocks (70) sind vom ISP vorgegeben.</li>
+<li>2001:0001:0023:0456:7000:8000:0009:0A00/64: 64 Bit, also der gesamte Netzwerkanteil ist vom ISP vorgegeben.</li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org47ccb55">
+<h2 id="org47ccb55">Arten von IP-Adressen mit unterschiedlichen Scopes</h2>
+<p>
+IPv6 unterscheidet IP-Adressen unter anderem danach, wie weit sie gültig, bzw. eindeutig (unique) sind.
+</p>
+
+<p>
+Neben den Global eindeutigen <i>(Unique)-Global-Unicast</i>-Adressen, die im Internet geroutet werden gibt es:
+</p>
+
+<ul>
+<li><b>eine</b> Lokalhost-Adresse (<b>::1</b>), die auf den eigenen Rechner verweist.</li>
+<li><i>Link-Local</i>-Adressen, die bis zum nächsten Router gültig ist.</li>
+<li><i>(Unique)-Local-Unicast</i>-Adressen, die nur im eigenen Netzwerk geroutet werden, aber nicht im Internet.</li>
+
+</ul>
+
+<p>
+Zusätzlich gibt es <b>Multicast</b>-Adressen, über die mehrere Geräte mit einer bestimmten Funktion (z. B. alle Router) angesprochen werden können.
+</p>
+
+<aside class="notes">
+<p>
+Alle diese besonderen Adressen (außer den <i>Global-Unicast</i>- und der Lokalhost-Adresse) beginnen mit einem "<b>F</b>".
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgdf9c22b">
+<h3 id="orgdf9c22b">Link Local Addresses</h3>
+<p>
+<i>Link-lokale Adressen</i> beginnen mit <b>fe80::</b> und werden für jede Netzwerkschnittstelle automatisch gebildet. 
+Sie werden <b>nicht geroutet</b>, sondern sind <b>bis zum nächsten Router</b> gültig. Man kann sich darüber mit allen Geräten verbinden, die 
+</p>
+<ul>
+<li>IPv6 unterstützen.</li>
+<li>mit denen man direkt oder</li>
+<li>über einen Switch oder Hub verbunden ist.</li>
+
+</ul>
+
+<p>
+Um diese Adresse zu verwenden muss immer ein <b>Zone-Identifier</b> mit einem Prozentzeichen angegeben werden. Dies ist die Netzwerkschnittstelle, über die das Gerät erreichbar ist. 
+</p>
+
+<aside class="notes">
+<p>
+Unter Windows ist das die InterfaceID als Zahl; unter Linux eine Devicebezeichnung, wie %eth0 oder %ens1f1.
+</p>
+
+<p>
+Im Beispiel ist der Rechner <code>fe80::9b96:d84:6aa4:60d</code> unter Windows über das Interface mit der <code>InterfaceID 4</code> erreichbar.
+</p>
+
+<pre class="example">
+[18.02 20:10]PS C:\Users\User&gt; ping fe80::9b96:d84:6aa4:60d
+
+Ping wird ausgeführt für fe80::9b96:d84:6aa4:60d mit 32 Bytes Daten:
+Zielhost nicht erreichbar.
+Zielhost nicht erreichbar.
+Zielhost nicht erreichbar.
+Antwort von fe80::9b96:d84:6aa4:60d: Zeit=1ms
+
+[18.02 20:12]PS C:\Users\User&gt; ping fe80::9b96:d84:6aa4:60d%4
+
+Ping wird ausgeführt für fe80::9b96:d84:6aa4:60d%4 mit 32 Bytes Daten:
+Antwort von fe80::9b96:d84:6aa4:60d%4: Zeit&lt;1ms
+Antwort von fe80::9b96:d84:6aa4:60d%4: Zeit&lt;1ms
+Antwort von fe80::9b96:d84:6aa4:60d%4: Zeit&lt;1ms
+Antwort von fe80::9b96:d84:6aa4:60d%4: Zeit&lt;1ms
+</pre>
+
+</aside>
+
+
+
+</section>
+<section id="slide-org3e2f814">
+<h5 id="org3e2f814">Extended Unique Identifiers (EUI-64)</h5>
+<p>
+Der <b>Identifier</b> (= der Hostanteil) wird in der Regel zufällig gebildet. Es gibt aber auch einen Standard (EUI-64), wie er aus der MAC-Adresse gebildet werden kann:
+</p>
+
+<ol>
+<li>MAC-Adresse (6 Bytes, 2 Hexadezimale Stellen je Byte, durch Doppelpunkte oder Bindestriche getrennt): 80:fa:5b:5c:df:4d.</li>
+<li>In der Mitte (nach dem 3. Byte) <b>FF:FE</b> einfügen:  80:fa:5bFF:FE5c:df:4d.<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></li>
+<li>Je zwei Byte zu einem Block zusammenfügen: 80fa:5bff:fe5c:df4d.</li>
+<li>Die zweite Stelle des 1. Bytes in Binärzahl umwandeln: 1. Byte: 80 -&gt; 2. Stelle: 0 -&gt; Binär: 0000.</li>
+<li>2. Stelle von links (der Binärzahl) "flippen" (0 →1, 1→0): 0010.</li>
+<li>Binärzahl wieder in Hexadezimalzahl umwandeln: 0+0+2+0 = 2 -&gt; 82fa:5bff:fe5c:df4d.</li>
+<li>FE80:: voranstellen: FE80::82fa:5bff:fe5c:df4d.</li>
+<li>Wenn möglich kürzen: Hier nicht möglich.</li>
+
+</ol>
+
+<aside class="notes">
+<p>
+Zweites Beispiel: 
+</p>
+
+<ol>
+<li>MAC-Adresse (6 Bytes, 2 Hexadezimale Stellen je Byte, durch Doppelpunkte oder Bindestriche getrennt): 02:42:d1:eb:a7:12.</li>
+<li>In der Mitte (nach dem 3. Byte) <b>FF:FE</b> einfügen:  02:42:d1FF:FEeb:a7:12.<sup><a id="fnr.2.100" class="footref" href="#fn.2">2</a></sup></li>
+<li>Je zwei Byte zu einem Block zusammenfügen: 0242:d1ff:feeb:a712.</li>
+<li>Die zweite Stelle des 1. Bytes in Binärzahl umwandeln: 1. Byte: 02 -&gt; 2. Stelle: 2 -&gt; Binär: 0010.</li>
+<li>2. Stelle von links (der Binärzahl) "flippen" (0 →1, 1→0): 0000.</li>
+<li>Binärzahl wieder in Hexadezimalzahl umwandeln: 0+0+0+0 = 2 -&gt; 0042:d1ff:feeb:a712.</li>
+<li>FE80:: voranstellen: FE80::0042:d1ff:feeb:a712.</li>
+<li>Wenn möglich kürzen: fe80::42:d1ff:feeb:a712.</li>
+
+</ol>
+
+<p>
+Diese Methode um Identifier zu bilden kann auch für <i>Global</i>- und <i>Local-Unicast</i>-Adressen verwendet werden, kommt dort aber noch seltener zum Einsatz.
+In diesem Fall, müsste statt fe80:: ein anderer Netzwerkanteil vorangestellt werden.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org7b00acc">
+<h3 id="org7b00acc">(Unique) Local Unicast Addresses</h3>
+<p>
+Etwas weiter reichen die <b>Local-Unicast</b>-Adressen. Sie können im <b>LAN</b>, aber <b>nicht übers Internet</b> geroutet werden, da sie nur im lokalen Netz einzigartig sind.
+</p>
+
+<p>
+Sie beginnen mit <code>fc</code> oder <code>fd</code>, da der resiervte Adressbereich <code>fc00::0 - fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff</code> (<code>fc00::/7</code>) umfasst.
+</p>
+
+<aside class="notes">
+<p>
+Sie entsprechen den <i>privaten Adresseräumen</i> in <i>IPv4</i> (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16). Im Gegensatz zu IPv4 ist ihr Einsatz im LAN  aber nicht notwendig, da jedes Gerät eine weltweit eindeutige Global-Unicast-Adresse bekommen kann.
+</p>
+
+<p>
+Haupteinsatzbereich sind Netzwerkgeräte, wie Router, Switche und Netzwerkdrucker, die sich dezidiert nicht mit dem Internet verbinden und von dort aus nicht erreichbar sein sollen. Außerdem werden diese Adressen genutzt, wenn man NAT einsetzen möchte.
+</p>
+
+<p>
+Sie können auch zusätzlich zu <i>Global-Unicast</i>-Adressen eingesetzt werden, um mehr Subnetze zu verwirklichen.
+</p>
+
+</aside>
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgc29fcde">
+<h3 id="orgc29fcde">(Unique) Global Unicast Addresses</h3>
+<p>
+Schließlich gibt die weltweit eindeutigen <i>Global-Unicast</i>-Adressen, die mit einem durch die <a href="https://www.iana.org">Internet Assigned Numbers Authority (IANA)</a> vergebenen und durch den <i>ISP</i> zugeteilten Präfix beginnen.
+</p>
+
+<p>
+Dieses beginnt mit <code>2</code> oder <code>3</code> und umfasst den Adressbereich <code>2000::0 - 3fff:ffff:ffff:ffff:ffff:ffff:ffff:ffff</code> (~2000::/3).
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc669e61">
+<h3 id="orgc669e61">Multicast Addresses</h3>
+<p>
+In IPv6 gibt es <b>keine Broadcastadressen</b>, stattdessen wird sehr viel stärker, als bei IPv4 auf <b>Multicast</b>-Adressen gesetzt. Das sind Adressen, über die man bestimmte <b>Geräteklassen</b> in einem bestimmten <b>Scope</b> erreichen kann.
+</p>
+
+</section>
+<section id="slide-orgc669e61-split">
+
+<p>
+Multicast-Adressen beginnen mit <code>ff0</code> gefolgt von einer Zahl, die den <b>Scope</b>, also den Gültigkeitsbereich kennzeichnen:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">Scope</td>
+<td class="org-left">Name</td>
+<td class="org-left">Bedeutung</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">Node-Local</td>
+<td class="org-left">Localhost-Dienste</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">Link-Local</td>
+<td class="org-left">Bis zum Router</td>
+</tr>
+
+<tr>
+<td class="org-right">5</td>
+<td class="org-left">Site-Local</td>
+<td class="org-left">LAN</td>
+</tr>
+
+<tr>
+<td class="org-right">8</td>
+<td class="org-left">Organization-Local</td>
+<td class="org-left">Alle Standorte der Organisation</td>
+</tr>
+
+<tr>
+<td class="org-right">E</td>
+<td class="org-left">Global</td>
+<td class="org-left">Internet</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+<section id="slide-orgc669e61-split">
+
+<p>
+Je nach Scope, sind verschiedene Geräteklassen ansprechbar. Eine umfassende Aufzählung findet sich auf der entsprechenden Seite der <a href="https://www.iana.org/assignments/ipv6-multicast-addresses/ipv6-multicast-addresses.xhtml">IANA</a>.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Beispiel</td>
+<td class="org-left">Name</td>
+<td class="org-left">Bedeutung</td>
+</tr>
+
+<tr>
+<td class="org-left">ff01::1</td>
+<td class="org-left">All Nodes</td>
+<td class="org-left">Alle Netzwerkschnittstellen am aktuellen Gerät</td>
+</tr>
+
+<tr>
+<td class="org-left">ff02::1:2</td>
+<td class="org-left">All DHCP Relay Agents and Servers</td>
+<td class="org-left">Alle direkt verbundenen DHCP-Relay-Agents oder Server.</td>
+</tr>
+
+<tr>
+<td class="org-left">ff05::2</td>
+<td class="org-left">All Routers</td>
+<td class="org-left">Alle Router im LAN</td>
+</tr>
+
+<tr>
+<td class="org-left">ff05::1:3</td>
+<td class="org-left">All DHCP Servers</td>
+<td class="org-left">Alle DHCP-Server im LAN</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes]
+});
+
+</script>
+</body>
+</html>

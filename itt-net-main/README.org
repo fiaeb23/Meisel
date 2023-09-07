@@ -1,0 +1,217 @@
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+
+#+LANGUAGE: de
+#+OPTIONS: prop:t num:nil toc:nil
+#+AUTHOR: Sebastian Meisel
+#+DATE: November 2022
+#+TITLE: ITT-Netzwerke
+
+* Inhalt
+
+  Hier findet ihr die Materialien zum Kurs jeweils als Org-Dokument, HTML-Präsentation und
+  ausführliche PDF. 
+  Im Laufe des Kurses werde ich die Materialien ergänzen und überarbeiten.
+
+** Kursziele
+
+ In diesem Kurs lernt ihr wie Netzwerke aufgebaut sind und funktionieren.
+ Ihr lernt die Hardwarekomponenten kennen, die zum Aufbau eines Computernetzwerkes
+ notwendig sind.
+
+ Außerdem lernt, wie man auf Betriebsystemebene Netzwerke einrichtet, überwacht und
+ absichert.
+
+ In dem Praxiseinheiten, werden wir ein kleines hybrides Linux/Windowsnetzwerk aus VMs 
+ aufbauen. 
+
+** Nötige Software
+
+ - Cisco Packettracer 
+ - HyperV (alternativ VirtualBox)
+ - Powershell
+
+** Grundbegriffe
+
+ - [[file:Grundbegriffe.org][Grundbegriffe.org]]
+ - [[file:Grundbegriffe.html][Grundbegriffe.html]]
+ - [[file:Grundbegriffe.pdf][Grundbegriffe.pdf]]
+
+** Netzwerktopologien
+
+ - [[file:Netzwerktopologien.org][Netzwerktopologien.org]]
+ - [[file:Netzwerktopologien.html][Netzwerktopologien.html]]
+ - [[file:Netzwerktopologien.pdf][Netzwerktopologien.pdf]]
+
+** Übertragungsmedien
+
+ - [[file:Übertragungsmedien.org][Übertragungsmedien.org]]
+ - [[file:Übertragungsmedien.html][Übertragungsmedien.html]]
+ - [[file:Übertragungsmedien.pdf][Übertragungsmedien.pdf]]
+ 
+ - [[file:CAT5-8.pdf][CAT_und_Glasfaserkabel_Standards]] 
+
+** Schnittstellen
+
+ - [[file:Schnittstellen.org][Schnittstellen.org]]
+ - [[file:Schnittstellen.html][Schnittstellen.html]]
+ - [[file:Schnittstellen.pdf][Schnittstellen.pdf]]
+
+** Zugriffverfahren
+
+ - [[file:Zugriffskontrolle.org][Zugriffskontrolle.org]]
+ - [[file:Zugriffskontrolle.html][Zugriffskontrolle.html]]
+ - [[file:Zugriffskontrolle.pdf][Zugriffskontrolle.pdf]]
+
+** Arbeitsweise lokaler Netzwerke
+
+ - [[file:ArbeitsweiseLAN.org][ArbeitsweiseLAN.org]]
+ - [[file:ArbeitsweiseLAN.html][ArbeitsweiseLAN.html]]
+ - [[file:ArbeitsweiseLAN.pdf][ArbeitsweiseLAN.pdf]]
+
+** Betriebssysteme und Server
+
+ - [[file:CLI.org][CLI.org]]
+ - [[file:CLI.pdf][CLI.pdf]]
+ 
+** Praxis 1
+
+Für diese Praxiseinheit brauchen wir zwei ISO-Images zum Bau unserer virtuellen Maschinen:
+
+ - [[https://go.microsoft.com/fwlink/p/?LinkID=2195280&clcid=0x407&culture=de-de&country=DE][Windows Server 2022 (Testversion)]] 
+
+ - [[file:WindowsserverVM.org][Windowsserver in HyperV installieren (org)]]
+ - [[file:WindowsserverVM.pdf][Windowsserver in HyperV installieren (pdf)]]
+
+ - [[https://releases.ubuntu.com/22.04.1/ubuntu-22.04.1-desktop-amd64.iso][Ubuntu Desktop 22.04.01]]
+
+ - [[file:Ubuntu.org][Ubuntu Desktop 22.04 LTS in HyperV installieren (org)]]
+ - [[file:Ubuntu.pdf][Ubuntu Desktop 22.04 LTS in HyperV installieren (pdf)]]
+
+ - [[file:Wireshark.org][Wireshark.org]]
+ - [[file:Wireshark.pdf][Wireshark.pdf]]
+
+
+** Normen und Modelle
+
+ - [[file:TCP_vs_OSI.org][TCP_vs_OSI.org]]
+ - [[file:TCP_vs_OSI.html][TCP_vs_OSI.html]]
+ - [[file:TCP_vs_OSI.pdf][TCP_vs_OSI.pdf]]
+ 
+** Protokolle
+
+*** OSI 1: Physical Layer / Bitübertragunsschicht
+
+ - Ethernet (siehe unten)
+
+*** OSI 2: Data Link Layer / Sicherungsschicht
+
+ - [[file:Ethernet_ARP.org][Ethernet_ARP.org]]
+ - [[file:Ethernet_ARP.pdf][Ethernet_ARP.pdf]]
+ 
+*** OSI 3: Transport Layer / Transportschicht
+
+ - [[file:IPv4.org][IPv4.org]]
+ - [[file:IPv4.pdf][IPv4.pdf]]
+ - [[file:IPv4_Netzwerkrechner.xlsx][IP-Adressrechner (xlsx)]]
+ - [[file:IP4_Netzwerkklassen.pdf][Netzwerkklassen]]
+
+
+ - [[file:IPv6.org][IPv6.org]]
+ - [[file:IPv6.pdf][IPv6.pdf]]
+ - [[file:IPv6.xlsx][IPv6 (xlsx)]] 
+ - [[file:IPv6_LinkLocal.xlsx][IPv6_LinkLocal.xlsx]]
+
+
+*** OSI 4: Networklayer / Netzwerkschicht
+
+ - [[file:TCP_UDP.org][TCP_UDP.org]]
+ - [[file:TCP_UDP.pdf][TCP_UDP.pdf]]
+
+
+*** OSI 5: Session-Layer / Sitzungsschicht | OSI 6: Graphical Layer / Darstellungsschicht | OSI 7: Application Layer / Anwendungsschicht 
+
+- [[file:DHCPv6.org][DHCPv6.org]]
+- [[file:DHCPv6.pdf][DHCPv6.pdf]]
+- [[file:DHCP.org][DHCP.org]]
+- [[file:DHCP.pdf][DHCP.pdf]]
+
+- [[file:DNS.org][DNS.org]]
+- [[file:DNS.pdf][DNS.pdf]]
+
+- [[file:HTTPS_vs_QUIC.org][HTTPS_vs_QUIC.org]]
+- [[file:HTTPS_vs_QUIC.pdf][HTTPS_vs_QUIC.pdf]]
+
+
+
+** Erweiterung der Netzwerkstruktur
+
+- [[file:VLAN.org][VLAN.org]]
+- [[file:VLAN.pdf][VLAN.pdf]]
+
+- [[file:Packet-Tracer/VLAN.pkt][Packet Tracer: VLAN]]
+
+- [[file:STP.org][STP.org]]
+- [[file:STP.pdf][STP.pdf]]
+
+- [[file:Packet-Tracer/STP.pkt][Packet Tracer: STP]]
+- [[file:Packet-Tracer/STP_Full_Mesh.pkt][Packet Tracer: STP im Full Mesh]]
+
+- [[file:StrukturierteVerkabelung.org][StrukturierteVerkabelung.org]]
+- [[file:StrukturierteVerkabelung.html][StrukturierteVerkabelung.html]]
+- [[file:StrukturierteVerkabelung.pdf][StrukturierteVerkabelung.pdf]]
+
+
+
+** Koppelung von Netzwerken
+
+- [[file:Routing.org][Routing.org]]
+- [[file:Routing.pdf][Routing.pdf]] 
+- [[file:Packet-Tracer/Routing.pkt][Packet Tracer: Routing]]
+
+- [[file:NAT.org][NAT.org]]
+- [[file:NAT.pdf][NAT.pdf]] 
+
+
+** Erweiterung der Geschwindigkeit
+
+- [[file:Netzwerkgeschwindigkeit.org][Netzwerkgeschwindigkeit.org]]
+- [[file:Netzwerkgeschwindigkeit.pdf][Netzwerkgeschwindigkeit.pdf]] 
+
+
+** Netzwerküberwachung und Fehlersuche
+
+- [[file:SNMP.org][SNMP.org]]
+- [[file:SNMP.pdf][SNMP.pdf]] 
+
+- [[file:Fehlersuche.org][Fehlersuche.org]]
+- [[file:Fehlersuche.pdf][Fehlersuche.pdf]] 
+
+** Praxis 2
+
+** Weitverkehrsnetze
+
+- [[file:PAN_bis_GAN.org][PAN_bis_GAN.org]]
+- [[file:PAN_bis_GAN.pdf][PAN_bis_GAN.pdf]] 
+
+- [[file:WAN.org][WAN.org]]
+- [[file:WAN.pdf][WAN.pdf]]
+
+- [[file:VPN.org][VPN.org]]
+- [[file:VPN.pdf][VPN.pdf]]
+
+- [[file:Verschlüsselung_Hashing.org][Verschlüsselung_Hashing.org]]
+- [[file:Verschlüsselung_Hashing.pdf][Verschlüsselung_Hashing.pdf]]

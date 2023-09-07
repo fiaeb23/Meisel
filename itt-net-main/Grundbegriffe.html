@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Grundbegriffe</title>
+<meta name="author" content="Sebastian Meisel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/league.css" id="theme"/>
+
+<link rel="stylesheet" href="./mystyle.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Grundbegriffe</h1><p class="subtitle">ITT-Netzwerke</p>
+<h2 class="author">Sebastian Meisel</h2><h2 class="date">November 2022</h2>
+</section>
+<section>
+<section id="slide-org2363356">
+<h2 id="org2363356">Was ist ein Computernetzwerk</h2>
+
+<div id="org506e3d3" class="figure">
+<p><img src="Bilder/Peer-to-Peer.png" alt="Peer-to-Peer.png" width="20%" align="right" />
+</p>
+</div>
+
+<p>
+Ein <b>Netzwerk</b> ist die <b>Verbindung</b> von mindestens <b>zwei</b> <b>Computersystemen</b> über ein geeignetes <b>Medium</b>.
+</p>
+
+<p>
+Sind <b>zwei</b> Computer direkt miteinander verbunden spricht man von einem <b>Peer-to-Peer-Netzwerk</b>.
+</p>
+
+
+<div id="org2feab95" class="figure">
+<p><img src="Bilder/Server-Client.png" alt="Server-Client.png" width="20%" align="right" />
+</p>
+</div>
+
+<p>
+Dem gegenüber steht das <b>Server-Client-Netzwerk</b> bei dem mehrere Computer über einen <b>zentralen Rechner</b> miteinander verbunden sind.
+</p>
+
+<p>
+Der Zweck eines <b>Netzwerks</b> ist:
+</p>
+<ul>
+<li class="fragment appear">der <b>Austausch von Daten</b>,</li>
+<li class="fragment appear">die <b>gemeinsame Nutzung von Ressourcen</b></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org04ef066">
+<h2 id="org04ef066">Was sind Medien?</h2>
+<p>
+Ein <b>Medium</b> dient dazu Signale von einem Computer zum anderen zu transportieren. Dabei unterscheidet man:
+</p>
+<ul>
+<li class="fragment appear"><b>kabelgebundene</b> Medien: Kupferkabel, Glasfaser.</li>
+<li class="fragment appear"><b>kabellose</b> Medien: Luft.</li>
+
+</ul>
+
+<p class="fragment (appear)">
+Alle <b>Medien arbeiten *elektromagnetisch</b>, nämlich mit Strom, Licht oder Funkwellen.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgf5f7601">
+<h2 id="orgf5f7601">Was bedeuten Server und Client?</h2>
+<p>
+Ein <b>Server</b> ist ein <b>zentraler Rechner</b> in einem <i>Netzwerk</i>, der <b>Dienste</b> zur Verfügung stellt.
+</p>
+
+<p>
+<b>Clients</b> sind Rechner, die mit einem oder mehreren <b>Servern</b> verbunden sind und diese <b>Dienste</b>
+nutzen, indem sie:
+</p>
+
+<ul>
+<li class="fragment appear"><b>Anfragen (Requests)</b> an den <i>Server</i> stellen,</li>
+<li class="fragment appear"><b>Daten (Response)</b> als Antwort des <i>Servers</i> empfangen.</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Man spricht auch in Bezug auf Software von <b>Clientsoftware</b> und <b>Serversoftware</b>.
+Dies beschreibt die Funktion der Software, beide können aber auf demselben
+Computer laufen.
+</p>
+
+<p>
+Andererseits spricht man, wenn zwei <b>Clientprogramme</b> direkt über das Netzwerk
+Daten austauschen von <b>Peer-to-Peer-Verbindungen</b>, auch wenn die Rechner physisch
+über <i>Server</i> miteinander kommunizieren.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgb2464ab">
+<h2 id="orgb2464ab">Was sind Dienste?</h2>
+<p>
+Ein <b>Dienst</b> ist eine Software, die:
+</p>
+<ul>
+<li class="fragment appear"><b>ohne Benutzeroberfläche</b> arbeitet,</li>
+<li class="fragment appear"><b>nicht zur lokalen Nutzung</b> gedacht ist</li>
+<li class="fragment appear">sondern zum <b>Datenaustausch</b> über ein Netzwerk.</li>
+
+</ul>
+
+<p>
+Typische Beispiele sind:
+</p>
+<ul>
+<li class="fragment appear"><b>E-Mailserver</b>: Zum Versenden und Empfangen von E-Mails.</li>
+<li class="fragment appear"><b>Webserver</b>: Zum Abrufen von Internetseiten.</li>
+<li class="fragment appear"><b>DNS-Server</b>: Zum Auflösen von <i>URLs</i> in <i>IP-Adressen</i>.</li>
+<li class="fragment appear"><b>DHCP-Server</b>: Zum Zuteilen von <i>IP-Adressen</i> in Netzwerken.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org8c8b4e6">
+<h2 id="org8c8b4e6">Was sind Netzwerkadressen?</h2>
+<p>
+Damit <i>Daten</i> in einem <i>Netzwerk</i> an ein bestimmtes <i>Gerät</i> zu senden, braucht dieses eine
+Adresse. In <i>Netzwerken</i> kommen mehrere Adressen zum Einsatz:
+</p>
+
+<ul>
+<li class="fragment appear"><b>Hardwareadresse (MAC)</b>: Dient der Zuordnung einer Datenverbindung zu einem Gerät.</li>
+
+</ul>
+<aside class="notes">
+<p>
+<b>MAC</b> steht für <i>Media Access Control</i>.
+</p>
+<ul>
+<li><p>
+Form:
+</p>
+<ul>
+<li>Die <i>MAC-Adresse</i> ist 48 Bit, bzw. 6 Bytes lang.</li>
+<li>Sie wird in der Regel byte-weise, hexadezimal geschrieben.</li>
+<li>Die einzelnen Bytes werden dabei in der Regel durch Doppelpunkte oder Bindestriche</li>
+
+</ul>
+<p>
+getrennt.
+</p>
+<ul>
+<li>z. B. AE:3F:23:12:D2:E3</li>
+
+</ul></li>
+<li>Funktion:
+<ul>
+<li><b>Eindeutige Kennzeichnung</b> eines <i>Gerätes</i>:
+<ul>
+<li>Jedes Gerät wird mit einer koordiniert vergebenen
+Adresse <b>international eindeutigen</b> ausgeliefert.</li>
+<li>Der <b>Hersteller</b> ist in der <i>MAC-Adresse</i> kodiert.</li>
+<li>Diese Adresse kann aber bei der Kommunikation im
+Netz geändert und zum Beispiel durch eine zufällig
+generierte Adresse ersetzt werden, um die
+Nachverfolgung im Netz zu verhindern.</li>
+
+</ul></li>
+<li><b>Zuordnung</b> von <i>Netzwerkpaketen</i>: Das Gerät entscheidet
+anhand der <i>MAC-Adresse</i> welche Datenpakete für es
+selbst bestimmt sind. (Das ist auch mit <i>Media Access
+Controll</i> gemeint).</li>
+<li><b>Zugriffsbeschränkung</b> auf das Netzwerk: Die
+<i>MAC-Adresse</i> kann genutzt werden um <i>Geräten</i> den Zugang
+zu einem Netzwerk zu erlauben oder zu verwehren. Da
+<i>MAC-Adressen</i> aber leicht geändert werden können,
+bietet diese Methode zu Zugangsbeschränkung nur
+unzureichenden Schutz.</li>
+
+</ul></li>
+
+</ul>
+
+</aside>
+<ul>
+<li class="fragment appear"><b>Internetprotokoll-Adresse (IP)</b>: Dient dazu ein Gerät im
+<i>Internet</i> oder einem lokalen Netzwerk zu identifizieren.</li>
+
+</ul>
+<aside class="notes">
+<p>
+Die <b>IP</b> macht es aufgrund ihrer Struktur möglich eine <i>Route</i>
+zwischen zwei Geräten in einem komplexen Netzwerk zu
+finden. Dazu teilt sie das <i>Netzwerk</i> in verschieden <i>Subnetze</i> ein.
+</p>
+
+<ul>
+<li>Form: Es gibt zur Zeit Versionen des <i>IP-Protokolls</i>:
+<ul>
+<li><b>IPv4</b>: Ist 32 Bit, bzw. 4 Bytes lang.
+<ul>
+<li>Jedes Byte (auch <b>Oktett</b> genannt) wird durch eine Dezimalzahl<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> zwischen 0 und
+255 dargestellt.</li>
+<li>Die einzelnen <i>Oktetts</i> werden durch Punkte getrennt.</li>
+<li>z. B. 192.168.0.14</li>
+
+</ul></li>
+<li><b>IPv6</b>: Ist 128 Bit, bzw. 16 Bytes lang.
+<ul>
+<li>Sie wird hexadezimal geschrieben.</li>
+<li>Sie ist in 8 Gruppen von jeweils 16 Bit, bzw. 2 Bytes eingeteilt, die durch
+Doppelpunkte getrennt werden.</li>
+<li>z. B. 2003:12ef:a3ef:ee32:1235:fe42:3d1e:ff32</li>
+
+</ul></li>
+
+</ul></li>
+
+</ul>
+
+</aside>
+<ul>
+<li class="fragment appear"><b>Unified Resource Locator (URL)</b>: Dienen dazu bestimmte Ressourcen, wie Webseiten,
+FTP-Verzeichnisse, E-Mail-Nutzer zu adressieren.</li>
+
+</ul>
+<aside class="notes">
+<p>
+Die <b>URL</b> wird vom Computer in eine <b>IP-Adresse</b> übersetzt, um den Rechner zu finden, der
+die Ressource bereitstellt.
+</p>
+
+<ul>
+<li>Form: Die <b>URL</b> ist so gestaltet, dass sie von Menschen gelesen werden kann.
+<ul>
+<li>Sie beginnt mit dem <i>Schema</i> wie "http", "mailto" oder "ftp", gefolgt von einem
+Doppelpunkt und zwei Schrägstrichen. Das Schema kann entfallen, wenn es durch die
+Anwendung vorgegeben ist.</li>
+<li>Je nach Dienst folgt der <b>Nutzername</b> wie "sebastian.meisel", gefolgt von einem "@".</li>
+<li>Es folgt der <b>Name</b> des <i>Computers</i> wie "www" oder "mailserver", gefolgt von einem
+Punkt. Der sogenannte <b>Hostname</b> kann frei gewählt werden.</li>
+<li>Es folgen <b>Domäne</b> (z. B. "example") und nach einem weiteren Punkt die <b>Topleveldomain</b>
+wie "de", "org" oder "com"</li>
+<li>Nach einem Schrägstrich können weitere Unterressourcen folgen.</li>
+<li>z. B. <a href="https://www.example.org/unterseite">https://www.example.org/unterseite</a> oder <a href="mailto://sebastian.meisel@viona-trainer.com">mailto://sebastian.meisel@viona-trainer.com</a>.</li>
+
+</ul></li>
+
+</ul>
+
+</aside>
+
+
+
+</section>
+<section id="slide-orgda10dd1">
+<h3 id="orgda10dd1">Praxis</h3>
+<p>
+Schauen wir uns nun in der Praxis an, wie man unter Windows die MAC- und
+IP-Adresse des Rechners anzeigen lässt.
+</p>
+
+<p>
+Öffne die Powershell (Windows-Taste + "Powershell").
+</p>
+
+</section>
+<section id="slide-orgac7a2c7">
+<h4 id="orgac7a2c7">MAC-Adresse</h4>
+<p>
+Gib folgenden Befehl ein, um die MAC-Adressen deiner Netzwerkschnittstellen zu
+erhalten:
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-powershell"   ><code trim> Get-NetAdapter
+</code></pre>
+</div>
+
+<p>
+Die Ausgabe sieht in etwa so aus:
+</p>
+
+<pre class="example" id="orgf38138a">
+Name                      In~ ifIndex Status       MacAddress             LinkSpeed
+----                      --~ ------- ------       ----------             ---------
+LAN-Verbindung            Pr~      15 Disconnected 00-FF-BA-11-F7-59         1 Gbps
+Ethernet 3                Vi~       6 Up           0A-00-27-00-00-06         1 Gbps
+vEthernet (WSL)           Hy~      50 Up           00-15-5D-55-78-9A        10 Gbps
+vEthernet (Default Swi... Hy~      42 Up           00-15-5D-FF-CE-54        10 Gbps
+Ethernet                  Re~       4 Up           00-D8-61-A4-4F-C2         1 Gbps
+</pre>
+
+</section>
+<section id="slide-org700bbbc">
+<h4 id="org700bbbc">IP-Adresse</h4>
+<p>
+Die IP-Adresse lässt sich auf zweierlei Weise anzeigen. Zunächst über ein alter
+Windows CMD-Programm:
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-powershell"   ><code trim> ipconfig.exe
+</code></pre>
+</div>
+
+<p>
+Die Ausgabe beginnt in etwa so (die Ausgabe für weitere Netzwerkschnittstellen folgt):
+</p>
+
+<pre class="example" id="org7b4daf6">
+Windows-IP-Konfiguration
+
+
+Ethernet-Adapter Ethernet:
+
+   Verbindungsspezifisches DNS-Suffix:
+   Verbindungslokale IPv6-Adresse  . : fe80::d912:2ed1:fc47:4a77%4
+   IPv4-Adresse  . . . . . . . . . . : 192.168.24.81
+   Subnetzmaske  . . . . . . . . . . : 255.255.255.0
+   Standardgateway . . . . . . . . . : 192.168.24.1
+</pre>
+
+</section>
+<section id="slide-org700bbbc-split">
+
+<p>
+Die zweite Möglichkeit ist ein Powershell-Cmdlet:
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-powershell"   ><code trim> Get-NetIPAddress | Format-Table
+</code></pre>
+</div>
+
+<p>
+Ausgabe:
+</p>
+
+<pre class="example" id="org23f799f">
+ ifIndex IPAddress                       PrefixLength PrefixOrigin SuffixOrigin~
+------- ---------                       ------------ ------------ ------------ ~
+6       fe80::33c2:8617:cd50:f18d%6               64 WellKnown    Link         ~
+50      fe80::fcfb:cbf4:a3ec:4a3c%50              64 WellKnown    Link         ~
+42      fe80::2443:9cd4:c6a4:bb13%42              64 WellKnown    Link         ~
+4       fe80::d912:2ed1:fc47:4a77%4               64 WellKnown    Link         ~
+15      fe80::a016:6571:9058:35a2%15              64 WellKnown    Link         ~
+1       ::1                                      128 WellKnown    WellKnown    ~
+6       192.168.137.1                             24 Manual       Manual       ~
+50      192.168.240.1                             20 Manual       Manual       ~
+42      172.31.48.1                               20 Manual       Manual       ~
+4       192.168.24.81                             24 Manual       Manual       ~
+15      169.254.182.216                           16 WellKnown    Link         ~
+1       127.0.0.1                                  8 WellKnown    WellKnown    ~
+</pre>
+
+<aside class="notes">
+<p>
+Was '<b>Prefix'</b> und '<b>Suffix'</b> sind, lernen wir noch. Das <i>WellKnown</i> darunter bezieht sich darauf,
+dass dies standardisierte Adressen sind, die für <i>Localhost</i>-Adressen (für Dienste auf dem
+eigenen Rechner) und als Platzhalter definiert sind, wenn keine <i>IP-Adresse</i> vergeben wurde.
+</p>
+
+</aside>
+
+
+</section>
+<section id="slide-org57785b9">
+<h4 id="org57785b9">IP-Adresse zu URL</h4>
+<p>
+Für die Namensauflösung einer <i>URL-</i> in eine <i>IP-Adresse</i> gibt es drei
+Optionen:
+</p>
+
+<ol>
+<li>Die CMD-Programm nslookup.exe:</li>
+
+</ol>
+<pre  class="example" >
+  nslookup.exe IBB.com
+</pre>
+<p>
+Ausgabe:
+</p>
+<pre class="example" id="org59b6912">
+Server:  sebastian-Tuxedo
+Address:  192.168.24.1
+Nicht autorisierende Antwort:
+Name:    IBB.com
+Address:  136.243.235.86
+</pre>
+
+</section>
+<section id="slide-org57785b9-split">
+<ol start="2">
+<li>Das Powershell-Cmdlet Resolve-DnsName:</li>
+
+</ol>
+<div class="org-src-container">
+
+<pre  class="src src-powershell"   ><code trim> Resolve-DnsName IBB.com
+</code></pre>
+</div>
+<p>
+Ausgabe:
+</p>
+<pre class="example" id="org9e9c2c9">
+Name                                           Type   TTL   Section    IPAddress
+----                                           ----   ---   -------    ---------
+IBB.com                                        A      2446  Answer     136.243.235.86
+</pre>
+
+</section>
+<section id="slide-org57785b9-split">
+<ol>
+<li>Das Powershell-Cmdlet Get-IPAdressInformation:</li>
+
+</ol>
+<pre  class="example" >
+ Get-IPAddressInformation IBB.com
+</pre>
+<p>
+Ausgabe:
+</p>
+<pre class="example" id="org664f461">
+status      : success
+country     : Germany
+countryCode : DE
+region      : SN
+regionName  : Saxony
+city        : Falkenstein
+zip         : 08223
+lat         : 50,475
+lon         : 12,365
+timezone    : Europe/Berlin
+isp         : Hetzner Online GmbH
+org         : JAR Media GmbH
+as          : AS24940 Hetzner Online GmbH
+query       : 136.243.235.86
+</pre>
+
+<aside class="notes">
+<p>
+Die Ausgabe zeigt, dass sich mit den geeigneten Mitteln sehr detaillierte
+Informationen aus einer (öffentlichen) IP-Adresse ableiten lassen. Hier lässt
+sich z. B. die genaue Position des Rechenzentrums ermitteln in dem die Homepage
+der IBB gehostet wird.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org41fd522">
+<h2 id="org41fd522">Was sind Netzwerkschnittstellen</h2>
+<aside class="notes">
+<p>
+Bei der Abfrage der <i>MAC-</i>, bzw. <i>IP-Adresse</i> hast du gesehen, dass für den
+Computer mehrere Adressen für verschiedene "Adapter" oder "Interfaces"
+angezeigt wurden. Das sind verschiedene Bezeichnungen für <i>Netzwerkschnittstellen</i>.
+</p>
+
+</aside>
+
+<p>
+Eine <i>Netzwerkschnittstelle</i>  ist
+</p>
+<ul>
+<li class="fragment appear">ein physisches Gerät, über das der Computer mit  dem Internet verbunden ist.
+<ul>
+<li>eine <i>Ethernetkarte</i> für eine kabelgebundene Netzwerkverbindung.</li>
+<li>ein <i>WLAN-</i> oder <i>Bluetooth-Adapter</i> für eine kabellose Verbindung.</li>
+
+</ul></li>
+<li class="fragment appear">ein <i>virtuelles Gerät</i> zur Anbindung <i>virtueller Maschinen</i> oder <i>Container</i> an das
+Netzwerk.</li>
+<li class="fragment appear"><p>
+ein <i>Loopbackdevice</i> das Netzwerkdienste lokal auf dem eigenen Computer
+bereitstellt.
+</p>
+<aside class="notes">
+<p>
+Das könnte ein lokaler DNS-Server sein, der <i>IP-Adressen</i> zu <i>URLs</i>
+zwischenspeichert. Auch lokale <i>Webserver</i> sind ein häufiger Anwendungsfall.
+</p>
+
+<p>
+<i>Loopbackdevices</i> haben die <i>IP-Adresse</i> 127.0.0.1<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup> (IPv4), bzw. ::1 (IPv6)
+</p>
+
+</aside></li>
+
+</ul>
+
+</section>
+<section id="slide-orgfe0a5ac">
+<h3 id="orgfe0a5ac">Praxis</h3>
+<p>
+Um nur die physischen <i>Netzwerkschnittstellen</i> anzuzeigen, dient folgender Befehl:
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-powershell"   ><code trim>Get-NetAdapter -Physical
+</code></pre>
+</div>
+
+<p>
+Ausgabe:
+</p>
+
+<pre class="example" id="org4f08875">
+Name      InterfaceDescription~ ifIndex Status  MacAddress         LinkSpeed
+----      --------------------~ ------- ------  ----------         ---------
+Ethernet  Realtek PCIe GbE Fam~       4 Up      00-D8-61-A4-4F-C2     1 Gbps
+</pre>
+
+<p>
+Um alle - auch versteckten virtuelle <i>Netzwerkschnittstellen</i> anzuzeigen, dient der folgende:
+</p>
+
+</section>
+<section id="slide-orgfe0a5ac-split">
+
+<pre  class="example" >
+Get-NetAdapter -IncludeHidden
+</pre>
+
+<p>
+Ausgabe:
+</p>
+
+<pre class="example" id="orgfc6a745">
+Name       ~  InterfaceDescription   ifIndex Status ~  MacAddress         LinkSpeed
+----       ~  --------------------~  ------- ------ ~  ----------         ---------
+LAN-Verbind~  WAN Miniport (IP)   ~       18 Up     ~                         0 bps
+LAN-Verbind~  WAN Miniport (SSTP) ~       17 Discone~d                        0 bps
+LAN-Verbind~  Private Internet Acc~r      15 Discone~d 00-FF-BA-11-F7-59      1 Gbps
+LAN-Verbind~  WAN Miniport (Networ~       13 Up     ~                         0 bps
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Ethernet   ~  Realtek PCIe GbE Fam~        4 Up     ~  00-D8-61-A4-4F-C2      1 Gbps
+6to4 Adapte~                      ~        3 Not Prt~                         0 bps
+LAN-Verbind~  WAN Miniport (PPPOE)~        2 Discone~d                        0 bps
+</pre>
+
+</section>
+</section>
+<section>
+<section id="slide-org3f910af">
+<h2 id="org3f910af">Was sind Ports</h2>
+<p>
+Auf einem Computer laufen in der Regel mehrere <i>Dienste</i> wie NetBios, SSH oder
+RDP, die über das <i>Netzwerk</i> kommunizieren.
+</p>
+
+<p>
+Außerdem laufen Programme, die mit verschiedenen <i>Servern</i> wie Webserver,
+E-Mailserver, etc. kommunizieren
+</p>
+
+<p>
+Um <i>Datenpakete</i> einzelnen <i>Diensten</i> und <i>Clientanwendungen</i> zuzuordnen werden
+sogenannte Ports genutzt. Das sind Nummern zwischen 1 und 2<sup>16</sup> die mit jedem
+<i>Datenpaket</i> übertragen werden.
+</p>
+
+<aside class="notes">
+<p>
+Für viele Dienste gibt es sogenannte "wohl bekannte" Ports, die ihnen fest
+zugeordnet sind. Diese werden von der <i>International Assigned Numbers
+Authority (IANA)</i> zugewiesen und liegen im <i>reservierten Bereich</i> <b>&lt;1023</b>.
+</p>
+
+<p>
+z. B. 20/21 FTP; 22 SSH; 25 SMTP; 53 DNS; 80 HTTP; 443 HTTPS.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org4f963e3">
+<h3 id="org4f963e3">Praxis</h3>
+<p>
+Öffne die Powershell (Windows-Taste + "Powershell").
+Mit folgendem Befehl kann du die Ports anzeigen, auf denen Dein Computer im
+Netzwerk "lauscht".
+</p>
+
+<aside class="notes">
+<p>
+Das bedeutet er schaut, ob Datenpakete mit dieser Portnummer
+ankommen und verarbeitet sie dann.
+</p>
+
+<p>
+Die Lokale (IP-)Adresse 0.0.0.0 steht dafür, dass der Computer auf diesen Ports
+Verbindungen von jeder IP-Adresse annimmt.
+</p>
+
+<p>
+Jeder Port ist einem Prozess zugeordnet, der hier mit seiner Process-ID
+aufgelistet ist.
+</p>
+
+<p>
+Mit dem Befehl <code>Get-Process -ID</code> kannst du herausfinden, welcher Prozess, das
+jeweils ist.
+</p>
+
+</aside>
+
+<div class="org-src-container">
+
+<pre  class="src src-powershell"   ><code trim> Get-NetTCPConnection -State Listen -LocalAddress 0.0.0.0
+</code></pre>
+</div>
+
+<p>
+Ausgabe
+</p>
+
+<pre class="example" id="orgdf4bc9a">
+LocalAddress      LocalPort RemoteAddress     RemotePort State   ~  OwningProcess
+------------      --------- -------------     ---------- -----   ~  -------------
+0.0.0.0           61654     0.0.0.0           0          Listen  ~  956
+0.0.0.0           61651     0.0.0.0           0          Listen  ~  3964
+0.0.0.0           54950     0.0.0.0           0          Listen  ~  4572
+0.0.0.0           49668     0.0.0.0           0          Listen  ~  2580
+0.0.0.0           49667     0.0.0.0           0          Listen  ~  1596
+0.0.0.0           49666     0.0.0.0           0          Listen  ~  1496
+0.0.0.0           49665     0.0.0.0           0          Listen  ~  816
+0.0.0.0           49664     0.0.0.0           0          Listen  ~  984
+0.0.0.0           17500     0.0.0.0           0          Listen  ~  1268
+0.0.0.0           5040      0.0.0.0           0          Listen  ~  3656
+0.0.0.0           3389      0.0.0.0           0          Listen  ~  1252
+0.0.0.0           2179      0.0.0.0           0          Listen  ~  2384
+0.0.0.0           135       0.0.0.0           0          Listen  ~  1044
+0.0.0.0           22        0.0.0.0           0          Listen  ~  4464
+</pre>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org0006acf">
+<h2 id="org0006acf">Was sind Netzwerkprotokolle</h2>
+<p>
+<b>Netzwerkprotokolle</b> sind Regeln und Formate, die bestimmen, wie in Computer in
+Netzwerken kommunizieren.
+</p>
+
+<p>
+Es gibt Protokolle, die beschreiben z. B.:
+</p>
+<ul>
+<li>wie über bestimmte <i>Medien</i> Daten übertragen werden (z. B. Ethernet, IEEE 802.11).</li>
+<li>wie <i>IP-Adressen</i> aufgebaut sind und verarbeitet werden (IPv4, IPv6).</li>
+<li>wie Webseiten aufgebaut sind und übertragen werden (HTTP5, HTTPS).</li>
+
+</ul>
+
+<aside class="notes">
+<ul>
+<li>Die Internetprotokolle wie IP, HTTP(S), TCP, etc. werden in sogenannten
+<i>Requests For Comments (RFC)</i> veröffentlicht.</li>
+<li>Die Protokolle, die technische Standards wie Ethernet, WLAN, etc. zur Übertragung durch physische
+<i>Medien</i> beschreiben werden vom <i>Institute of Electrical and Electronics
+Engineers (/IEEE</i>) verwaltet.</li>
+
+</ul>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgfab1e50">
+<h2 id="orgfab1e50">Was ist Bandbreite?</h2>
+<p>
+Die <b>Bandbreite</b> sagt aus, wie viele <i>Datenbits</i> über eine Netzwerkverbindung in einer
+Sekunde übertragen werden kann.
+</p>
+
+<p>
+In Netzwerken sind Kilo- Mega- oder Gigabit pro Sekunde als Einheiten üblich.
+</p>
+
+<aside class="notes">
+<p>
+Die <b>Bandbreite</b> wird sowohl durch die <i>Netzwerkschnittstelle</i> als auch durch das <b>Medium</b>
+bestimmt.
+</p>
+
+<p>
+So nimmt die <b>Bandbreite</b> bei kabellosen Verbindungen mit der Entfernung ab und kann durch
+Hindernisse, wie Wände weiter verringert werden.
+</p>
+
+<p>
+Teilweise unterscheidet sich auch die <i>Upload</i>- von der <i>Downloadgeschwindigkeit</i>.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org80ba65f">
+<h2 id="org80ba65f">Was ist Latenz?</h2>
+<p>
+Die Übertragung von <i>Daten</i> über ein Netzwerk braucht Zeit. Diese Zeit nennt man <b>Latenz</b>
+und sie wird in <i>Millisekunden (ms)</i> gemessen.
+</p>
+
+<p>
+Sie kann mit dem <i>ping</i>-Befehl ermittelt werden:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-bash"   ><code trim>  ping IBB.com
+</code></pre>
+</div>
+
+<pre class="example" id="orgd586b67">
+Ping wird ausgeführt für IBB.com [136.243.235.86] mit 32 Bytes Daten:
+Antwort von 136.243.235.86: Bytes=32 Zeit=41ms TTL=49
+Antwort von 136.243.235.86: Bytes=32 Zeit=44ms TTL=49
+Antwort von 136.243.235.86: Bytes=32 Zeit=41ms TTL=49
+Antwort von 136.243.235.86: Bytes=32 Zeit=38ms TTL=49
+
+Ping-Statistik für 136.243.235.86:
+    Pakete: Gesendet = 4, Empfangen = 4, Verloren = 0
+    (0% Verlust),
+Ca. Zeitangaben in Millisek.:
+    Minimum = 38ms, Maximum = 44ms, Mittelwert = 41ms
+</pre>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes]
+});
+
+</script>
+</body>
+</html>

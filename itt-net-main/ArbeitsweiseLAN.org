@@ -1,0 +1,235 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: Arbeitsweise Lokaler Netzwerke
+#+SUBTITLE: ITT Netzwerke
+#+AUTHOR: Sebastian Meisel
+
+* Local Area Network (LAN)
+
+Als *LAN* bezeichnet man ein lokales Netz z. B. in einer Wohnung, einem Gebäude oder einem Gelände.
+
+* Peer to Peer Netzwerk
+
+#+CAPTION: Ping mit IPv6 ohne Konfiguration
+#+ATTR_HTML: :width 75%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/LAN_P2P.png]]
+
+Die einfachste Form eines Netzwerkes ist eine Peer-to-Peer Verbindung (meist)
+über ein CAT-Kabel.
+
+#+BEGIN_NOTES
+Ursprünglich war dafür ein spezielle Crossoverkabel notwendig. Dies wird heute meist nicht
+mehr benötigt, da sich moderne Netzwerkgeräte vor der Verbindung einigen können, auf
+welchen Adern sie senden, bzw. empfangen.
+#+END_NOTES
+
+#+REVEAL: split
+
+Alle modernen Anwendungen benötigen eine IP-Adresse um zu kommunizieren. Bei /IPv6/ bildet
+sich jedes Gerät automatisch eine sogenannte /Lokal-Link-Adresse/, die mit /FE80::/ beginnt.
+Damit ist ohne Konfiguration direkt eine Kommunikation möglich.
+
+#+BEGIN_NOTES
+Mit dem Befehl /ping/ lässt sich in jedem Betriebssystem prüfen, ob eine /IP-Adresse/ oder URL
+im Netzwerk erreichbar ist:
+
+#+BEGIN_SRC bash    
+ ping FE80::34AE:34FE:FFFF:AE34
+#+END_SRC
+
+#+END_NOTES
+
+
+
+* Statische IPv4 Adressen
+#+CAPTION: Ping mit IPv4-Adresse
+#+ATTR_HTML: :width 100%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/LAN_P2P_IPv4.png]]
+
+Zur Nutzung von /IPv4/ muss jedoch zunächst eine /statische/ IP-Adresse konfigurieren.
+D. h. dass diese manuell festgelegt wurde (statt per DHCP) und sich somit auch nicht
+ändert. 
+
+#+BEGIN_NOTES
+ Es gibt auch die Möglichkeit per DHCP eine IP-Adresse fest einer MAC-Adresse
+ zuzuordnen. Sie ist dann eigentlich auch statisch. Aus Sicht des Betriebssystems könnte
+ sie sich aber jederzeit ändern, weil sie nicht auf der Betriebsystemebene festgelegt
+ wurde.
+
+ Es gibt 3 IPv4-Adressbereiche, die für lokale Netze reserviert sind und im Internet nicht
+ genutzt werden:
+
+
+| *VON*          |   | *BIS*              | *Netzwerkmaske* |
+| <l15>        |   | <l15>            | <l15>         |
+| 10. *0.0.1*    | - | 10. *255.255.254*  | 255.0.0.0     |
+| 172.16. *0.1*  | - | 172.31. *255.254*  | 255.255.0.0   |
+| 192.168.0. *1* | - | 192.168.255. *254* | 255.255.255.0 |
+
+ Wobei die fettgedruckten Bereich (im einfachsten Fall) für die Adressierung einzelner Rechner im Netzwerk zur Verfügung stehen. In Abbildung [[fig:ip4st]] wird z. B. ein Rechner mit der statischen IP-Adresse *192.168.0.10* (und der Netzwerkmaske 255.255.255.0) konfiguriert.
+
+ #+CAPTION: Statische IPv4 Adresse eines Rechners in Cisco Packettracer
+#+NAME: fig:ip4st
+ #+ATTR_HTML: :width 50%
+ #+ATTR_LATEX: :width .65\linewidth
+ #+ATTR_ORG: :width 700
+[[file:Bilder/PT_static_IPv4.png]] 
+
+#+END_NOTES
+   
+
+* Geteiltes Netzwerk (Shared Network)
+
+#+CAPTION: Shared Network mit Hub
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/LAN_Shared.png]]
+
+
+Will man mehr als zwei Geräte miteinander verbinden ist die einfachste Möglichkeit ein /Hub/
+genannter passiver Netzverteiler. Dieser leitet alle Datenpakete an alle Ports
+weiter. Hierdurch kann es unter anderem zu Paketkollisionen kommen, sodass diese Methode
+nicht empfehlenswert ist.
+
+* Geswitchtes Netzwerk (Switched Network)
+
+#+CAPTION: Switched Network
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/LAN_Switched.png]]
+
+
+Ein Switch arbeitet intelligent und kann z. B. Datenpakete geziehlt an ein Gerät mit einer
+spezifischen MAC-Adresse weiterleiten. 
+
+
+* DHCP-Server
+
+#+CAPTION: DHCP Server
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/LAN_DHCP_Server.png]]
+
+
+Um neuen Geräten dynamisch eine neue IP-Adresse zuzuordnen braucht man einen  /Dynamic
+Host Configuration Protocol (DHCP)/-Server. 
+
+#+BEGIN_NOTES
+ 
+ Dieser Dienst wir von einem Server bereitgestellt, der zunächst selbst eine *statische* IP
+ benötigt, wofür meist die /erste/ oder letzte IP im Netzwerk genutzt wird.
+
+#+CAPTION: Server mit IP 192.168.0.1
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+ [[file:Bilder/PT_static_IP_Server.png]]
+
+ Auf dem Server wird nun ein *Adresspool* angelegt. Dabei wird festgelegt in welchem *Bereich*
+ IP-Adressen durch den Server vergeben werden (z. B. ab 192.168.0.10 maximal 244, also bis
+ 192.168.0.254).
+
+ Außerdem können weitere Informationen wie die Adresse des DNS-Servers an die Clients
+ übermittelt werden.
+ 
+ #+CAPTION: DHCP Server Pool in Cisco Packettracer
+#+NAME: fig:dhcp_conf
+ #+ATTR_HTML: :width 50%
+ #+ATTR_LATEX: :width .65\linewidth
+ #+ATTR_ORG: :width 700
+[[file:Bilder/PT_DHCP_Server_conf.png]]
+
+ Jeder Rechner, der eine /dynamische IP/ bekommen soll, muss nun so konfiguriert werden,
+ dass er DHCP nutzt.
+
+ #+CAPTION: DHCP-Client-Konfiguration in Cisco Packettracer 
+ #+ATTR_HTML: :width 50%
+ #+ATTR_LATEX: :width .65\linewidth
+ #+ATTR_ORG: :width 700
+ [[file:Bilder/PT_DHCP_Client.png]]
+
+ Jeder dieser Rechner bildet nun zunächst eine zufällig /Autoconf-IP/ zwischen 169.254.0.1 und
+ 169.254.255.255. Dann tauscht er folgende Datenpakete mit dem DHCP-Server aus:
+
+ - *D* iscover: /Anfrage an den Server/ , ob es DHCP-Server im Netzwerk gibt.
+ - *O* ffer: /Antwort des Server/ , mit dem Angebot einer IP.
+ - *R* equest: /Anfrage an den Server/ , dass man die angebotene IP nutzen möchte.
+ - *A* knowledge: /Antwort des Servers/ , dass man die Adresse nun nutzen darf.
+
+ Damit wird die /Autoconf-IP/ durch die ordentliche IP-Adresse ersetzt.
+
+#+END_NOTES
+
+
+
+
+* DNS-Server
+
+#+CAPTION: DNS-Server
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/LAN_DNS_Server.png]]
+
+Sollen nun auch noch URLs genutzt werden, so wird ein /Domain Name Server (DNS)/ benötigt,
+der einer URL eine IP-Adresse zuordnet.
+
+ Der DNS-Server führt eine Liste von Einträgen, in denen (z. B.)der Name eines Rechners,
+ bzw. dessen URL einer IPv4- oder IPv6-Adresse zugeordnet werden.
+
+
+#+BEGIN_NOTES
+ Es gibt verschiedene Arten von Einträgen (*Record-Types*):
+ 
+ | Record-Type | Beschreibung                | Beispiel                      |
+ | A           | IPv4 Adresse                | www  IN A 192.168.0.1         |
+ | AAAA        | IPv6 Adresse                | www  IN AAAA 2003::1          |
+ | MX          | Mail-Server                 |      IN MX  10  mail.test.net |
+ | CNAME       | Alias für anderen Namen     | mail IN CNAME www             |
+ | NS          | Nameserver für diese Domain |      IN NS ns.example.com     |
+ |             |                             | ns   IN CNAME www             |
+ 
+ Normaler Weise werden Einträge für eine bestimmte Domain, wie /test.net/ eingetragen. Es
+ wird nur der Hostname im Eintrag aufgeführt, also /www/ für /www.test.net/
+
+ Der Client muss die Adresse des Nameservers kennen, diese können statisch eingetragen
+ werden oder per DHCP ausgeliefert werden (Siehe Abbildung [[fig:dhcp_conf]]).
+
+ Wird dann eine URL genutzt, sendet der Client eine Anfrage an den Nameserver und dieser
+ antwortet mit der IP-Adresse (wenn er die URL kennt).
+
+ 
+#+END_NOTES
+ 
+
+* Web-Server 
+
+#+CAPTION: Web-Server
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/LAN_Webserver.png]]
+
+Dies ermöglicht nun, das bequeme nutzen weiterer Ressourcen, wie zum Beispiel eines
+Webservers im lokalen Netz. 

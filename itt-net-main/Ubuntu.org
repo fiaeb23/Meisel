@@ -1,0 +1,259 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: Installation Ubuntu Desktop 22.04
+#+SUBTITLE: ITT-Netzwerke
+#+AUTHOR: Sebastian Meisel
+
+* Vorbereitung der Installation in HyperV
+
+So HyperV noch nicht mit dem Server verbunden ist, muss man rechts unter ~Aktionen~ die
+[[fig:connect][Verbindung mit dem Server herstellen]]. Im neuen Fenster wählt man ~Lokaler Computer~ und
+bestätigt die Auswahl mit ~[OK]~.
+CAPTION: Verbindung mit dem Server herstellen
+#+NAME: fig:connect
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvPrepare_01.png]]
+
+Nun wählen wir rechts unter ~Aktionen~ [[fig:newvm][Neu → Virtuellen Computer]] und bestätigen mit ~[Weiter]~.
+#+CAPTION: Neu → Virtuellen Computer
+#+NAME: fig:newvm
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvPrepare_02.png]]
+
+Unter [[fig:name][Name und Pfad angeben]] tragen wir nun einen sinnvollen Namen, z. B. "Ubuntu" ein.
+#+CAPTION: Name und Pfad angeben
+#+NAME: fig:name
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/Ubuntu_01.png]]
+
+Unter [[fig:gen][Generation angeben]] wählen wir ~2. Generation~ und bestätigen mit ~Weiter~.
+#+CAPTION: Generation angeben
+#+NAME: fig:gen
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvPrepare_04.png]]
+
+Unter [[fig:ram][Speicher zuweisen]] überprüft man, dass die Checkbox vor ~Dynamischen Arbeitsspeicher für diesen virtuellen Computer verwenden~ , gewählt ist. Viele Weisen der VM von Anfang an ~2048 MB~ zu, das ist aber nicht notwendig, da sie den Speicher zugewiesen bekommt, den sie braucht. Wir bestätigen mit ~Weiter~.
+#+CAPTION: Speicher zuweisen
+#+NAME: fig:ram
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvPrepare_05.png]]
+
+Unter [[fig:network][Netzwerk konfigurieren]] wählt man im Dropdownmenü ~Verbindung~ den Eintrag ~Default Switch~ und bestätigt mit ~Weiter~.
+#+CAPTION: Netzwerk konfigurieren
+#+NAME: fig:network
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvPrepare_06.png]]
+
+Nun muss man eine [[fig:disk][Virtuelle Festplatte erstellen]]. Diese begrenzen wir unter ~Größe~ auf ~40~ GB.
+#+CAPTION: Virtuelle Festplatte erstellen
+#+NAME: fig:disk
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvPrepare_07.png]]
+
+Unter [[fig:install_options][Installationsoptionen]] wählen wir die Option ~Installation von einer startbaren Imagedatei installieren~. Da klickt man neben ~Imagedatei (ISO)~ auf durchsuchen und wählt das ISO-Image ~ubuntu-22.04.1-desktop-amd64.iso~ aus dem Downloadsordner. Und schließt die Vorbereitung mit ~[Fertig stellen]~ ab.
+#+CAPTION: Installationsoptionen
+#+NAME: fig:install_options
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/Ubuntu_03.png]]
+
+Nun wählt man rechts in HyperV unter dem Servernamen den Menüpunkt ~Einstellungen~. Im neuen Fenster wählt man links [[fig:save_start][Hardware → Sicherheit]]. Rechts entfernt man den Haken in der Checkbox vor ~Sicheren Start aktivieren~, da diese Option zu Problemen beim Start von Linux führt.
+
+#+CAPTION: Einstellungen → Hardware → Sicherheit
+#+NAME: fig:save_start
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/Ubuntu_04.png]]
+
+Abschließend müssen unter [[fig:guest_additions][Einstellungen → Verwaltung → Integrationsdienste]] die ~Gastdienste~ ausgewählt und die Einstellungen mit ~[OK]~ geschlossen werden.
+#+CAPTION: Einstellungen → Verwaltung → Integrationsdienste
+#+NAME: fig:guest_additions
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvPrepare_10.png]]
+
+Abschließend wählt man rechts in HyperV unter dem Server [[fig:connect][Verbinden]]. 
+#+CAPTION: Verbinden
+#+NAME: fig:connect
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvPrepare_11.png]]
+
+
+*** Installation des Images
+
+  Im neuen Fenster muss man nun auf ~Starten~ klicken und danach *SOFORT!* [[fig:press_key][Taste drücken, um Installation zu starten]].
+
+  #+CAPTION: Taste drücken, um Installation zu starten
+  #+NAME: fig:press_key
+  #+ATTR_HTML: :width 50%
+  #+ATTR_LATEX: :width .65\linewidth
+  #+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/Ubuntu_install_00.png]]
+  Im [[fig:bootmenu][Bootmenü]] wählt man nun den ersten Punkt ~Try or Install Ubuntu~.
+  #+CAPTION: Bootmenü
+  #+NAME: fig:bootmenu
+  #+ATTR_HTML: :width 50%
+  #+ATTR_LATEX: :width .65\linewidth
+  #+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/Ubuntu_install_01.png]]
+
+  Ubuntu startet nun ein Livesystem, in dem man Ubuntu zunächst ausprobieren kann. Wir wählen aber den Eintrag ~Install Ubuntu~, um die [[fig:install_ubuntu][Installation zu starten]].
+  #+CAPTION: Installation starten
+  #+NAME: fig:install_ubuntu
+  #+ATTR_HTML: :width 50%
+  #+ATTR_LATEX: :width .65\linewidth
+  #+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/Ubuntu_install_02.png]]
+
+  Nun kann man das [[fig:keyboard][Tastaturlayout wählen]]: in beiden Spalten wählt man ~German~.
+  #+CAPTION: Tastaturlayout wählen
+  #+NAME: fig:keyboard
+  #+ATTR_HTML: :width 50%
+  #+ATTR_LATEX: :width .65\linewidth
+  #+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/Ubuntu_install_03.png]]
+
+  Unter [[fig:updates_other_software][Updates and other software]] reicht es, die ~Minimal Installation~ zu wählen. Man sollte
+  außerdem die Checkbox vor ~Install updates while installing Ubuntu~ aktivieren, um ein
+  aktuelles System zu erhalten.
+  #+CAPTION: Updates and other software
+  #+NAME: fig:updates_other_software
+  #+ATTR_HTML: :width 50%
+  #+ATTR_LATEX: :width .65\linewidth
+  #+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/Ubuntu_install_04.png]]
+
+Als  [[fig:install_type][Installation type]] sollte der erste Punkt ~Erase disk and install Ubuntu~ gewählt und
+dann mit ~[Install now]~ die Installation gestartet werden.
+  #+CAPTION: Installation type
+  #+NAME: fig:install_type
+  #+ATTR_HTML: :width 50%
+  #+ATTR_LATEX: :width .65\linewidth
+  #+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/Ubuntu_install_05.png]]
+
+Es erscheint ein Fenster mit dem Titel [[fig:erase_disk][Write changes to disk]], dass zusammenfasst, welche
+Festplatte überschrieben wird und welche Partitionen erstellt werden. Man bestätigt mit ~[Continue]~.
+#+CAPTION: Write changes to disk
+#+NAME: fig:erase_disk
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/Ubuntu_install_06.png]]
+#+LaTeX: \clearpage
+** Postinstallation
+Nachdem alle Pakete installiert sind, kann als [[fig:time_zone][Zeitzone]] ~Berlin~ wählen.
+#+CAPTION: Zeitzone
+#+NAME: fig:time_zone
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/Ubuntu_install_07.png]]
+
+Dann muss man einen [[fig:create_user][Benutzer erstellen]], außerdem erstellt man unter ~Your computer's name~ den /Hostnamen/, dieser sollte kürzer sein, als der Vorschlag, z. B. ~Ubuntu1~, da man ihn später öfter in Terminalkommandos eingeben muss. Jede VM braucht aber einen /eindeutigen/ Namen.
+#+CAPTION: Benutzer erstellen 
+#+NAME: fig:create_user
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/Ubuntu_install_08.png]]
+
+
+Nun muss man die [[fig:restart][VM neu starten]] in dem man auf ~[Restart now]~ klickt.
+#+CAPTION: VM neu starten
+#+NAME: fig:restart
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/Ubuntu_install_09.png]]
+
+Nun erscheint ein [[fig:bootscreen][Bootscreen]] bis das System neu gestartet ist.
+#+CAPTION: Bootscreen
+#+NAME: fig:bootscreen
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/Ubuntu_install_10.png]]
+
+#+LaTeX: \clearpage
+** Benutzer einrichten
+Es wird nun ein letzter Einrichtungsassistent gestartet. Mit ~[Skip]~ (oben rechts) überspringt man die Verknüpfung mit [[fig:online_account][Online Accouts]].
+#+CAPTION: Online Accouts
+#+NAME: fig:online_account
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/Ubuntu_install_11.png]]
+
+Die Nutzung des [[fig:livepatch][Livepatch]]-Services überspringt man mit ~[Next]~.
+#+CAPTION: Livepatch
+#+NAME: fig:livepatch
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/Ubuntu_install_12.png]]
+
+Auch die Übermittlung von [[fig:telemetrie][Telemetrie]] lehnt man mit ~[Next]~ ab. 
+#+CAPTION: Telemetrie
+#+NAME: fig:telemetrie
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/Ubuntu_install_13.png]]
+
+Ebenso die Ermittlung von [[fig:location][Standortdaten]].
+#+CAPTION: Standortdaten
+#+NAME: fig:location
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/Ubuntu_install_14.png]]
+
+Am Ende wird man noch auf [[fig:software][Software]] aufmerksam gemacht, die man installieren könnte. Mit ~[Done]~ überspringt man diesen Punkt.
+#+CAPTION: Software
+#+NAME: fig:software
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/Ubuntu_install_16.png]]
+
+Der Updateassistent kann genutzt werden, um [[fig:updates][Updates]] für sämtliche installierte Software einzuspielen. Man sollte jedes System immer aktuell halten, kann unter Linux aber immer frei wählen, wann man Updates einspielt.
+#+CAPTION: Updates
+#+NAME: fig:updates
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/Ubuntu_install_17.png]]

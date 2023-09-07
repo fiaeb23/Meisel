@@ -1,0 +1,92 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: Personal bis Global Area Network
+#+SUBTITLE: Untertitel
+#+AUTHOR: Sebastian Meisel
+
+* Personal bis Global Area Network
+
+Je nach Größe, Funktionalität und Zweck unterscheidet man zwischen verschiedenen Netzwerktypen. Während PANs und LANs auch im privaten Umfeld genutzt werden, werden MANs, WANs und GANs hauptsächlich von Unternehmen und anderen großen Organisationen genutzt.
+
+#+REVEAL: split
+
+#+CAPTION: PAN, LAN, MAN, WAN und GAN
+#+NAME: fig:gan
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/P_L_M_W_GAN.png]]
+
+* Personal Area Network (PAN): 
+
+Es ist ein kleines Netzwerk, das Geräte in unmittelbarer Nähe zueinander verbindet, z.B. Mobiltelefone, Computermäuse und Laptops.
+
+ Meist werden hier /Peer-to-Peer/-Netzwerke genutzt. Typische Protokoll sind Bluetooth, ZigBee oder USB.
+
+* Local Area Network (LAN): 
+
+Es ist ein Netzwerk, das Geräte in einem kleinen geografischen Bereich miteinander verbindet, z.B. in einem Büro oder einem Haus.
+
+ Typische Protokoll sind hier Ethernet und TCP/IP.
+
+* Metropolitan Area Network (MAN): 
+
+Es ist ein größeres Netzwerk, das Geräte in einer Stadt oder einem Großraum verbindet.
+
+In der Regel geht es darum, dass die *LANs* eines oder mehrer kooperierender Unternehmen in einer Stadt oder einem Großraum mit sicher und mit einer verlässlichen Verbindungsqualität – /Quality of Service (QoS)/ – verbunden werden. 
+
+Dafür waren ursprünglich teure dezidierte Leitungen notwendig. Dank moderner Protokolle, wie /Switched Multimegabit Data Service (SMDS)/ ist es möglich, dass Unternehmen ein gemeinsames Netz nutzen und dabei flexible Bandbreite buchen können. 
+
+#+BEGIN_NOTES
+ Weitere wichtige Protokolle sind:
+
+ - *Metro-Ethernet*: eine Anpassung des Ethernet-Protokolls an die Erfordernisse größerer auf Glasfasertechnik basierender Netzwerke. 
+ - *Wireless Metropolitan Area Network (WMAN = WiMAX):* Wireless Protokoll für /MANs/. 
+#+END_NOTES
+
+
+
+* Wide Area Network (WAN) - deutsch: Weitverkehrsnetz: 
+
+Es ist ein Netzwerk, das Geräte über große Entfernungen hinweg verbindet, z.B. über mehrere Städte, Länder oder sogar Kontinente erstreckt. 
+
+Dies können Netzwerke sein, die von Internetanbietern genutzt werden, um die Daten ihrer Kunden zu transportieren und diese an das Internet anzubinden.
+
+#+BEGIN_NOTES
+Es gibt aber auch *WANs* die von einzelnen Organisationen betrieben werden. Allerdings betrifft dies in der Regel auf Grund der hohen Kosten nicht die physische Infrastruktur, die von Netzbetreibern gestellt wird.
+#+END_NOTES
+
+Im *WAN* stelle sich viele einzigartige Anforderungen sowohl an die Übertragungsmedien, als auch an die genutzten Protokolle. 
+#+BEGIN_NOTES
+Ein Problem stellt z. B. die Vielzahl unterschiedlicher Datenströme dar, die über dasselbe Medium gleichzeitig übertragen werden müssen. Ein anderes Problem ergibt sich aus den großen Entfernungen, die ohne Datenverlust überwunden werden müssen.
+
+Typische Protokolle sind:
+ - *Carriergrade Ethernet (CE)* - statt Ethernet
+ - *Multiprotocol Lable Switching (MPLS)* - statt IP
+ - *Plesiochrone Digital Hierarchie (PDH)* - statt Ethernet
+ - *Sychrchrone Digital Hierarchie (SDH)* - statt Ethernet
+ - *Synchronous Optical Network (SONET)* - statt Ethernet
+ - *Asynchronous Transfer Mode (ATM)* - statt Ethernet
+
+#+END_NOTES
+
+* Global Area Network (GAN): 
+
+Es ist ein Netzwerk, das Geräte auf der ganzen Welt miteinander verbindet, z.B. das Internet.
+
+Weltweit agierende Unternehmen und Organisationen betreiben eigene GAN-Netzwerke, die aber auf die Infrastruktur des Internets zurückgreifen. Im Prinzip ist ein GAN, das größte denkbare WAN.
+

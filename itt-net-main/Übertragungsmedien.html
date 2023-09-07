@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Übertragungsmedien</title>
+<meta name="author" content="Sebastian Meisel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/league.css" id="theme"/>
+
+<link rel="stylesheet" href="./mystyle.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Übertragungsmedien</h1><p class="subtitle">ITT-Netzwerk</p>
+<h2 class="author">Sebastian Meisel</h2>
+</section>
+
+<section>
+<section id="slide-org88f1ad3">
+<h2 id="org88f1ad3">Eigenschaften von Übertragungsmedium</h2>
+<div class="outline-text-2" id="text-org88f1ad3">
+</div>
+</section>
+<section id="slide-orga52b411">
+<h3 id="orga52b411">Bandbreite</h3>
+<p>
+Die <b>Bandbreite</b> sagt aus, wie viele <i>Datenbits</i> über eine Netzwerkverbindung in einer
+Sekunde übertragen werden kann.
+</p>
+
+<p>
+In Netzwerken sind Kilo- Mega- oder Gigabit pro Sekunde als Einheiten üblich. 
+</p>
+
+<p>
+Im wesentlichen hängt die Bandbreite von der Übertragungs-<i>Frequenz</i> und der Anzahl der
+Übertragungs-<i>kanäle</i>, z. B. die Anzahl der Leitungen.
+</p>
+
+<aside class="notes">
+<p>
+Die <i>maximale</i> <b>Bandbreite</b> hängt zudem von der <i>Reichweite</i> ab, über die die Signale
+übertragen werden sollen und der <i>Dämpfung</i>.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org04de078">
+<h3 id="org04de078">Reichweite</h3>
+<p>
+In den <i>Protokollen</i> zur Datenübertragung wird bestimmt, wie weit ein <i>Signal</i> in einer
+bestimmten <i>Bandbreite</i> verlustfrei übertragen werden kann. Während bei <i>kabelgebundenen</i>
+Medien vor allem die Eigenschaften des Kabels die <b>Reichweite</b> bestimmen, gibt es bei
+<i>kabellosen</i> Verbindungen in der Regel viele Faktoren, die die <b>Reichweite</b> beeinflussen. 
+</p>
+
+<aside class="notes">
+<p>
+Die können Hindernisse, Störfrequenzen, aber auch die Luftfeuchtigkeit sein.
+</p>
+
+</aside>
+
+
+
+</section>
+<section id="slide-org4a0ffb6">
+<h3 id="org4a0ffb6">Frequenz</h3>
+
+<div class="figure">
+<p><img src="Bilder/Frequenz.png" alt="Frequenz.png" width="50%" />
+</p>
+</div>
+
+<p>
+Signale durch die sogenannte <i>Modulation</i> eines <i>Trägersignals</i> übertragen.
+</p>
+<aside class="notes">
+<p>
+D. h. das bestimmte Eigenschaften verändert werden.
+</p>
+
+</aside>
+<p>
+Das <i>Trägersignal</i> ist dabei entweder eine Sinuswelle oder eine Folge von Impulsen, wobei
+ein Strom oder Lichtsignal an und ausgeschaltet wird. Die <b>Frequenz</b> wird in (Mega-, Kilo-,
+Giga-)Hertz gemessen und gibt an, wie oft die Welle in einer Sekunde hin und her
+schwingt, bzw. wie viele Ein-/Ausschaltvorgänge in einer Sekunde geschehen. 
+</p>
+
+<aside class="notes">
+
+<div class="figure">
+<p><img src="Bilder/Digitales_Signal.png" alt="Digitales_Signal.png" width="50%" />  
+</p>
+<p><span class="figure-number">Abbildung 2: </span>Digitales Signal</p>
+</div>
+
+<p>
+Je höher die <b>Frequenz</b> desto mehr Schwingungen. Die Bandbreite hängt dann davon ab, wie
+hoch die Frequenz ist, und wie viele Schwingungen für die Übertragung eines <i>Bits</i> notwendig
+sind. 
+</p>
+
+</aside>
+
+
+</section>
+<section id="slide-org5a6c930">
+<h3 id="org5a6c930">Dämpfung</h3>
+
+<div class="figure">
+<p><img src="Bilder/Dämpfung.png" alt="Dämpfung.png" width="50%" />
+</p>
+</div>
+
+<p>
+Das Trägersignal hat neben der <i>Frequenz</i> auch eine <i>Signalstärke</i>. Mit der Zeit / Distanz nimmt die
+<i>Signalstärke</i> ab, weil Energie "verloren" geht. Irgendwann ist sie so schwach, dass die
+Signale nicht mehr (verlässlich) erkannt werden können.
+</p>
+
+<aside class="notes">
+<p>
+Energie kann niemals wirklich verloren gehen, sie wird aber zum Beispiel in Wärme
+umgewandelt. 
+</p>
+
+</aside>
+
+<p>
+Wie schnell die <i>Signalstärke</i> abnimmt wird mit der Dämpfung angegeben. Je höher die Dämpfung
+desto kurzer die <i>Reichweite</i>. 
+</p>
+
+<aside class="notes">
+<p>
+Die Dämpfung wird in <i>Dezibel (Db)</i> angegeben. Diese Skala ist nicht linear sondern
+logarithmisch, d .h. dass anfangs kleine Erhöhungen der Dezibel sich relativ stark
+auswirken, dann aber immer weniger.
+</p>
+
+<p>
+Bei etwa 6 Db hat sich die Ausgangsleistung gegenüber der Eingangsleistung halbiert. Bei
+20 Db sind doch etwa 10 % Leistung vom Ausgangssignal übrig.   
+</p>
+
+</aside>
+
+
+</section>
+<section id="slide-org21a1605">
+<h3 id="org21a1605">Duplexfähigkeit</h3>
+<p>
+Eine wichtige Eigenschaft ist auch die Frage in welche Richtung Daten übertragen werden
+können. Man unterscheidet dabei zwischen:
+</p>
+
+<ul>
+<li class="fragment appear"><b>Simplex (SX)</b> oder Richtungsbetrieb, wobei Daten nur in eine Richtung übertragen werden
+können. Dies gibt es in der Netzwerktechnik nur in Form von:</li>
+
+</ul>
+<ul>
+<li class="fragment appear"><b>Dual-Simplex (DSX)</b> wobei zwei getrennte Leitungen für  das Senden und Empfangen von
+Daten genutzt werden.</li>
+
+</ul>
+<ul>
+<li class="fragment appear"><b>Halbduplex (HX/HDX)</b> oder Wechselbetrieb: Daten werden abwechselnd gesendet und
+empfangen.</li>
+<li class="fragment appear"><b>Vollduplex (DX/FDX)</b> oder Gegenbetrieb: Daten werden gleichzeitig in beide Richtungen übertragen.</li>
+
+</ul>
+
+</section>
+<section id="slide-orga21f795">
+<h3 id="orga21f795">Störsicherheit</h3>
+<p>
+Bei der <i>Signalübertragung</i> gibt es verschiedene Signale, die zu <b>Störungen</b> führen
+können. So können sich elektromagnetischen Felder überlagern, Signale können reflektiert
+werden, Hindernisse können Funksignal stören, etc.
+</p>
+
+<p>
+Die <b>Störsicherheit</b> beschreibt, wie gut eine <i>Medium</i> gegen solche Störungen <i>abgeschirmt</i> ist.
+</p>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org0d459a6">
+<h2 id="org0d459a6">Kabelgebundene Medien</h2>
+<ul>
+<li class="fragment appear">Vorteile (gegenüber kabellosen):
+<ul>
+<li>Bessere Abhörsicherheit.</li>
+<li>Geringerer Energieverbrauch.</li>
+<li>Höhere Störsicherheit.</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="slide-orgddffc04">
+<h3 id="orgddffc04">Kupferkabel</h3>
+<p>
+Kupfer ist das am häufigsten genutzte Übertragungsmedium. Kupfer ist hochverfügbar, ist
+ein guter Leiter und vergleichsweise flexibel.
+</p>
+
+<p>
+Es gibt verschiedene Verarbeitungen des Materials als Kabel.
+</p>
+
+<aside class="notes">
+<p>
+Bei Kupferkabeln spielen noch zwei Eigenschaften eine Rolle:
+</p>
+
+<ul>
+<li><b>LSZH</b> (Low smoke zero halogen) oder <b>LS0H</b> sind halogenfreie Kabel, die bei einen Kabel
+oder Gebäudebrand weniger giften Rauch und vor allem eben kein Halogene abgeben,
+dass besonders gesundheits- und umweltschädlich ist.</li>
+<li><b>CCA</b> (Copper Clad Aluminium ) statt 100% Kupferkabel sind eigentlich Aluminiumkabel, die
+nur mit Kupfer umhüllt sind. Sie nutzte die Tatsache aus, dass Elektronen sich in Kabeln
+hauptsächlich an der Oberfläche bewegen. Sie sind billiger, aber
+<ul>
+<li>weniger flexibel.</li>
+<li>brechen leichter.</li>
+<li>haben eine höhere Dämpfung.</li>
+
+</ul></li>
+
+</ul>
+
+</aside>
+
+
+</section>
+<section id="slide-orgab9927b">
+<h4 id="orgab9927b">Koaxial</h4>
+
+<div class="figure">
+<p><img src="Bilder/Koax-Kabel.png" alt="Koax-Kabel.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 4: </span>Koaxialkabel</p>
+</div>
+
+<aside class="notes">
+<p>
+
+</p>
+
+<p>
+Während Koaxialkabel anfangs das meist genutzte <i>Übertragsmedium</i> waren, werden sie heute
+kaum noch genutzt.
+</p>
+
+<p>
+Ein zentrales Kupferkabel ist umgeben von einem Isolator, der von einem <i>Flechtschirm</i>
+umgeben ist. Ohne diesen wäre das Kabel eine Antenne, was zu elektromagnetischen
+Störungen führen würde. Ganz außen wird es noch mit einem Gummi-, Kunststoff oder
+Teflon-Mantel geschützt.  
+</p>
+
+<ul>
+<li>Vorteile:
+<ul>
+<li>Günstig.</li>
+<li>Leicht.</li>
+<li>Biegsam.</li>
+
+</ul></li>
+<li>Nachteile
+<ul>
+<li>Nur ein Kabel: Begrenzte Bandbreite.</li>
+
+</ul></li>
+
+<li><b>Thicknet</b> (IEEE 802.3 Clause 8), auch <b>Yellow Cable</b>:
+<ul>
+<li>10 Mbit/s über 500m.</li>
+<li>Halbduplex.</li>
+<li>Vollduplex.</li>
+<li>Sehr störsicher.</li>
+<li>geringe Dämpfung.</li>
+
+</ul></li>
+
+<li><b>Thinnet</b> (IEEE 802.3 Clause 10):
+<ul>
+<li>Reichweite 185m</li>
+<li>0,5 cm Durchmesser,</li>
+<li>Anbindung an Computer über T-Stück.</li>
+
+</ul></li>
+
+</ul>
+
+</aside>
+
+
+</section>
+<section id="slide-orga790f66">
+<h4 id="orga790f66">Twisted Pair</h4>
+
+<div class="figure">
+<p><img src="Bilder/S-FTP-Kabel_3D.png" alt="S-FTP-Kabel_3D.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 5: </span>S-FTP Twisted-Pair-Kabel</p>
+</div>
+
+<p>
+<b>Twisted-Pair-Kabel</b> sind die am häufigsten eingesetzten Kabel in der Netzwerktechnik. Die
+allgemein bekannten Cat-Kabel mit RJ45-Stecker setzen alle auf diese Technik.
+</p>
+
+<aside class="notes">
+<p>
+
+Um höhere <b>Bandbreiten</b> zu erreichen, drängt sich der Gedanke auf, mehrere Kabel zu
+verwenden. Allerdings würden sich mehrere <i>Koaxialkabel</i> als Adern im selben Kabel verlegt werden gegenseitig stören.  
+</p>
+
+<p>
+Verdrillt man aber <i>zwei Adern</i> miteinander werden diese <i>Störungen</i> stark minimiert. 
+</p>
+
+<p>
+Zwar erreicht man nicht dieselbe <i>Reichweite</i>, wie bei <i>Koaxialkabeln</i> - die Reichweite von
+<b>Twisted-Pair-Kabeln</b> liegt bei maximal 100 m, gegenüber bis zu 500 m bei <i>Koaxialkabeln</i> -
+dafür erreicht man aber eben deutlich höhere Übertragungsraten.
+</p>
+
+<p>
+Allerdings nehmen die <i>Störungen</i> mit höheren <i>Frequenzen</i> zu, sodass zusätzliche Maßnahmen
+nötig sind, um eine ausreichende <i>Reichweite</i> zu gewährleisten.
+</p>
+
+<p>
+In der Regel werden 4 <i>Adernpaare</i> verlegt.
+</p>
+
+</aside>
+
+
+
+</section>
+<section id="slide-org6b4bc42">
+<h5 id="org6b4bc42">UTP: Unshielded Twisted Pair</h5>
+
+<div class="figure">
+<p><img src="Bilder/UTP-Kabel.png" alt="UTP-Kabel.png" width="30%" />
+</p>
+<p><span class="figure-number">Abbildung 6: </span>UTP-Kabel</p>
+</div>
+
+<p>
+Einfachste Form eines <b>Twisted-Pair-Kabels</b>.
+</p>
+
+
+</section>
+<section id="slide-org1d536f4">
+<h5 id="org1d536f4">STP Shielded Twisted Pair</h5>
+
+<div class="figure">
+<p><img src="Bilder/STP-Kabel.png" alt="STP-Kabel.png" width="30%" />
+</p>
+<p><span class="figure-number">Abbildung 7: </span>STP-Kabel</p>
+</div>
+
+<p>
+Gegenüber dem <i>UTP-Kabel</i> hat das <b>STP</b>-Kabel um jedes <i>Adernpaar</i> einen Folienschirm, der
+verhindert, dass sich die <i>Adernpaare</i> gegenseitig stören. 
+</p>
+
+</section>
+<section id="slide-org7bf35da">
+<h5 id="org7bf35da">SUTP Screened-Unshielded Twisted Pair</h5>
+
+<div class="figure">
+<p><img src="Bilder/SUTP-Kabel.png" alt="SUTP-Kabel.png" width="30%" />
+</p>
+<p><span class="figure-number">Abbildung 8: </span>S/UTP-Kabel</p>
+</div>
+
+<p>
+Gegenüber dem  <i>UTP</i>-Kabel verfügt das <b>S/UTP</b>-Kabel über einer Abschirmung um das
+gesamte Kabel, sodass weniger abstrahlt und vor <i>Störungen</i> von außen gesichert ist. 
+</p>
+
+<aside class="notes">
+<p>
+Dieser Außenschirm ist wie beim <i>Koaxialkabel</i> in der Regel ein Metallnetz. 
+</p>
+
+</aside>
+
+
+</section>
+<section id="slide-orge87fc4e">
+<h5 id="orge87fc4e">S/FTP Screened-Foiled Twisted Pair</h5>
+
+<div class="figure">
+<p><img src="Bilder/S-FTP-Kabel.png" alt="S-FTP-Kabel.png" width="30%" />
+</p>
+<p><span class="figure-number">Abbildung 9: </span>S/FTP-Kabel</p>
+</div>
+
+<p>
+Das <b>S/FTP</b>-Kabel verbindet die Eigenschaften von <i>STP</i>- und <i>S/UTP</i>-Kabel, verfügt also über
+einen Adern- und einem Gesamtschirm. 
+</p>
+
+<aside class="notes">
+<p>
+Dadurch sind höhere <i>Frequenzen</i> und damit eine höhere <i>Bandbreite</i> möglich, die
+zusätzlichen Schilde mache das Kabel aber auch steifer, sodass es sich nicht so leicht
+verlegen lässt.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org91f7f4b">
+<h4 id="org91f7f4b">CAT Kabel mit RJ45-Stecker</h4>
+<p>
+Zur Zeit sind CAT-Kabel mit dem RJ45-Stecker die wichtigsten Kabel im Netzwerkbereich,
+weshalb wir sie gesondert betrachten.
+</p>
+
+
+<div class="figure">
+<p><img src="Bilder/RJ45.png" alt="RJ45.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 10: </span>Pinbelegung auf RJ45-Steckern</p>
+</div>
+
+
+
+
+</section>
+<section id="slide-orgc7d3752">
+<h3 id="orgc7d3752">Glasfaser</h3>
+<p>
+In <b>Glasfaser</b>-Kabeln werden Signale mit Lasern oder LED-Licht im inneren einer sehr dünnen <b>Glas</b>-,
+seltener einer <b>Kunststoff</b>-Röhre. 
+</p>
+
+<ul>
+<li class="fragment appear">Vorteile:</li>
+
+</ul>
+<ul>
+<li class="fragment appear">hohe Bandbreite.</li>
+<li class="fragment appear">sehr hohe Störsicherheit (keine elektromagnetische Beeinflussung).</li>
+<li class="fragment appear">hohe Abhörsicherheit.</li>
+<li class="fragment appear">Geringer Energieverbrauch.</li>
+<li class="fragment appear">Hohe Reichweite (abhängig von der Kabelart).</li>
+
+</ul>
+<ul>
+<li class="fragment appear">Nachteile:</li>
+
+</ul>
+<ul>
+<li class="fragment appear">teure Anschaffung.</li>
+<li class="fragment appear">nicht sehr flexibel, zerbrechlich (außer Kunststoffkabel).</li>
+<li class="fragment appear">In der Regel nur <i>dual-simplex</i>-fähig.</li>
+
+</ul>
+
+</section>
+<section id="slide-org5b8e529">
+<h4 id="org5b8e529">Multimode</h4>
+<p>
+<b>Multimode</b>-Glasfasern übertragen gleichzeitig mehrere Signale (<b>Moden</b>). Dies klingt nach
+einem Vorteil, allerdings sind dies die (vergleichsweise) billigeren Kabel. In einem
+Kern mit einem vergleichsweise großen <i>Kern</i> von <b>50 µm</b> werden die Laser in einem Winkel
+eingestrahlt und reflektiert. 
+</p>
+
+</section>
+<section id="slide-org3e91fc4">
+<h5 id="org3e91fc4">mit Stufenindex</h5>
+
+<div class="figure">
+<p><img src="Bilder/Multimode__SI_Fiber.png" alt="Multimode__SI_Fiber.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 11: </span>Multimode Glasfaser mit Stufenindex</p>
+</div>
+
+<p>
+In <b>Multimode</b>-Glasfasern mit <b>Stufenindex</b> werden die Lichtstrahlen hart am Kernrand reflektiert.
+Das führt dazu, dass die Signale verschiedene Laufzeiten haben.
+</p>
+
+<aside class="notes">
+<ul>
+<li>Vorteil:
+<ul>
+<li>Günstige Herstellung.</li>
+
+</ul></li>
+<li>Nachteile (Im Vergleich zu anderen Glasfasern):
+<ul>
+<li>geringe Bandbreite.</li>
+<li>mittlere Dämpfung.</li>
+<li>geringe Reichweite.</li>
+
+</ul></li>
+
+</ul>
+
+<p>
+Die <i>Bandbreite</i> ist immer noch höher als bei Kupferkabeln. 
+</p>
+
+</aside>
+
+</section>
+<section id="slide-orgc28d5b6">
+<h5 id="orgc28d5b6">mit Gradientindex</h5>
+
+<div class="figure">
+<p><img src="Bilder/Multimode__GI_Fiber.png" alt="Multimode__GI_Fiber.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 12: </span>Multimode Glasfaser mit Gradientindex</p>
+</div>
+
+<p>
+Die Wand des Kerns ist speziell gearbeitet, sodass das Licht weich in einer Kurve
+(<b>Gradient</b>) reflektiert wird, sodass alle Signale (fast) die selbe Laufzeit haben.
+</p>
+
+<aside class="notes">
+<ul>
+<li>Vorteil (gegenüber Stufenindex):
+<ul>
+<li>hohe Bandbreite.</li>
+<li>geringe Dämpfung.</li>
+<li>kaum <i>Modendispersion</i> = Signal haben fast gleiche Laufzeit.</li>
+
+</ul></li>
+
+</ul>
+
+</aside>
+
+
+</section>
+<section id="slide-orgc9d96e9">
+<h4 id="orgc9d96e9">Single Mode</h4>
+
+<div class="figure">
+<p><img src="Bilder/Single_Mode_Fiber.png" alt="Single_Mode_Fiber.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 13: </span>Single Mode Glasfaser</p>
+</div>
+
+<p>
+Bei der <b>Mono-</b> oder <b>Single-Mode</b>-Glasfaser wird ein Laser parallel zum Kern eingespeist. Der Kern hat
+einen sehr kleinen Durchmesser von <b>9 µm</b>. Das Kabel muss absolut gerade verlegt werden,
+sodass es im Kern nicht zu Reflexionen kommt. 
+</p>
+
+<aside class="notes">
+<ul>
+<li>Vorteile:
+<ul>
+<li>sehr hohe Bandbreite.</li>
+<li>fast keine Dämpfung.</li>
+<li>sehr hohe Reichweite.</li>
+
+</ul></li>
+<li>Nachteile:
+<ul>
+<li>sehr teuer in Herstellung.</li>
+<li>aufwendige Verlegung.</li>
+
+</ul></li>
+
+</ul>
+
+<p>
+Diese Technik wird vor allem im <b>Backbone</b> des Internets also die zentralen
+Langstreckenverbindungen genutzt. 
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org807d1ea">
+<h2 id="org807d1ea">Kabellose Medien</h2>
+<p>
+Vorteile:
+</p>
+<ul>
+<li>Keine Baumaßnahmen notwendig.</li>
+<li>Überall einsetzbar.</li>
+<li>Kostengünstig.</li>
+
+</ul>
+<p>
+Nachteile:
+</p>
+<ul>
+<li>Störanfällig.</li>
+<li>Leichter abhörbar.</li>
+<li>Höher Energieverbrauch.</li>
+
+</ul>
+
+</section>
+<section id="slide-org9fbea26">
+<h4 id="org9fbea26">Funk</h4>
+<p>
+Übertragung von Signalen durch nicht gerichtete elektromagnetische Wellen. Dies breiten
+sich von der Sendeantennen in alle Richtungen kreisförmig aus.
+</p>
+
+<ul>
+<li>Vorteil:
+<ul>
+<li>empfangende Geräte können sich frei im Empfangsbereich bewegen.</li>
+
+</ul></li>
+<li>Nachteile:
+<ul>
+<li>Hohe Störanfälligkeit.</li>
+<li>Besonders leicht abhörbar.</li>
+<li>Hoher Energieverbrauch.</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="slide-org054816c">
+<h5 id="org054816c">WLAN</h5>
+<p>
+<b>WLAN</b> ist eine Umsetzung des Ethernetprotokolls über ungerichtete
+Funkverbindungen. 
+</p>
+
+<p>
+Es ist in der <i>IEEE 802.11</i> normiert, zu der es diverse Erweiterungen gibt.
+Die neueste Version <i>WiFi 6/6E</i> (IEEE 802.11ax) könnte bis zu ca. 9 Gbs übertragen. In
+der Praxis sind maximale Geschwindigkeiten bis ca. 1.2 Gbs realistischer.
+</p>
+
+<aside class="notes">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">WLAN-Generation</th>
+<th scope="col" class="org-left">Wi-Fi 4</th>
+<th scope="col" class="org-left">Wi-Fi 5</th>
+<th scope="col" class="org-left">Wi-Fi 6 / 6E</th>
+</tr>
+
+<tr>
+<th scope="col" class="org-left">IEEE-Standard</th>
+<th scope="col" class="org-left">IEEE 802.11n</th>
+<th scope="col" class="org-left">IEEE 802.11ac</th>
+<th scope="col" class="org-left">IEEE 802.11ax</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Maximale Übertragungsrate<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></td>
+<td class="org-left">600 MBit/s</td>
+<td class="org-left">6.936 MBit/s</td>
+<td class="org-left">9.608 MBit/s</td>
+</tr>
+
+<tr>
+<td class="org-left">Theoretische Übertragungsrate<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></td>
+<td class="org-left">300 MBit/s</td>
+<td class="org-left">867 MBit/s</td>
+<td class="org-left">1.200 MBit/s</td>
+</tr>
+
+<tr>
+<td class="org-left">Maximale Reichweite</td>
+<td class="org-left">100 m</td>
+<td class="org-left">50 m</td>
+<td class="org-left">50 m</td>
+</tr>
+
+<tr>
+<td class="org-left">Frequenzbereich</td>
+<td class="org-left">2,4 + 5 GHz</td>
+<td class="org-left">nur für 5 GHz</td>
+<td class="org-left">2,4 + 5 GHz + 6 GHz</td>
+</tr>
+
+<tr>
+<td class="org-left">Maximale Sende/Empfangseinheiten</td>
+<td class="org-left">4 x 4</td>
+<td class="org-left">8 x 8</td>
+<td class="org-left">8 x 8</td>
+</tr>
+
+<tr>
+<td class="org-left">Antennentechnik</td>
+<td class="org-left">MIMO</td>
+<td class="org-left">(MU-MIMO)</td>
+<td class="org-left">MU-MIMO</td>
+</tr>
+
+<tr>
+<td class="org-left">Maximale Kanalbreite</td>
+<td class="org-left">40 MHz</td>
+<td class="org-left">160 MHz</td>
+<td class="org-left">160 MHz</td>
+</tr>
+
+<tr>
+<td class="org-left">Modulationsverfahren</td>
+<td class="org-left">64QAM</td>
+<td class="org-left">256QAM</td>
+<td class="org-left">1024QAM</td>
+</tr>
+</tbody>
+</table>
+
+</aside>
+
+
+
+</section>
+<section id="slide-org4f08396">
+<h5 id="org4f08396">Mobile Netze</h5>
+<ul>
+<li>(Erste Generation)
+<ul>
+<li>Advanced Mobile Phone Service (AMPS)</li>
+
+</ul></li>
+<li>Zweite Generation (2G):
+<ul>
+<li>Global System for Mobile 13 Kbs 
+<ul>
+<li>GPRS (G): 53,2 Kbs</li>
+<li>EDGE (E): 256 Kbs</li>
+
+</ul></li>
+
+</ul></li>
+<li>Dritte Generation (2G)
+<ul>
+<li>Universal Mobile Telecommunications System (UMTS): 384 Kbs
+<ul>
+<li>HSDPA (H/3,5G/3G+): 7,2 Mbs</li>
+<li>HSDPA+ (H+): 42 Mbs</li>
+
+</ul></li>
+
+</ul></li>
+<li>Vierte Generation (4G)
+<ul>
+<li>Long Term Evolution (LTE): 500 Mbs</li>
+<li>LTE-A (LTE+, 4G+): 1 Gbs</li>
+
+</ul></li>
+<li>5G: bis 10 Gbs</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Die sogenannten Generationen fassen jeweils verschiedene - zum Teil konkurrierende oder
+nur lokal genutzte -  Standards zusammen.
+</p>
+
+<p>
+Zu vielen Standards gibt es zudem Weiterentwicklungen und Erweiterungen. So basieren <i>GPRS</i>
+und <i>EDGE</i> auf <i>GSM</i>. 
+</p>
+
+<p>
+5G widerum baut auf <i>LTE</i> auf.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org8c02acd">
+<h5 id="org8c02acd">Weitere Beispiele:</h5>
+<ul>
+<li>Bluetooth.</li>
+
+</ul>
+<aside class="notes">
+<p>
+<b>Bluetooth</b> dient zur Herstellung von <i>Ad-hoc</i>-Netzwerken zwischen Geräten über kurze
+Distanzen.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Version</th>
+<th scope="col" class="org-left">Leistung</th>
+<th scope="col" class="org-left">Datenrate</th>
+<th scope="col" class="org-left">Reichweite (Innen/Außen)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1 / 1.2</td>
+<td class="org-left">1 mW</td>
+<td class="org-left">732,2 Kbs / 1 Mbs</td>
+<td class="org-left">1 / 10 m</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">1 mW</td>
+<td class="org-left">2,1 Mbs</td>
+<td class="org-left">1 / 10 m</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">2,5 mW</td>
+<td class="org-left">24 Mbs</td>
+<td class="org-left">10 / 50 m</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">4 / 4.2</td>
+<td class="org-left">2,5 mW</td>
+<td class="org-left">25 / 26 Mbs</td>
+<td class="org-left">10 / 50 m</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">5</td>
+<td class="org-left">100 mW</td>
+<td class="org-left">50 Mbs</td>
+<td class="org-left">40 / 200 m</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Seit Version 4 gibt es eine Low-Energy-Spezifikation.   
+</p>
+
+</aside>
+<p>
+ 
+</p>
+<ul>
+<li>Near Field Communications (NFC)</li>
+
+</ul>
+<aside class="notes">
+<p>
+<b>NFC</b> dienst zum Auslesen von <i>RFID</i> Chips. Diese werden über das Funksignal auf sehr kurze
+ Distanz sowohl mit Energie versorgt, als auch Ausgelesen. Außerdem können damit Daten
+ zwischen zwei Geräten ausgetauscht werden.
+</p>
+
+<p>
+Ein <i>RFID-Chip</i> besteht aus einer Antenne/Induktionsspule und einem kleinen Chip.
+</p>
+
+
+<div class="figure">
+<p><img src="Bilder/RFID-Chip.jpg" alt="&quot;RFID-Chip mit Induktionsantenne&quot;" width="50%" />  
+</p>
+<p><span class="figure-number">Abbildung 14: </span><a href="https://commons.wikimedia.org/w/index.php?curid=7438963">RFID . von Kalinko, CC BY-SA 3.0</a></p>
+</div>
+
+</aside>
+<p>
+ 
+</p>
+<ul>
+<li>ZigBee.</li>
+<li>Matter</li>
+
+</ul>
+<aside class="notes">
+<p>
+<b>ZigBee</b> und <b>Matter</b> sind Beispiele für Netzwerkstandards, die  vor allem für die Vernetzung
+ von <i>Internet of Things (IoT)</i>-Hardware. Sie werden hauptsächlich in der <i>Home Automation</i>,
+ also zur Vernetzung und Steuerung von Geräten, wie Smart-Steckdosen, ~Lichtern,
+ ~Thermostaten, etc. genutzt. Sie sind wie Bluetooth auf kurze Entfernungen ausgelegt,
+ verbrauchen aber weniger Energie.
+</p>
+
+<p>
+<b>Matter</b> soll dabei als gemeinsamer Standard die Geräte vieler verschiedener Hersteller
+ verknüpfen, die bisher auf eigene Netzwerkstandard setzen.
+</p>
+
+</aside>
+<p>
+ 
+</p>
+<ul>
+<li>LoRaWAN.</li>
+
+</ul>
+<aside class="notes">
+<p>
+<b>Low Range Wide Area Network (LoRaWAN)</b> ist ein Netzwerkstandars, der es vor allem
+ Sensortechnik erlauben soll Daten mit geringer Bandbreite (<b>0,3 – 50 Kbs</b>) über große
+ Entfernungen (<b>&gt; 10km</b>) auszutauschen.
+</p>
+
+</aside>
+
+
+</section>
+<section id="slide-org0482408">
+<h4 id="org0482408">Richtfunk</h4>
+<p>
+Übertragung von Signalen durch gerichtete elektromagnetische Wellen. Diese werden durch
+spezielle <i>Richtannten</i> auf ein ausgewähltes Ziel ausgerichtet.
+</p>
+
+<ul>
+<li>Vorteile (gegenüber ungerichtetem Funk):
+<ul>
+<li>Hohe Bandbreite.</li>
+<li>Große Reichweite.</li>
+<li>Abhör- und störsicherer.</li>
+
+</ul></li>
+
+</ul>
+
+<aside class="notes">
+<p>
+<b>Richtfunk</b> wird vor allem in den Weitverkehrsnetzen der Telekommunikationsanbieter
+ genutzt, aber auch zur Anbindung in schwer zugänglichen Gebieten.
+</p>
+
+</aside>
+
+
+</section>
+<section id="slide-org87a8480">
+<h4 id="org87a8480">Satellitenkommunikation</h4>
+<p>
+Herstellung einer bidirektionalen Telekommunikation zwischen zwei Bodenstationen.
+</p>
+
+<ul>
+<li>Vorteil:
+<ul>
+<li>Theoretische überall nutzbar.</li>
+<li>Hohe Bandbreite.</li>
+<li>Relativ hohe Abhör- und Störsicherheit.</li>
+<li>Theoretisch unbegrenzte Reichweite.</li>
+
+</ul></li>
+<li>Nachteile:
+<ul>
+<li>Direkte Verbindung zum Satelliten muss aufrecht erhalten werden:
+<ul>
+<li>geostationäre oder sehr viele Satelliten notwendig.</li>
+
+</ul></li>
+<li>Hohe Kosten bei der Herstellung und Positionierung der Satelliten.</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="slide-org6b2a0c9">
+<h4 id="org6b2a0c9">Infrarot</h4>
+<p>
+Es gibt im verschiedene Ansätze die mit Infrarotsignalen Daten übertragen:
+</p>
+
+<ul>
+<li><b>IrDA</b>: Datenaustausch zwischen Geräten auf kurzer Distanz. 
+<ul>
+<li>Vorteile:
+<ul>
+<li>vergleichsweise große Bandbreite.</li>
+<li>Hohe Stör- und Abhörsicherheit.</li>
+
+</ul></li>
+<li>Nachteile:
+<ul>
+<li>Sichtverbindung notwendig.</li>
+
+</ul></li>
+
+</ul></li>
+<li><b>Optische Freiraumkommunikation (FSO)</b>: Datenübertragung per (Infrarot-)Laser.
+<ul>
+<li>Vorteile:
+<ul>
+<li>Sehr hohe Bandbreite.</li>
+<li>Reichweite bis zu einigen Kilometern.</li>
+
+</ul></li>
+<li>Nachteile:
+<ul>
+<li>Sichtverbindung notwendig.</li>
+<li>Störanfällig vor allem durch Streuung (Nebel).</li>
+
+</ul></li>
+
+</ul></li>
+
+</ul>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes]
+});
+
+</script>
+</body>
+</html>

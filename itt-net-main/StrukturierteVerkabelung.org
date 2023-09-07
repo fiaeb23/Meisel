@@ -1,0 +1,77 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: Strukturierte Verkabelung
+#+SUBTITLE: IT Technik - Netzwerkgrundlagen
+#+AUTHOR: Sebastian Meisel
+
+* Strukturierte Verkabelung
+
+Die *Strukturierte Verkabelung* wird auch *Universelle Kommunikationsverkabelung (UKV)*
+genannt. Es handelt sich dabei um verschiedene Normen (Europa /EN 50173/ und /EN 5074/,
+international /ISO // IEC 11801/), die festlegen, wie Netzwerk- und ähnliche Kabel *zwischen*
+und *in Gebäuden* verlegt werden.
+
+Dabei sind Fragen der 
+
+ - Reichweite der Kabel,
+ - Erweiterbarkeit,
+ - Wartbarkeit
+
+im Blick. 
+
+#+REVEAL: split
+
+#+CAPTION: Bereiche der Strukturierten Verkabelung
+#+NAME: fig:ukv
+#+ATTR_HTML: :width 100%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/StrukturierteVerkablung.png]]
+
+
+** Primärbereich
+
+ Der *Primärbereich* beschreibt die Verkabelung zwischen Gebäuden, z. B. auf einem  Firmengelände, einem Campus o. ä., zwischen *Gebäudeverteilern* (Switches oder Router) und einem Standortverteiler. 
+
+  - Große Kabellänge.
+  - Hohe Schutz vor/ Unempfindlichkeit gegen Feuchtigkeit notwendig.
+
+ Daher sind hier vor allem *Glasfaserkabel* geeignet. 
+
+#+BEGIN_NOTES
+  /Twisted-Pair-Kabel/ können genutzt werden, bieten in diesem Bereich aber nur geringe
+  Bandbreiten (z. B. VDSL: 26 MB/s).
+#+END_NOTES
+ 
+** Sekundärbereich
+
+ Der *Sekundärbereich* beschreibt die /vertikale/ Verkabelung in einem Gebäude vom *Gebäudeverteiler* zu den *Etagenverteilern* (in der Regel Switches, bzw. Telefonanlagen) und zwischen diesen. 
+ 
+Hier sind *Glasfaser-*  und *Twisted-Pair-Kabel* gleicher Maßen geeignet. Der Anwendungsfall entscheidet.
+
+** Tertiärbereich
+
+ Der *Tertiärbereich* beschreibt die /horizontale/ Verkabelung auf den Etagen eines Gebäudes vom *Etagenverteilern* zu den Anschlussdosen.
+
+ Auch hier entscheidet der konkrete Anwendungsfall über die Nutzung von *Twisted-Pair-Kupferkabeln* und *Glasfaser*. 
+
+* Collapsed vs. Distributed Backbone 
+
+ Früher (sehr viel früher ;-) wurden die Etagenverteiler oft in einer Ringstruktur (Thin- oder Thick-Ethernet) angeordnet. Dabei mussten Router eingesetzt werden, sodass jede Etage ihr eigenes Subnetz bildete. Dieser Ring aus Routern, bildete ein sogenanntes *Distributed Backbone* („verteiltes Rückrad”).
+
+ Demgegenüber setzt man heute meist auf *einen* Router als zentralen /Gebäude-/ oder sogar /Standortverteiler/. Die /Etagen-/ (oder auch Gebäudeverteiler) werden dem gegenüber als /Switches/ umgesetzt. Dies ermöglicht eine zentrale Steuerung und die flexible Nutzung von /VLANS/. Außerdem ist diese kostengünstiger. Dieser Aufbau wird als *Collapsed Backbone* („Geschrumpftes Rückrad”) bezeichnet, da hier ein einzelner Router das Rückrad des Netzes bildet.
+

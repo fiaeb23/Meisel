@@ -1,0 +1,120 @@
+/* Normal mode */
+body {
+  font-size: 20pt;
+}
+
+div {
+  margin: 20px;
+}
+
+#output span {
+  font-weight: bold;
+  font-size: 180%;
+  margin: 0px;
+  font-family: monospace;
+}
+
+.red {
+  color: white;
+  background-color: red;
+}
+
+.orange {
+  color: white;
+  background-color: orange;
+}
+
+.green {
+  color: white;
+  background-color: green;
+}
+
+/* Dark mode */
+.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.dark-mode .red {
+  color: white;
+  background-color: #ff6666;
+}
+
+.dark-mode .orange {
+  color: white;
+  background-color: #ffaa66;
+}
+
+.dark-mode .green {
+  color: white;
+  background-color: #66ff66;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+}
+
+.cell {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+
+#ipv6-display {
+  font-family: monospace;
+  font-size: 24px;
+  font-size: 140%;
+}
+
+.red-background {
+  background-color: red;
+  color: white;
+}
+
+.orange-background {
+  background-color: orange;
+  color: white;
+}
+
+body.dark-mode {
+  background-color: #222;
+  color: #fff;
+}
+
+.red-background.dark-mode {
+  background-color: #990000;
+  color: white;
+}
+
+.orange-background.dark-mode {
+  background-color: #994400;
+  color: white;
+}
+
+#darkmode-button {
+  margin: 20px;
+}
+
+b {
+    display: inline-block;
+    text-align: left;
+    width: 200px;
+}
+
+.prefix {
+    display: inline-block;
+    text-align: right;
+    font-family: monospace;
+    font-variant: bold;
+    max-width: 1200px;
+    min-width: 200px;
+}
+
+.subnet-prefix {
+    text-align: right;
+    font-family: monospace;
+    text-color: black;
+}

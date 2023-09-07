@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>TCP- vs. OSI-Referenzmodell</title>
+<meta name="author" content="Sebastian Meisel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/league.css" id="theme"/>
+
+<link rel="stylesheet" href="./mystyle.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">TCP- vs. OSI-Referenzmodell</h1><p class="subtitle">ITT-Netzwerke</p>
+<h2 class="author">Sebastian Meisel</h2>
+</section>
+
+<section>
+<section id="slide-org6bf3efa">
+<h2 id="org6bf3efa">TCP-Referenzmodell</h2>
+
+<div id="orga006ab9" class="figure">
+<p><img src="Bilder/TCP_Modell.png" alt="TCP_Modell.png" width="75%" />
+</p>
+<p><span class="figure-number">Abbildung 1: </span>TCP-Referenzmodell</p>
+</div>
+
+</section>
+<section id="slide-org6bf3efa-split">
+
+<p>
+Das TCP-Refenzmodell betrachtet die Übertragung von Datenpaketen vor allem unter dem
+Gesichtspunkt, der Header, die den übertragenen Daten weitere <i>Schichten</i> hinzufügen:
+</p>
+
+<ul>
+<li>Eine Dienstprogramm erzeugt Daten.</li>
+<li>Es fügt zum Transport einen UDP- oder TCP-Header hinzu, der Quell- und Zielport
+enthält.</li>
+<li>Dann werden die Quell- und Ziel-IP-Adressen (v4 oder v6) hinzugefügt, um zu
+adressieren für welchen Rechner in welchem Netzwerk das Datenpaket bestimmt ist.</li>
+<li>Die Quell- und Ziel-Hardware-Adresse (MAC-Adresse) wird beim Transport zwischen den
+verschiedenen Netzwerkgeräten immer wieder ausgetauscht.</li>
+
+</ul>
+
+</section>
+<section id="slide-org6bf3efa-split">
+
+<p>
+Umgekehrt werden beim Transport des Datenpaketes die Schichten von außen nach innen
+verarbeitet:
+</p>
+
+<ul>
+<li>Innerhalb eines Netzwerkes interessiert zunächst nur die <b>MAC-Adresse</b> des nächsten
+Gerätes, an das das Paket weitergereicht werden muss.</li>
+<li>Muss es das Netzwerk verlassen, muss die <b>IP-Adresse*</b> betrachtet werden, um zu
+entscheiden, wohin das Datenpaket weitergeleitet werden muss (Routing).</li>
+<li>Erreicht das Paket den Zielrechner, lauscht die empfangene Anwendung auf dem
+entsprechenden <b>Port</b></li>
+<li>Die Anwendung kann dann die Daten auswerten.</li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org3cd2b92">
+<h2 id="org3cd2b92">OSI-Refenzmodell</h2>
+
+<div id="orgbd08ab0" class="figure">
+<p><img src="Bilder/OSI_Modell.png" alt="OSI_Modell.png" width="75%" />
+</p>
+<p><span class="figure-number">Abbildung 2: </span>OSI-Referenzmodell</p>
+</div>
+
+
+</section>
+<section id="slide-org3cd2b92-split">
+
+<p>
+Das OSI-Modell baut zwar auf dem TCP-Referenzmodell auf, hat aber einen abstrakteren
+Ansatz. Es ist besser geeignet, um:
+</p>
+
+<ul>
+<li>Hardware, wie Kabel, Switch oder Router einer Schicht zuzuordnen.</li>
+<li>Die verschiedenen Protokolle einzuordnen.</li>
+
+</ul>
+
+<p>
+Die wichtigste Erweiterung ist das hinzufügen des <b>Physical Layers</b>
+Die Aufspaltung des <b>Application Layers</b> in <b>Session-, Presentation-</b> und <b>Application Layer</b>
+hat sich hingegen nicht bewährt.
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes]
+});
+
+</script>
+</body>
+</html>

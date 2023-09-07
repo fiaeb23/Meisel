@@ -1,0 +1,207 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: Domain Configuration Protocoll Version 6
+#+SUBTITLE: ITT-Netzwerke
+#+AUTHOR: Sebastian Meisel
+
+* Zwei Arten der IPv6-Konfiguration 
+
+Bei *IPv6* gibt es drei Arten, wie eine /Schnittstelle/ eine IP-Adresse bekommt:
+ 
+** *Link Local Address*   
+Der Host generiert sich selbst eine Addresse mit der er im lokalen Netzwerk (bis zum nächsten Router)  kommunizieren kann.
+
+** *Stateless Address Autoconfiguration (SLAAC):* 
+
+Dies ist der Standard, wie eine Schnittstelle eine IP-Adresse bekommt, mit der sie mit dem Internet kommunizieren kann, eine (/Unique) Global Unicast/-Adresse. Sie ist weltweit eindeutig und beginnt mit einer ~2~ oder ~3~.
+
+Bei dieser Methode erhält die Schnittstelle von *Router* eine *Advertisment*-Paket, dass den /globalen Präfix/ und die /Adresse DNS-Servers/ enthält.
+
+Den Hostanteil bildet der Client selbstständig (daher Autokonfiguration).
+
+* Stateful Adress Configuration (DHCPv6) 
+
+Diese Methode kann sowohl für /Global Unicast-/ als auch für /(Unique) Local Unicast/-Adressen verwendet werden. Letztere beginnen mit ~FC~ oder ~FD~ und sind nur im lokalen Netzwerk gültig, können aber im lokalen Netzwerk geroutet werden.
+
+Hierbei wird enthält das *Advertisment*-Paket ein sogenanntes ~managed~-Flag. Dann handelt der Rechner seine IP-Adresse mit dem DHCPv6-Server aus.
+
+** DHCPv6 Server unter Windows 10 konfigurieren
+
+Bevor wir den *DHCPv6-Server* einrichten können brauchen wir eine [[fig:staticIP][statische IPv6-Adresse]].
+Diese konfigurieren wir analog zur [[file:WindowsserverVM.pdf][statischen IPv4-Adresse]]. In den ~Eigenschaften von Ethernet~ wählen wir aber den Punkt ~Internetprotokoll Version 6 (TCP/IPv6)~. Als ~IPv6-Adresse~ trägt man ~fc00::1~ und als ~Subnetzpräfixlänge~ wählt man ~64~. Als Bevorzugten DNS-Server tragen wir den Google-Server ~2001:4860:4860::8888~ ein, auch wenn der zu diesem Zeitpunkt nicht erreichbar ist.
+
+~fc00::1~ gehört zum Adressbereich ~unique local (unicast)~, der nur lokal (also nicht über das Internet), geroutet werden kann.   
+
+#+CAPTION: statische IPv6-Adresse
+#+NAME: fig:staticIP
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/IPv6_static.png]]
+
+Im ~Server-Manager~ wählt man nun [[fig:dhcp_tool][Tools → DHCP]], um den DHCP-Server-Assistenten zu starten.
+#+CAPTION: Tools → DHCP 
+#+NAME: fig:dhcp_tool
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[./Bilder/HyperV/WinSrvDHCP_14.png]]
+
+Darin muss nun links den /Server/ erweitern und ~IPv6~ wählen. Rechts wählt man dann unter
+~Aktionen → Weitere Aktionen~ → [[fig:new_pool][Bereich hinzufügen]]. 
+#+CAPTION: Bereich hinzufügen
+#+NAME: fig:new_pool
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/DHCPv6_01.png]]
+
+Die [[fig:welcome ][Willkommen]]-Seite kann man ~[Weiter]~ überspringe.
+#+CAPTION: Willkommen
+#+NAME: fig:welcome 
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/DHCPv6_02.png]]
+
+Dann muss ein [[fig:name][Name]] für den Adress-Pool gewählt werden. Dieser Namen solllte weise gewählt werden, wenn man in einem Firmennetzwerk viele Adress-Pools verwaltet. In der VM kann man hier aber irgendetwas, wie z. B. ~vms~ eintragen.
+#+CAPTION: Name
+#+NAME: fig:name
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/DHCPv6_03.png]]
+
+Dann kann man [[fig:exclusion][Ausschlüsse hinzufügen]], was man aber in unserem Fall mit ~[Weiter]~ überspringen kann.
+#+CAPTION: Ausschlüsse hinzufügen
+#+NAME: fig:exclusion
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/DHCPv6_04.png]]
+
+Dann wird die [[fig:leasetime][Leasetime]], also die Zeit für die die Adresse gültig bleibt, festgelegt. Hier kann man die Standardwerte mit ~[Weiter]~ übernehmen.
+#+CAPTION: Leasetime
+#+NAME: fig:leasetime
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/DHCPv6_05.png]]
+
+Dann kann man die Konfiguration des Adresspools [[fig:fertig][fertigstellen]].
+#+CAPTION: Fertigstellen
+#+NAME: fig:fertig
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+
+[[file:Bilder/DHCPv6_06.png]]
+
+#+LaTeX: \clearpage
+** Serveroptionen
+ 
+Nun müssen wir noch die [[fig:options][Serveroptionen]], einstellen, die den Clients übertragen werden sollen. Dafür wählt man links ~Serveroptionen~ und dann recht ~Serveroptionen → Weitere Aktionen → Optionen hinzufügen~. 
+#+CAPTION: Serveroptionen
+#+NAME: fig:options
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/DHCPv6_07.png]]
+
+
+Als Erstes muss man die Adressen der [[fig:dns][DNS-Server eintragen]], dazu setzt man den Haken in der Checkbox vor ~00023 IPv6-Adressliste für DNS-Server~... Unter ~Dateneingabe → Neue IPv6-Adresse~ trägt man zuerst ~2001:4860:4860:8888~ (Googles DNS-Relay-Server) und dann ~fc00::1~ ein. Beides löst eine Fehlermeldung aus, da wir das Internet (Google) noch nicht erreichen können und den DNS-Server auf der Windows-Server-VM noch nicht konfiguriert haben. Diese ignorieren wir mit ~[JA]~.
+#+CAPTION: DNS-Server eintragen
+#+NAME: fig:dns
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/DHCPv6_08.png]]
+
+Außerdem tragen wir in der [[fig:domain][Domainsuchliste]] ~[00024]~ den Pseudodomain ~local~ ein und schließen den Assistenten mit ~[OK]~. 
+#+CAPTION: Domainsuchliste
+#+NAME: fig:domain
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+
+[[file:Bilder/DHCPv6_09.png]]
+
+Abschließend sollte man noch einmal die [[fig:check_options][Optionen überprüfen]], alles sollte so aussehen, wie in der Darstellung.
+#+CAPTION: Optionen überprüfen
+#+NAME: fig:check_options
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/DHCPv6_11.png]]
+
+** Ubuntu Desktop als Client 
+
+Um als Linux-Client eine IPv6-Local-Unicast-Adresse vom DHCPv6-Server zu beziehen, muss
+man (z. B.) in der Ubuntu-VM das Terminal öffnen. 
+
+Dort kann man zunächst überprüfen, ob man bereits eine IPv6-Adresse bezogen hat:
+
+#+BEGIN_SRC bash    
+ ip a show eth0 | grep inetv6
+#+END_SRC
+
+Das ~| grep inetv6~ filtert die Ausgabe, sodass nur IPv6-Adressen angezeigt werden.
+Normalerweise sollte hier aber nur eine /Link-Local-Adresse/ angezeigt werden:
+
+#+BEGIN_EXAMPLE
+  inet6 fe80::9b96:d84:6aa4:60d/64 scope link noprefixroute 
+#+END_EXAMPLE
+
+Nun fragt man eine neue IPv6-Adresse ab:
+
+#+BEGIN_SRC bash    
+  sudo dhclient -6 eth0
+#+END_SRC
+
+Wenn dies erfolgreich erfolgt *KEINE AUSGABE*.  Ein erneutes 
+
+#+BEGIN_SRC bash    
+ ip a show eth0 | grep inetv6
+#+END_SRC
+
+… sollte nun aber zusätzlich eine IPv6-Adresse anzeigen, die mit dem Prefix ~fc00::~
+beginnt:
+
+#+BEGIN_EXAMPLE
+  inet6 fc00::3bfb:2632:5cb3:2659/128 scope global
+  inet6 fe80::9b96:d84:6aa4:60d/64 scope link noprefixroute 
+#+END_EXAMPLE
+
+Damit die Kommunikation mit anderen Rechnern funktioniert, muss man dem Rechner nun aber
+noch sagen, wie er das Netzwerk ~fc00::/64~ findet. Das geschieht über eine /Route/:
+
+#+BEGIN_SRC bash    
+  sudo ip route add fc00::/64 dev eth0
+#+END_SRC
+
+Wieder erfolgt keine Ausgabe. Es sollte nun aber möglich sein dem Rechner mit 
+
+#+BEGIN_SRC powershell
+  ping ubuntu1 -6
+#+END_SRC
+
+…anpingen können, wobei ~ubuntu1~ durch den *Hostnamen* der Ubuntu-VM ersetzt werden muss,
+dass ist der Namen, der im Terminal am Anfang jeder Eingabezeile (im Promt) *nach dem @*
+steht.
+
+
+

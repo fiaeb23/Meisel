@@ -1,0 +1,22 @@
+#!/bin/bash
+
+
+function standard() {
+    # Orthografische Anführungszeichen
+    sed -E 's|"\b|„|g;s|\b"|“|g' ${F} -i
+    # Geschütztes Leerzeichen vor Gedankenstrich
+    sed -E 's/ (-|–|—) / –/g' ${F} -i
+}
+
+
+F='Grundbegriffe.tex'
+standard
+
+sed '/enumi/,+1{/enumi/x;/begin/G}' ${F} -i
+
+F='Netzwerktopologien.tex'
+standard
+
+F='Übertragungsmedien.tex'
+standard
+

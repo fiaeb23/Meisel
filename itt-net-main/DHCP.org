@@ -1,0 +1,352 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: Dynamic Host Configuration Protocoll (DHCP)
+#+SUBTITLE: ITT-Netzwerke
+#+AUTHOR: Sebastian Meisel
+
+
+*DHCP* dient dazu /IP-Adressen/ und andere Netzwerk-Einstellung wie die Adresse des
+ /DNS/-Servers oder das /Standardgateway/ über das Netzwerk an Geräte zu verteilen.
+
+* Funktionsweise
+
+*DHCP* arbeitet als Client-Server-Protokoll. Meldet sich ein /Client/ neu in einem Netzwerk an, bildet
+ er zunächst eine /Zeroconf/-Adresse im Netzwerk ~169.154.0.0/16~. Wenn der Rechner bereits
+ mit dem Netzwerk verbunden war, versucht er seine vorherige Adresse zu erneuern und
+ benutzt diese (z. B. ~192.168.0.32~) weiter.
+
+#+CAPTION: Austausch von Paketen im DHCP
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/DHCP.png]]
+
+Dann kommt es zum Austausch von 4 Paketen (Merkwort: DORA) mit dem DHCP-Server:
+
+** /D/ iscover
+
+#+CAPTION: DHCP Discover in Wireshark
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/DHCP_Discover.png]]
+
+Das *DHCP-Discover-Paket sendet der /Client/ an die *allgemeine Broadcastadresse* ~255.255.255.255~ mit dem
+*Zielport 68*. Der /DHCP-Server/ lauscht auf diesem Port.
+
+Es kann verschiedene Optionen enthalten,z. B.:
+
+ - Die gewünschte IP-Adresse (wenn man die IP-Adresse erneuern möchte).
+ - Den Hostnamen.
+ - Welche Konfigurationsoptionen der Client verarbeiten kann. 
+
+** /O/ ffer
+
+#+CAPTION: DHCP Offer in Wireshark
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/DHCP_Offer.png]]
+
+Das *DHCP-Offer-Paket* sendet der /DHCP-Server/ an die (vorläufige) *IP-Adresse des Clients* an
+den *Zielport 67*.  Es
+enthält die *angebotene IP-Adresse* für den Client, sowie die Konfigurationsoptionen (wie
+DNS-Server, Defaultgateway, Subnetzmaske etc.).   
+
+** /R/ equest
+
+#+CAPTION: DHCP Request in Wireshark
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/DHCP_Request.png]]
+
+Das *DHCP-Request-Paket sendet der /Client/ an die *allgemeine Broadcastadresse* ~255.255.255.255~ mit dem
+*Zielport 68*. Damit bestätigt der /Client,/ von welchem /Server/ er welche /IP/ und welche
+Konfigurationsoptionen übernimmt.
+
+
+** /A/ cknowledge
+
+#+CAPTION: DHCP Acknowledge in Wireshark
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/DHCP_Acknowledge.png]]
+
+Das letzte Paket ist das *DHCP-Acknowledge-Paket* des *Servers* an die *IP des Clients*. Es
+werden noch einmal alle Daten bestätigt. Erst nach diesem Paket übernimmt der Client die
+neue IP.
+
+* DHCP-Server-Konfiguration (Windows Server)
+
+** Installation
+Bevor der DHCP-Server /konfiguriert/ werden kann, muss er zunächst /installiert/ werden.
+Dafür muss man unter ~(1) Diesen lokalen Server konfigurieren~ den Punkt ~(2) Rollen und
+Features hinzufügen~ wählen.
+#+CAPTION: Server-Manager-Dashboard
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvDHCP_01.png]]
+
+Daraufhin startet der [[fig:features][Assistent zum Hinzufügen von Features und Rollen]]. Den
+Startbildschirm überspringt man mit ~[Weiter]~.
+#+CAPTION: Assistent zum Hinzufügen von Features und Rollen
+#+NAME: fig:features
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvDHCP_02.png]]
+
+Dann bestätigt man die [[fig:rollenbasiert][Rollenbasierte oder Featurebasierte Installation]] wieder mit ~[Weiter]~.
+#+CAPTION: Rollenbasierte oder Featurebasierte Installation
+#+NAME: fig:rollenbasiert
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvDHCP_03.png]]
+
+Ebenso bestätigt man die [[fig:server][Serverauswahl]]
+#+CAPTION: Serverauswahl
+#+NAME: fig:server
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvDHCP_04.png]]
+
+Unter [[fig:rollen][Serverrollen]] wählt man nun die Checkbox ~DHCP Server~
+und startet den Assistenten zur Installation des DHCP-Servers mit ~[Weiter]~. 
+Mit ~[Feature hinzufügen]~ bestätigt man die Installation. 
+#+CAPTION: Serverrollen
+#+NAME: fig:rollen 
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvDHCP_06.png]]
+
+Den Punkt [[fig:feature_selection][Featureauswahl]] überspringt man ~[Weiter]~
+#+CAPTION: Featureauswahl
+#+NAME: fig:feature_selection
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvDHCP_07.png]]
+
+Ebenso die [[fig:hinweise][Hinweise zum DHCP-Server]].
+#+CAPTION: Hinweise zum DHCP-Server
+#+NAME: fig:hinweise
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvDHCP_08.png]]
+Abschließen müssen wir noch einmal mit ~[Installieren]~ die
+[[fig:confirm][Installationsauswahl bestätigen]]. 
+#+CAPTION: Installationsauswahl bestätigen
+#+NAME: fig:confirm
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+ [[file:Bilder/HyperV/WinSrvDHCP_09.png]]
+
+Nach Abschluss der [[fig:install][Installation des DHCP-Servers]] kann man das Fenster ~[Schließen].~ 
+#+CAPTION: Installation des DHCP-Servers
+#+NAME: fig:install
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/HyperV/WinSrvDHCP_10.png]]
+
+#+LaTeX: \clearpage
+** Gruppen und Rechte einrichten
+
+Nun muss man unter dem Fahne mit dem Warndreieck auf [[fig:action][DHCP-Konfiguration abschließen]] klicken.
+
+ #+CAPTION: DHCP-Konfiguration abschließen 
+#+NAME: fig:action
+ #+ATTR_HTML: :width 50%
+ #+ATTR_LATEX: :width .65\linewidth
+ #+ATTR_ORG: :width 700
+ [[file:Bilder/HyperV/WinSrvDHCP_11.png]]
+
+Windows benötigt zwei [[fig:groups][Sicherheitsgruppen]] zu Verwaltung des DHCP-Servers: 
+ - DHCP-Administratoren
+ - DHCP-Benutzer
+Diese können mit ~[Commit ausführen]~ eingerichtet werden.
+ #+CAPTION: Sicherheitsgruppen
+#+NAME: fig:groups 
+ #+ATTR_HTML: :width 50%
+ #+ATTR_LATEX: :width .65\linewidth
+ #+ATTR_ORG: :width 700
+ [[file:Bilder/HyperV/WinSrvDHCP_12.png]]
+
+Das Fenster mit der [[fig:groups_done][Bestätigung der Einrichtung Sicherheitsgruppen]] kann man nun ~[Schließen]~. 
+ #+CAPTION: Bestätigung der Einrichtung Sicherheitsgruppen
+#+NAME: fig:groups_done
+#+ATTR_HTML: :width 50%
+ #+ATTR_LATEX: :width .65\linewidth
+ #+ATTR_ORG: :width 700
+ [[file:Bilder/HyperV/WinSrvDHCP_13.png]]
+
+#+LaTeX: \clearpage
+** DHCP-Pool einrichten
+
+Nun beginnt die eigentliche Konfiguration des DHCP-Servers.
+Dazu startet man das DHCP-Server-Tool über das Menü [[fig:tools][Tools]] im Server-Manager.
+Dort wählt man den Menüpunkt ~DHCP~ 
+  #+CAPTION: Tools-Menü im Server-Manager.
+#+NAME: fig:tools
+  #+ATTR_HTML: :width 50%
+  #+ATTR_LATEX: :width .65\linewidth
+  #+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/WinSrvDHCP_14.png]]
+
+Dann müssen wir einen IPv4 DHCP-Pool einrichten. Dazu müssen im *linken Bereich* des
+[[fig:dhcp_tool][DHCP-Server-Tool]], zunächst den Server durch einen *Klick auf das ~>~-Symbol erweitern und
+dann auf IPv4 klicken. Nun können wir im rechten Bereich ~[Aktionen]~ unter ~[IPv4]~ auf
+~[weitere Aktionen]~ klicken um ein weiteres Menü zu öffnen.
+
+#+CAPTION: DHCP-Server-Tool 
+#+NAME: fig:dhcp_tool
+  #+ATTR_HTML: :width 50%
+  #+ATTR_LATEX: :width .65\linewidth
+  #+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/WinSrvDHCP_15.png]]
+
+In diesem wählt man den Menüpunkt [[fig:bereich1][Neuer Bereich]] … 
+
+  #+CAPTION: Neuer Bereich
+#+NAME: fig:bereich1
+  #+ATTR_HTML: :width 50%
+  #+ATTR_LATEX: :width .65\linewidth
+  #+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/WinSrvDHCP_16.png]]
+
+  #+CAPTION: 
+  #+ATTR_HTML: :width 50%
+  #+ATTR_LATEX: :width .65\linewidth
+  #+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/WinSrvDHCP_17.png]]
+
+Nun muss zunächst ein [[fig:bereichsname][Bereichsname]] (frei) gewählt werden. Die Beschreibung ist
+optional. In großen Netzwerken werden oft mehrere *Pools* / Bereiche eingerichtet. Dann ist
+der Name wichtig, um nicht den Überblick zu verlieren. Mit ~[Weiter]~ werden die Eingaben übernommen. 
+
+  #+CAPTION: Bereichsname
+#+NAME: fig:bereichsname
+  #+ATTR_HTML: :width 50%
+  #+ATTR_LATEX: :width .65\linewidth
+  #+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/WinSrvDHCP_18.png]]
+
+Nun muss der eigentliche [[fig:pool][IP-Adressbereich (Pool)]] eingerichtet werden. Es geht also darum,
+welche der im aktuellen [[file:IPv4.pdf::* Verfügbare IP-Adressen im Netzwerk][Netzwerk verfügbaren IP-Adressen (→ IPv4.pdf)]] an /Clients/ verteilt werden, die
+ein [[* /D/ iscover][Discover-Paket]] senden.
+
+Theoretisch könnte man einfach alle verfügbaren IP-Adressen vergeben. Dies sollte man aber
+nur tun, wenn wenige Adressen zur Verfügung stehen. Die für das Standardgateway oder
+einen Server reservierten Adressen, sind dabei auszunehmen:
+
+| Prefix | Anzahl verfügbarer Hosts | Beispiel verfügbare Adressen | Pool                         |
+|--------+--------------------------+------------------------------+------------------------------|
+|     28 |                       14 | 192.168.0.1 - 192.168.0.15   | 192.168.0.2 - 192.168.0.14   |
+|     24 |                      253 | 192.168.0.1 - 192.168.0.254  | 192.168.0. *10* - 192.168.0. *250* |
+|     20 |                     4094 | 172.16.0.1 - 172.31.255.254  | 172.16. *1* .0 - 172.16. *1* .255     |
+
+
+
+  #+CAPTION: IP-Adressbereich (Pool)
+#+NAME: fig:pool
+  #+ATTR_HTML: :width 50%
+  #+ATTR_LATEX: :width .65\linewidth
+  #+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/WinSrvDHCP_19.png]]
+
+Als nächstes gibt es die Möglichkeit [[fig:exclude][Auschlüsse und Verzögerungen hinzuzufügen]]. Dies ist
+in der Regel nicht nötig und kann mit ~[Weiter]~ übersprungen werden.
+  #+CAPTION: Auschlüsse und Verzögerungen hinzufügen
+#+NAME: fig:exclude
+  #+ATTR_HTML: :width 50%
+  #+ATTR_LATEX: :width .65\linewidth
+  #+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/WinSrvDHCP_20.png]]
+
+Wichtiger ist die [[fig:lease ][Leasetime]], diese legt fest, wie lange eine IP-Adresse gültig ist. In der
+Regel kann man allerdings den /Standardwert/ von 8 Tagen mit ~[Weiter]~ übernehmen.
+  #+CAPTION: Leasetime
+#+NAME: fig:lease 
+  #+ATTR_HTML: :width 50%
+  #+ATTR_LATEX: :width .65\linewidth
+  #+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/WinSrvDHCP_21.png]]
+
+Es ist möglich (und sinnvoll) neben der IP-Adressen zusätzliche Optionen, wie den
+DNS-Server an die Clients zu verteilen. Dies kann an dieser Stelle übersprungen werden,
+sollte aber mit ~[Weiter]~ angestoßen werden.
+  #+CAPTION:    DHCP-Optionen konfigurieren
+#+NAME: fig:dhcp_options
+  #+ATTR_HTML: :width 50%
+  #+ATTR_LATEX: :width .65\linewidth
+  #+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/WinSrvDHCP_22.png]]
+
+Als nächstes sollten wir die [[ fig:dns][DNS-Optionen]] definieren, die an die /Clients/ verteilt werden. 
+Dies ist einmal die /Domain/ in der /Host/ gesucht werden. Dies ist entweder eine /full
+qualified domain (FQD)/, die man besitzt, wie /example.com/, oder man benutzt einen Namen
+wie /local/. 
+
+Außerdem werden hier die /DNS/-Server konfiguriert, die von den /Clients/ genutzt werden
+sollen. Diese werden normaler Weise aus der 
+  #+CAPTION: DNS-Optionen
+#+NAME: fig:dns
+  #+ATTR_HTML: :width 50%
+  #+ATTR_LATEX: :width .65\linewidth
+  #+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/WinSrvDHCP_23.png]]
+
+Die Konfiguration des [[fig:wins][WINS-Server]] überspringt man mit ~[Weiter]~.
+#+CAPTION: WINS-Server
+#+NAME: fig:wins
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/WinSrvDHCP_24.png]]
+
+Schließlich bestätigen mit ~[Weiter]~, dass wir den [[fig:activate][Bereich aktivieren]] wollen.
+#+CAPTION: Bereich aktivieren
+#+NAME: fig:activate
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/WinSrvDHCP_25.png]]
+
+Als Letztes bestätigt man mit ~[Fertig stellen]~ das [[fig:complete ][Fertigstellen des Assistenten]].
+  #+CAPTION: Fertigstellen des Assistenten
+#+NAME: fig:complete 
+  #+ATTR_HTML: :width 50%
+  #+ATTR_LATEX: :width .65\linewidth
+  #+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/WinSrvDHCP_26.png]]
+
+Im DHCP-Assistenten sieht man nun eine [[fig:zusammenfassung][Zusammenfassung]].
+  #+CAPTION: Zusammenfassung
+#+NAME: fig:zusammenfassung
+  #+ATTR_HTML: :width 50%
+  #+ATTR_LATEX: :width .65\linewidth
+  #+ATTR_ORG: :width 700
+  [[file:Bilder/HyperV/WinSrvDHCP_27.png]]
+

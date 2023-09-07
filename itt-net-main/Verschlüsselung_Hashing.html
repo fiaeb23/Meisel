@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Hashing</title>
+<meta name="author" content="Sebastian Meisel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/league.css" id="theme"/>
+
+<link rel="stylesheet" href="./mystyle.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Hashing</h1><p class="subtitle">IT-Technik Netzwerkgrundlagen</p>
+<h2 class="author">Sebastian Meisel</h2>
+</section>
+
+
+<section>
+<section id="slide-orgfe5d34a">
+<h2 id="orgfe5d34a">Was ist Hashing</h2>
+<p>
+Hashing ist eine Technik, bei der große oder komplexe Daten in eine kürzere, einzigartige Darstellung umgewandelt werden. Diese kürzere Darstellung, auch bekannt als Hashwert, dient als "Fingerabdruck" für die ursprünglichen Daten und kann verwendet werden, um die Integrität dieser Daten zu überprüfen. Wenn sich auch nur ein kleiner Teil der ursprünglichen Daten ändert, ändert sich auch der Hashwert vollständig.
+</p>
+
+<p>
+Hashing findet in vielen Anwendungen Verwendung, einschließlich der Überprüfung der Datensicherheit, der Erstellung digitaler Signaturen und der Verwaltung von Passwörtern.
+</p>
+
+</section>
+<section id="slide-org1c8c02e">
+<h3 id="org1c8c02e">Welche Eigenschaften machen einen guten Hashing-Algorithmus aus?</h3>
+<p>
+Ein guter Hashing-Algorithmus muss folgende Eigenschaften aufweisen:
+</p>
+<ul>
+<li class="fragment appear"><b>Eindeutigkeit</b>: Jeder Eingabe sollte einen eindeutigen Hashwert erzeugen.</li>
+<li class="fragment appear"><b>Kollisionsresistenz</b>: Es sollte sehr unwahrscheinlich sein, dass zwei unterschiedliche Eingaben denselben Hashwert erzeugen.</li>
+<li class="fragment appear"><b>Unumkehrbarkeit</b>: Es sollte schwierig sein, aus einem Hashwert die ursprüngliche Eingabe zu berechnen.</li>
+<li class="fragment appear"><b>Ausgeglichene Verteilung</b>: Die Hashwerte sollten gut verteilt sein, so dass keine bestimmten Werte häufiger vorkommen als andere.</li>
+<li class="fragment appear"><b>Konstanter Zeitaufwand</b>: Der Zeitaufwand zur Berechnung des Hashwerts sollte unabhängig von der Größe oder dem Inhalt der Eingabe konstant sein.</li>
+<li class="fragment appear"><b>Robustheit</b>: Kleine Änderungen an der Eingabe sollten zu signifikanten Änderungen des Hashwerts führen.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org4065331">
+<h2 id="org4065331">Welche (gängigen, kryptographischen) Hashalgorithmen gibt es?</h2>
+<p>
+Für Hashing gibt es eine Vielzahl von Anwengungsmöglichkeiten, z. B. in der Programmierung und in Datenbankanwendungen. Hier geht es aber um <b>kryptographische</b> Hashingalgorithmen, die zur Verifizierung der <b>Integrität</b> von Daten verwendet werden, z. B. bei der Verschlüsselung mit TLS oder bei SSH- und VPN-Verbindungen.
+</p>
+
+<p>
+Hier spielen vor allem <b>MD5 (veraltet!)</b> und <b>SHA</b> eine Rolle.
+</p>
+
+</section>
+<section id="slide-orgc746f69">
+<h3 id="orgc746f69">Message-Digest Algorithm 5 (MD5)</h3>
+<p>
+<b>MD5</b> war lange Zeit der Standardalgorithmus für kryptographisches Hashing. Allerdings gilt er inzwischen als veraltet, da es möglich ist gezielt <b>Kollisionen</b> zu erzeugen. Das bedeutet, dass es möglich ist gezielt beliebige Daten so zu manipulieren, dass sie denselben Hashwert erzeugen, wie bestimmte andere Daten.
+</p>
+
+<p>
+So erzeugen die beiden folgenden Linux-Binaries denselben MD5 Hashwert:
+</p>
+<ul>
+<li><a href="https://gitlab.com/ostseepinguin1/itt-net/-/blob/main/hello">hello</a></li>
+<li><a href="https://gitlab.com/ostseepinguin1/itt-net/-/blob/main/erase">erase</a></li>
+
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash"   ><code trim>md5sum {hello,erase}
+</code></pre>
+</div>
+
+<pre class="example">
+| da5c61e1edc0f18337e46418e48c1290 | hello |
+| da5c61e1edc0f18337e46418e48c1290 | erase |
+</pre>
+
+</section>
+</section>
+<section>
+<section id="slide-org1b399d5">
+<h2 id="org1b399d5">Secure Hash Algorithm (SHA)</h2>
+<p>
+Hierbei handelt es sich eine <b>Gruppe</b> von <b>kryptographischen</b> Hashfunktionen, die aktiv weiterentwickelt werden. Während bereits die Möglichkeit von <b>Kollisionsangriffen</b> auf <b>SHA-0</b> und <b>SHA-1</b>, gilt <b>SHA-2</b> aktuell als sicherer 
+Standard.
+</p>
+
+</section>
+<section id="slide-org1b399d5-split">
+
+<p>
+Dabei gibt es verschiedene Varianten, die sich in der <b>Bitlänge</b> des Hashwertes unterscheiden:
+</p>
+
+<ul>
+<li>SHA-224</li>
+<li>SHA-256</li>
+<li>SHA-384</li>
+<li>SHA-512</li>
+
+</ul>
+
+<p>
+Dabei gilt, dass mit der Bitlänge sowohl die <b>Sicherheit</b>, als auch der <b>Rechaufwand</b> zum Erzeugen des Hashwertes steigt. 
+</p>
+
+</section>
+<section id="slide-org9b582de">
+<h4 id="org9b582de">Nachfolger</h4>
+<p>
+Als Nachfolger von SHA-2 wurde 2004 nach einem Wettbewerb der <b>SHA-3</b>-Algorithmus standardisiert. Ist ist deutlich zukunftssicherer als SHA-2, aber noch nicht sehr weit verbreitet. 
+</p>
+
+<p>
+Auch dieser Algorithmus ist in den vier Bitlängen 224, 256, 384 und 512 verfügbar.
+Daneben gibt es auch noch die Varianten SHAKE-128 und SHAKE-256
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org6d6a104">
+<h2 id="org6d6a104">Weitere Algorithmen</h2>
+<p>
+Es gibt eine Reihe weiterer Algorithmen, die jedoch nicht so verbreitet sind. Von diesen gelten folgende als sicher:
+</p>
+
+<ul>
+<li>BLAKE (2. Platz im Wettbewerb nach SHA-3).</li>
+<li>RIPEMD-160</li>
+<li>Whirlpool</li>
+<li>Tiger</li>
+<li>ShangMi 3 (SM3) - chinesischer Algorithmus.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org4bb9d06">
+<h2 id="org4bb9d06">Befehl zum erzeugen von Hash-Prüfsummen</h2>
+<ul>
+<li>Windows - unterstützte Algorithmen sind MD5, SHA1, SHA256, SHA384, SHA512:</li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-powershell"   ><code trim> Get-FileHash -Algorithm SHA256 Datei
+</code></pre>
+</div>
+
+<ul>
+<li>Linux:</li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-bash"   ><code trim> md5sum
+ sha1sum
+ sha224sum
+ &#8230;
+ sha256sum
+</code></pre>
+</div>
+
+</section>
+<section id="slide-org4bb9d06-split">
+
+<ul>
+<li>Linux mit OpenSSL</li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-bash"   ><code trim> openssl list -digest-algorithms
+</code></pre>
+</div>
+
+<p>
+dann z. B.:
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash"   ><code trim>openssl dgst -sha3-256 hello
+</code></pre>
+</div>
+
+<pre class="example">
+: SHA3-256(hello)= 0f5aa73890600ec25491c0f1707b370bb406c533622f508319c9f50c782a3f73
+</pre>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes]
+});
+
+</script>
+</body>
+</html>

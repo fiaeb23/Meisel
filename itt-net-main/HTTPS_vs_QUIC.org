@@ -1,0 +1,67 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: Hypertext Transfer Protocol | Transportlayer Security | Quic
+#+SUBTITLE: IT-Technik - Netzwerkgrundlagen
+#+AUTHOR: Sebastian Meisel
+
+* Hypertext Protocol (HTTP1/ HTTP2)
+
+*HTTP* dient zum Abruf von Webseiten. Das Protokoll arbeitet auf dem /Presentation Layer (7)/. Es ist ein *zustandsloses* Protokoll, d. h. es gibt zunächst keine Möglichkeit Daten zu speichern. Dies kann durch *Cookies* umgangen werden, die im /HTML-Header/ übertragen und vom Client gespeichert werden.
+
+#+BEGIN_NOTES
+ Neben dem Missbrauch von /Cookies/ für Tracking, gibt es auch viele sinnvolle Nutzungsszenarien, z. B. für die Benutzerauthenfizierung.
+#+END_NOTES
+
+* Transport Layer Security (TLS) = Secure Socket Layer (SSL)
+
+Die *HTTP*-Versionen 1 und 2 übertragen alle Information unverschlüsselt, sodass sie auf jedem Router, den sie passieren mitgelesen werden können.
+
+Zur Verschlüsselung kann aber *TLS* verwendet werden.
+
+Dabei identifizieren sich Server und Client zunächst im *TLS Handshake* mit Hilfe von *Zertifikaten*. Zugleich werden *Crypto-Schlüssel* ausgetauscht.
+
+Dann werden im *TSL Record* sämtliche übertragenen Daten mit diesen *Schlüsseln* verschlüsselt.
+
+#+BEGIN_NOTES
+Die Verschlüsselung des *Handshakes* ist *asymetrisch*, d. h. für der *Ver*​schlüsselung wird ein anderer *Schlüssel* (öffentlicher Schlüssel / /public key/) als für die *Ent*​schlüsselung (privater Schlüssel / /private key/).
+
+Die Verschlüsselung des *Records* wiederum ist *symetrisch*. Zum Ver- und Entschlüsseln wird als von Client und Server jeweils *derselbe* Schlüssel verwendet.
+#+END_NOTES
+ 
+So wird verhindert, dass Daten /beim Transport/ *mitgelesen* (Vertraulichkeit) oder *manipuliert* (Integrität). 
+
+** Zertifikate
+
+*Server Zertifikate* werden von einer *Certificate Authority* (CA) ausgegeben und signiert. Jeder Browser führt eine Liste vertrauenswürdiger *CAs*. 
+
+Das *Zertifikat* enthält Informationen über die *Organisation* für die es ausgestellt wurde. Außerdem den *öffentlichen Schlüssel* der für die Verschlüsselung verwendet werden soll und eine *Signatur*, die die Echtheit des Zertifikats bestätigt.
+
+#+BEGIN_NOTES
+ Außerdem enthält es den Zeitraum der *Gültikeit* des Zertifikats.
+#+END_NOTES
+
+Das *Clientzertifikat* wird vom Browser zur Verfügung gestellt.
+
+** TLS Handshake
+
+#+CAPTION: TLS Handshake
+#+NAME: fig:handshake
+#+ATTR_HTML: :width 40%
+#+ATTR_LATEX: :width .9\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/TLS-Handshake.png]]
+

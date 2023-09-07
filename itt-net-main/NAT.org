@@ -1,0 +1,80 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: Network Address Translation (NAT)
+#+SUBTITLE: IT-Technik Netzwerkgrundlagen
+#+AUTHOR: Sebastian Meisel
+
+
+* Wozu Network Address Translation (NAT)
+
+ Der Hauptgrund für den Einsatz von *NAT* besteht darin, dass aufgrund der Knappheit von /IPv4-Addressen/ lokale Netzwerke in privaten Adressräumen (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) betrieben werden. Diese Adressen sind aber nicht im Internet routebar.
+
+* Was ist NAT?
+
+*NAT* löst dieses Problem, indem am Internet-/Router/ in jedem Datenpaket die IP-Adresse des internen Rechners durch seine eigene ersetzt.
+
+Bei der Antwort wird dieser Vorgang umgekehrt. 
+
+#+BEGIN_NOTES
+Bei TCP können die Datenpakete anhand ihrer Sequenz- und Acknowledgenummer einer bestimmten Verbindung zugeordnet werden.
+
+Bei UDP-Paketen wird meist die Portnummer zur Zuordnung verwendet.
+#+END_NOTES
+
+** Source-NAT (SNAT) / Masquerading
+
+Es gibt zwei Formen des *NAT*. Wollen interne Rechner auf Dienste im Internet zugreifen, wird *SNAT* verwendet. Dabei wird die /Quell-IP/ durch die des Routers ersetzt. Sie bleibt so gegenüber dem Internet verborgen, daher nennt man dies auch [[fig:nat][Masquerading]].  
+
+#+BEGIN_NOTES
+ Bei SNAT ist es nicht möglich von außen eine Verbindung zum internen Rechner aufzubauen. Die Verbindung muss immer vom internen Rechner ausgehen.
+#+END_NOTES
+
+
+#+REVEAL: split
+#+CAPTION: HTTP Verbindung mit SNAT (Masquerading)
+#+NAME: fig:nat
+#+ATTR_HTML: :width 100%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/Wireshark/NAT.png]]
+
+** Destination-NAT (DNAT) / Port-Forwarding
+
+ Die zweite Form dient dazu bestimmte Dienste (auf bestimmten Ports) auf Rechnern im privaten Adressraum von außen zugänglich zu machen.
+
+Dazu werden Datenpakete anhand des Zielports an Rechner im internen Netz weitergeleitet und die /Ziel-IP/ ersetzt. Dies nennt sich *DNAT* oder *Port-Forwarding*
+
+* Probleme
+
+ Die Manipulation der IP-Header durch den Router ist problematisch, da dies
+ 
+ - dem Prinzip einer [[https://de.wikipedia.org/wiki/Man-in-the-middle-Angriff][Man-in-the-Middle-Attacke]] ähnelt.
+ - Peer-to-Peer-Protokolle dadurch gestört werden.
+ - IP-Telefonie-Protokolle damit Probleme haben.
+
+ IPv6 schafft hier Abhilfe indem jedes Gerät im internen Netz eine global routbare Addresse bekommen kann.
+
+#+BEGIN_NOTES
+ Viele Peer-to-Peer-Protokollen benutzen Techniken die unter dem Begriff *NAT-Traversal* zusammengefasst werden, um diese Probleme zu umgehen.
+#+END_NOTES
+
+* NAT for IPv6
+
+Auch wenn es bei der Nutzung von /IPv6/ nicht nötig ist *NAT* einzusetzen ist es möglich und unter verschiedenen Umständen sinnvoll.
+
+So macht es NAT möglich mehrere Rechner unter *einer* IP erreichbar zu machen. Dies kann zur Lastverteilung genutzt werden.
+

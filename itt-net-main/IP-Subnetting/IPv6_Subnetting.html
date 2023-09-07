@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IPv6 Prefix Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <button id="darkmode-button">Toggle Dark Mode</button>
+
+  <h1>IPv6 Prefix Calculator</h1>
+
+  <div id="ipv6-display">
+  </div>
+
+  <label for="network-prefix-slider">Network Prefix Bits</label>
+  <input type="range" id="network-prefix-slider" min="32" max="64" step="4" value="32">
+  <span id="network-prefix-value">32</span>
+
+  <label for="subnet-prefix-slider">Subnet Prefix Bits</label>
+  <input type="range" id="subnet-prefix-slider" min="0" max="32" step="1" value="0">
+  <span id="subnet-prefix-value">1</span>
+
+  <p>
+    Number of Subnets: <span id="subnets-count">0</span>
+  </p>
+
+  <div id="example-subnets" class="cell">
+    <!-- Examples will be populated here -->
+  </div>
+
+  <script src="IPv6_script.js"></script>
+</body>
+</html>

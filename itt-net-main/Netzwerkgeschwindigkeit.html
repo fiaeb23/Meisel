@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Einflussfaktoren der Netzwerkgeschwindigkeit</title>
+<meta name="author" content="Sebastian Meisel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/league.css" id="theme"/>
+
+<link rel="stylesheet" href="./mystyle.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Einflussfaktoren der Netzwerkgeschwindigkeit</h1><p class="subtitle">IT-Technik Netzwerkgrundlagen</p>
+<h2 class="author">Sebastian Meisel</h2>
+</section>
+
+<section>
+<section id="slide-orgd7d70a5">
+<h2 id="orgd7d70a5">Was beeinflusst die Geschwindigkeit eines Netzwerkes?</h2>
+<p>
+Obwohl man bei der Netzwerkgeschwindigkeit zunächst an die Übertragungsraten der Übertragungsmedien denkt, wird diese in Wirklichkeit von vielen Faktoren beeinflusst.
+</p>
+
+<p>
+Auf allen Schichten des <a href="#/slide-org1dad889">OSI-Referenzmodels</a> gibt es Faktoren, die die Geschwindigkeit des Netzwerkes negativ beeinflussen können.
+</p>
+
+</section>
+<section id="slide-orgd7d70a5-split">
+
+<div id="org1dad889" class="figure">
+<p><img src="Bilder/Netzwerkprobleme.png" alt="Netzwerkprobleme.png" width="100%" />
+</p>
+<p><span class="figure-number">Abbildung 1: </span>Negativ Faktoren auf den Schichten des OSI-Modells</p>
+</div>
+
+</section>
+<section id="slide-orgd7d70a5-split">
+
+<p>
+Zu den Faktoren gehören z. B.:
+</p>
+<ul>
+<li>Entfernung zwischen Geräten</li>
+<li>Übertragungsrate des Netzwerks</li>
+<li>Interferenzen und Störungen</li>
+<li>Kapazität und Auslastung des Netzwerks</li>
+<li>Qualität der Netzwerkausrüstung</li>
+<li>Anzahl von Benutzern und Geräten auf dem Netzwerk</li>
+<li>Art der verwendeten Übertragungstechnologie (z. B. WLAN, Ethernet)</li>
+<li>Übertragungsprotokoll (z. B. TCP / IP, UDP)</li>
+<li>Hardware-Konfiguration (z. B. Router, Switch, Modem)</li>
+<li>Netzwerksicherheit (z. B. Firewall, Encryption)</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd365a95">
+<h3 id="orgd365a95">Maximale Transmission Unit / Maximal (TCP) Segment Size / Window Size</h3>
+<p>
+Dies sind Werte, die die optimale Übertragung von Daten im Netzwerk garantieren sollen, sodass:
+</p>
+
+<ul>
+<li>die Kapazität der Netzwerkgeräte nicht überschritten wird.</li>
+<li>die Kapazität zur Verarbeitung der Daten auf Client und Serverseite nicht überschritten wird.</li>
+
+</ul>
+
+</section>
+<section id="slide-orgab428d2">
+<h4 id="orgab428d2">Maximale Transmission Unit (MTU)</h4>
+<p>
+Router und Switche können nur <i>Frames</i> eine bestimmten Größe verarbeiten. In der Regel sind <b>1500</b> Bytes. 
+</p>
+
+<aside class="notes">
+<p>
+Sie kann aber auch kleiner sein. Die kleinste mögliche <i>MTU</i> sind 576 Bytes.
+</p>
+
+</aside>
+
+<p>
+Kommt ein Frame an einem Router an, der zu groß ist muss dieser <b>fragmentiert</b> also in mehrere Teile aufgeteilt und später wieder zusammengesetzt werden. Dies verlangsamt die Datenübertragung. 
+</p>
+
+<aside class="notes">
+<p>
+Kommt es in einem Netzwerk zu häufigen Fragementierungen kann es helfen die <i>MTU</i> des Netzwerks zu messen und die Einstellungen so anzupassen, dass kleinere Datenpakete versendet werden, damit diese nicht fragmentiert werden müssen. Für jede Netzwerkschnittstelle kann die MTU angepasst werden.
+</p>
+
+</aside>
+
+<p>
+Eine zu kleine <i>MTU</i> führt außerdem zu einem ungünstigen Verhältnis zwischen <i>Headerdaten</i> und <i>Payload</i>, also den Daten, die eigentlich übertragen werden sollen. 
+</p>
+
+<aside class="notes">
+<p>
+Dadurch müssen zum Transport derselben Daten mehr Datenpakete übertragen werden, was die Übertragung nochmal verlangsamt. 
+</p>
+
+<p>
+Daher kann es sinnvoll sein, bei einem Netzwerk mit einer kleinen <i>MTU</i> das Bottlneck zu suchen, also das Netzwerkgerät, dass diese verursacht, und dieses auszutauschen.
+</p>
+
+<p>
+Die MTU lässt sich unter anderem mit dem <code>ping</code>-Befehl testen, z. B. (Windows):
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-powershell"   ><code trim>  ping -f -l 1475 192.168.0.1
+</code></pre>
+</div>
+
+<p>
+Dabei verhindert die Option <code>-f</code> die Fragementierung der Frames. Die Option <code>-l</code> widerum gibt an, wie viele Bytes als <i>Payload</i> übertragen werden sollen. Diesen Wert kann man nun solange senken, bis die Datenpakete (ohne Fragementierung) übertragen werden. 
+</p>
+
+<p>
+Zu dem Wert, den man dabei zuletzt mit <code>-l</code> übergeben hat muss man noch die Headerbytes <b>addieren</b>:
+</p>
+<ul>
+<li>8 Bytes für den ICMP-Headerbytes.</li>
+<li>20 Bytes für den IPv4-Header.</li>
+
+</ul>
+
+<p>
+Wenn also der Befehle <code>ping -f -l 1472 192.168.0.1</code> Pakete ohne Fehler überträgt, während der Befehlt <code>ping -f -l 1473 192.168.0.1</code> den Fehler <code>Paket müsste fragmentiert werden, DF-Flag ist jedoch gesetzt.</code> ausgibt, dann ist die <i>MTU</i> <code>1472 + 8 + 20 = 1500 Bytes</code>.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org422e536">
+<h5 id="org422e536">Maximum (TCP) Segment Size (MSS)</h5>
+<p>
+Dieser Wert wird beim TCP-Handshake festgelegt und sagt, wie groß das <i>Payload</i> eines TCP-Frames sein darf. Dieser Wert entspricht in der Regel der <i>MTU</i> - <i>IP-Header</i> - <i>TCP-Header</i>. 
+</p>
+
+<aside class="notes">
+<p>
+Dabei hängt die Größe des IP-Header davon ab, ob IPv4 (20 Bytes) oder IPv6 (40 Bytes) verwendet wird. Die Größe des <i>TCP-Headers</i> hängt von der Anzahl der gesetzten Optionen ab.
+</p>
+
+</aside>
+
+<p>
+Zu große Frames werden verworfen und müssen noch einmal (kleiner) gesendet werden.
+</p>
+
+</section>
+<section id="slide-orgbe02c2c">
+<h5 id="orgbe02c2c">(TCP) Window Size (Window)</h5>
+<p>
+Dieser Wert soll sicherstellen, dass sowohl der Client als auch der Server die notwendige Kapazität hat, die ankommenden Daten zu verarbeiten. Darum wird festgelegt, wie viele Daten am Stück gesendet werden dürfen.
+</p>
+
+<p>
+Der TCP-Header sieht für diesen Wert 2 Byte vor, sodass hier maximal <code>2^16-1 = 65.535 Bytes</code> festgelegt werden können. 
+</p>
+
+<aside class="notes">
+<p>
+Moderne Rechner können aber deutlich mehr Daten verarbeiten. Darum gibt es die TCP-Option Window-Scale, über die man einen Faktor festlegen kann, der mit der ursprünglichen Window-Size multipliziert wird, sodass eine maximale Window-Size von ca. einem 1GB möglich ist.
+</p>
+
+<p>
+Nachdem dieser Wert erreicht ist, muss der Sender auf eine Paket des Senders warten, dass bestätigt, dass er wieder zum Empfangen von Daten bereit ist, bevor neue Daten gesendet werden können, sodass eine zu kleine Window-Size, die Übertragung ausbremsen kann.  
+</p>
+
+</aside>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes]
+});
+
+</script>
+</body>
+</html>

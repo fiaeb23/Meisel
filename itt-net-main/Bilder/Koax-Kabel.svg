@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="563.71387"
+   height="330.9794"
+   version="1.2"
+   id="svg50"
+   sodipodi:docname="Koax-Kabel.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <defs
+     id="defs54" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1020"
+     id="namedview52"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="1.1198347"
+     inkscape:cx="138.10342"
+     inkscape:cy="258.02858"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g32" />
+  <metadata
+     id="metadata2">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-53.701137,-20.061587)"
+     id="g6">
+    <path
+       d="m 190.33,79.131 c -75.085,0 -135.94,60.853 -135.94,135.94 0,75.087 60.853,135.97 135.94,135.97 75.087,0 135.97,-60.884 135.97,-135.97 0,-75.086 -60.884,-135.94 -135.97,-135.94 z"
+       id="path4"
+       inkscape:connector-curvature="0"
+       style="fill:#808080" />
+  </g>
+  <path
+     d="m 136.64286,90.599819 c 57.665,0 104.41,46.741001 104.41,104.410001 0,57.669 -46.741,104.44 -104.41,104.44 -57.664997,0 -104.409997,-46.772 -104.409997,-104.44 0,-57.668 46.741,-104.410001 104.409997,-104.410001 z"
+     id="path8"
+     inkscape:connector-curvature="0"
+     style="fill:#ffffff" />
+  <g
+     id="g32"
+     style="font-family:'DejaVu Sans';fill:#000000"
+     transform="translate(-19.307137,-20.060181)">
+    <g
+       font-size="20px"
+       id="g26"
+       style="font-size:20px">
+      <text
+         x="316.78665"
+         y="246.4278"
+         style="line-height:0%"
+         xml:space="preserve"
+         id="text12"><tspan
+           x="316.78665"
+           y="246.4278"
+           font-size="20px"
+           id="tspan10"
+           style="font-size:20px;font-family:'DejaVu Sans'">Kabelmantel</tspan></text>
+      <text
+         x="317.13821"
+         y="220.60042"
+         style="line-height:0%"
+         xml:space="preserve"
+         id="text16"><tspan
+           x="317.13821"
+           y="220.60042"
+           font-size="20px"
+           id="tspan14"
+           style="font-size:20px;font-family:'DejaVu Sans'">Innenleiter</tspan></text>
+      <text
+         x="317.2554"
+         y="168.86668"
+         style="line-height:0%"
+         xml:space="preserve"
+         id="text20"><tspan
+           x="317.2554"
+           y="168.86668"
+           font-size="20px"
+           id="tspan18"
+           style="font-size:20px;font-family:'DejaVu Sans'">Isolierung / Dielektrikum</tspan></text>
+      <text
+         x="318.04056"
+         y="195.5307"
+         style="line-height:0%"
+         xml:space="preserve"
+         id="text24"><tspan
+           x="318.04056"
+           y="195.5307"
+           font-size="20px"
+           id="tspan22"
+           style="font-size:20px;font-family:'DejaVu Sans'">Außenleiter / Abschirmung</tspan></text>
+    </g>
+    <text
+       x="15.381356"
+       y="49.220337"
+       font-size="40px"
+       style="font-size:40px;line-height:0%"
+       xml:space="preserve"
+       id="text30"><tspan
+         x="15.381356"
+         y="49.220337"
+         id="tspan28"
+         style="font-family:'DejaVu Sans';fill:#000000">Koax</tspan></text>
+  </g>
+  <g
+     transform="matrix(4.8583,0,0,4.8583,-793.34714,-849.92018)"
+     id="g38"
+     style="stroke:#000000;stroke-width:0.75;stroke-linecap:square;stroke-linejoin:round">
+    <path
+       d="m 209.91,215.08 a 18.49,18.49 0 1 1 -36.979,0 18.49,18.49 0 1 1 36.979,0 z"
+       id="path34"
+       inkscape:connector-curvature="0"
+       style="fill:#00b8ff" />
+    <path
+       d="m 199.58,215.08 a 8.1572,8.1572 0 1 1 -16.314,0 8.1572,8.1572 0 1 1 16.314,0 z"
+       id="path36"
+       inkscape:connector-curvature="0"
+       style="fill:#993366" />
+  </g>
+  <g
+     id="g48"
+     style="fill:none;stroke:#000000"
+     transform="translate(-19.307137,-20.060181)">
+    <path
+       d="m 178.91,215.01 130.94,0.14052"
+       id="path40"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 210.24,163.13 99.603,0.44649"
+       id="path42"
+       inkscape:connector-curvature="0" />
+    <path
+       d="M 309.85,238.26 H 262.231"
+       id="path44"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 309.84,190.95 -58.38,0.39352"
+       id="path46"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

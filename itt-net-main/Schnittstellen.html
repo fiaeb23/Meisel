@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Schnittstellen</title>
+<meta name="author" content="Sebastian Meisel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/league.css" id="theme"/>
+
+<link rel="stylesheet" href="./mystyle.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Schnittstellen</h1><p class="subtitle">ITT-Netzwerk</p>
+<h2 class="author">Sebastian Meisel</h2>
+</section>
+
+<section>
+<section id="slide-orge481513">
+<h2 id="orge481513">Physische Netzwerkschnittstellen</h2>
+
+<div class="figure">
+<p><img src="Bilder/PHY_Chip.jpg" alt="PHY_Chip.jpg" width="15%" />
+</p>
+<p><span class="figure-number">Abbildung 1: </span><a href="https://commons.wikimedia.org/w/index.php?curid=53826931">Von © Raimond Spekking / CC BY-SA 4.0</a></p>
+</div>
+
+<p>
+<b>Physikalische Netzwerkschnittstellen</b> sind Hardwarekomponenten, die 
+</p>
+<ul>
+<li class="fragment appear">Verbindung zu einem <i>Übertragungsmedium</i> herstellen, in dem sie 
+<ul>
+<li>einen Anschluss (Buchse) für ein <i>Kabel</i> mit einem passenden Stecker bereitstellen.
+<ul>
+<li><b>oder</b> einen Sender (Antenne / Emitter) und einen Empfänger (Antenne / Sensor) für
+ein kabelloses Signal.</li>
+
+</ul></li>
+<li>einen Chip (<i>PHY</i>) bereitstellen, der
+<ul>
+<li>eingehende Signale entschlüsselt.</li>
+<li>ausgehende Signale verschlüsselt.</li>
+
+</ul></li>
+
+</ul></li>
+
+</ul>
+
+<aside class="notes">
+<p>
+In beiden Fällen ist schlicht die Übersetzung aus dem, bzw. in das <i>Netzwerksignal</i>
+gemeint, keine Verschlüsselung im Sinnen, dass die Daten geschützt werden.
+</p>
+
+<p>
+Die Netzwerkschnittstellen können jeweils fest auf dem <i>Motherboard</i> verlötet sein, wobei
+der <i>PHY</i> auch im Sinne eines <i>Systems on a Chip (SoC)</i> im selben Chip, wie die CPU
+integriert sein kann.
+</p>
+
+<p>
+Häufiger sind <i>Netzwerkschnittstellen</i> aber als PCI(e)-Karten umgesetzt. Zudem gibt es
+Adapter über <i>USB</i>, <i>Thunderbolt</i> oder <i>Lightning</i> (früher auch über <i>PCMCIA</i>).  
+</p>
+
+<p>
+Wie man physische <i>Netzworkschnittstellen</i> unter Windows findet haben wir schon bei den
+<a href="Grundbegriffe.html#MissingReference">Grundbegriffen</a> gesehen. Unter Linux gibt es verschiedene Möglichkeiten. Am
+komfortabelsten geht es mit dem Befehl:  
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash"   ><code trim> lshw -c net
+</code></pre>
+</div>
+
+<p>
+der allerdings zumeist nachinstalliert werden muss – z. B. mit <code class="src src-bash">sudo apt install lshw</code> unter debian-basierten Distributionen wie Ubuntu oder Kali-Linux. 
+</p>
+
+<pre class="example">
+  *-network                 
+       Beschreibung: Kabellose Verbindung
+       Produkt: Wireless-AC 9260
+       Hersteller: Intel Corporation
+       Physische ID: 0
+       Bus-Informationen: pci@0000:01:00.0
+       Logischer Name: wlp1s0
+       Version: 29
+       Seriennummer: 18:56:80:e5:88:5f
+       Breite: 64 bits
+       Takt: 33MHz
+       Fähigkeiten: pm msi pciexpress msix bus_master cap_list ethernet physical wireless
+       Konfiguration: broadcast=yes driver=iwlwifi driverversion=5.15.0-10053-tuxedo 
+firmware=46.fae53a8b.0 9260-th-b0-jf-b0- ip=192.168.0.10 latency=0 link=yes multicast=yes 
+wireless=IEEE 802.11  
+       Ressourcen: irq:19 memory:dfa00000-dfa03fff
+  *-network
+       Beschreibung: Ethernet interface
+       Produkt: RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller
+       Hersteller: Realtek Semiconductor Co., Ltd.
+       Physische ID: 0.1
+       Bus-Informationen: pci@0000:02:00.1
+       Logischer Name: ens1f1
+       Version: 12
+       Seriennummer: 80:fa:5b:5c:df:4d
+       Größe: 1Gbit/s
+       Kapazität: 1Gbit/s
+       Breite: 64 bits
+       Takt: 33MHz
+       Fähigkeiten: pm msi pciexpress msix vpd bus_master cap_list ethernet physical 
+tp mii 10bt 10bt-fd 100bt 100bt-fd 1000bt-fd autonegotiation
+       Konfiguration: autonegotiation=on broadcast=yes driver=r8169 
+driverversion=5.15.0-10053-tuxedo duplex=full firmware=rtl8411-2_0.0.1 07/08/13 
+ip=192.168.24.1 latency=0 link=yes multicast=yes port=twisted pa ir speed=1Gbit/s
+       Ressourcen: irq:16 ioport:e000(Größe=256) memory:df014000-df014fff m
+emory:df010000-df013fff
+</pre>
+
+</aside>
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-org87d8d51">
+<h3 id="org87d8d51">Ethernet</h3>
+<div class="outline-text-3" id="text-org87d8d51">
+</div>
+</section>
+<section id="slide-org628056d">
+<h4 id="org628056d">PCI</h4>
+
+<div class="figure">
+<p><img src="Bilder/10Base-T-Netzwerkkarte.jpg" alt="10Base-T-Netzwerkkarte.jpg" width="35%" />
+</p>
+<p><span class="figure-number">Abbildung 2: </span><a href="https://commons.wikimedia.org/w/index.php?curid=47316107">By Dmitry Nosachev - Own work, CC BY-SA 4.0</a></p>
+</div>
+
+<aside class="notes">
+<p>
+Bereits als vor allem noch <i>Thin Ethernet</i> über Koaxialkabel verwendet wurde, gab es dafür PCI-Karten.
+</p>
+
+</aside>
+
+
+
+<div class="figure">
+<p><img src="Bilder/Netzwerkarte.jpg" alt="Netzwerkarte.jpg" width="35%" />
+</p>
+<p><span class="figure-number">Abbildung 3: </span><a href="https://www.publicdomainpictures.net/de/browse-author.php?a=142128">(C) Christian Hart, Public Domain</a></p>
+</div>
+
+
+<aside class="notes">
+<p>
+Es gibt PCIe Karten mit einem, aber auch mit bis zu 8 Ethernetports. Man muss zudem
+beachten, welche Bandbreite die Karte unterstützt. 
+</p>
+
+<p>
+Außerdem muss man bei CAT 7a-Kabeln und CAT 8.2-Kabeln beachten, dass die Karten den
+passenden Port (TERA, ARJ45, OG45) bietet. 
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org6516e7c">
+<h4 id="org6516e7c">USB-Adapter</h4>
+
+<div class="figure">
+<p><img src="Bilder/USB_Ethernet_Adapter.jpg" alt="USB_Ethernet_Adapter.jpg" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 4: </span><a href="https://commons.wikimedia.org/w/index.php?curid=94575726">Von © Raimond Spekking / CC BY-SA 4.0</a></p>
+</div>
+
+<aside class="notes">
+<p>
+Adapter ermöglichen es Ethernet an Geräten zu nutzen, die keinen Ethernetport haben und
+keine Erweiterung über PCIe bieten - vor allem Notebooks. Es ist damit auch auf einfache
+Weise möglich eine schnellere Schnittstelle zur Verfügung zu stellen, als das Gerät es
+ursprünglich bietet (10 statt 1 Gbs).   
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org5d05350">
+<h3 id="org5d05350">WLAN</h3>
+
+<div class="figure">
+<p><img src="Bilder/PCI_WLAN_Adapter.jpg" alt="PCI_WLAN_Adapter.jpg" width="30%" />
+</p>
+<p><span class="figure-number">Abbildung 5: </span><a href="https://commons.wikimedia.org/w/index.php?curid=31380974">By Markus Säynevirta, CC BY-SA 4.0</a></p>
+</div>
+
+<aside class="notes">
+<p>
+Viele Motherboards bieten inzwischen WLAN <i>onBoard</i>, also mit einem festverlöteten <i>PHYs</i>
+oder in der CPU integriert. Allerdings nutzen diese oft sehr kleine Antennen. Eine
+dezidierte PCIe-Karte kann höhere Reichweiten ermöglichen. 
+</p>
+
+</aside>
+
+
+</section>
+<section id="slide-org5d05350-split">
+
+
+
+<div class="figure">
+<p><img src="Bilder/WLAN_MiniPCI.jpg" alt="WLAN_MiniPCI.jpg" width="30%" />
+</p>
+<p><span class="figure-number">Abbildung 6: </span><a href="https://commons.wikimedia.org/w/index.php?curid=99155648">By Sadenäyttely - Own work, CC BY-SA 4.0</a></p>
+</div>
+
+<aside class="notes">
+<p>
+Das WLAN-Modul kann auch über Mini-PCIe eingebunden werden. 
+</p>
+
+</aside>
+
+
+
+<div class="figure">
+<p><img src="Bilder/WLAN_Chip.jpg" alt="WLAN_Chip.jpg" width="30%" />
+</p>
+<p><span class="figure-number">Abbildung 7: </span><a href="https://commons.wikimedia.org/w/index.php?curid=73450285">By Reise Reise - Own work, CC BY-SA 4.0</a></p>
+</div>
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-org0dbcddd">
+<h3 id="org0dbcddd">Ethernet over USB</h3>
+<p>
+Eine Alternative zum Ethernet über CAT-Kabel ist das Ethernet over USB Protokoll, dass es
+erlaubt eine Ethernetverbindung über ein USB-Kabel aufzubauen, was bei den hohen
+Geschwindigkeiten von USB 4 (bis 40 Gbs) vor allem für Peer-to-Peer-Verbindungen über
+kurze Entfernungen eine Alternative ist.
+</p>
+
+<p>
+Diese Funktionalität ist zum Beispiel in den Linuxkernel eingebaut.
+</p>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org0fc4384">
+<h2 id="org0fc4384">Virtuelle Netzwerkschnittstellen</h2>
+<p>
+Neben den <i>Physischen</i> gibt es auch verschiedene Arten von <b>Virtuellen
+Netzwerkschnittstellen</b>. Sie werden auf Betriebssystemebene vom <i>Kernel</i> bereitgestellt. 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash"   ><code trim>ip link show
+</code></pre>
+</div>
+
+<pre class="example">
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; ~~~
+2: ens1f1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;  ~~~
+3: wlp1s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; ~~~
+4: virbr0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; ~~~
+5: cni-podman0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; ~~~
+6: veth171e7929@if3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; ~~~
+7: docker0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; ~~~
+8: br-f80eeef712c7: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; ~~~
+10: veth3e38908@if9: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; ~~~
+12: veth0f30863@if11: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; ~~~ 
+20: tun0: &lt;POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP&gt; ~~~
+</pre>
+
+</section>
+</section>
+<section>
+<section id="slide-org1644ec5">
+<h3 id="org1644ec5">Loopbackdevices</h3>
+<p>
+<b>Loopbackdevices</b> dienen dazu Netzwerkdienste, wie Web- oder E-Mailserver, die auf einer
+Netzwerkschnittstelle lauschen, lokal zu nutzen. 
+</p>
+
+
+<div class="figure">
+<p><img src="Bilder/WinHardware-Loopbackdevice.png" alt="WinHardware-Loopbackdevice.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 8: </span>Loopbackdevice im Windowsgerätemanager</p>
+</div>
+
+<aside class="notes">
+<p>
+Anders als Windows stellt Linux immer ein Loopbackdevice mit der Bezeichnung <i>lo</i> zur
+Verfügung, über das der <i>Localhost</i>, also der eigene Rechner unter der IP <i>127.0.0.1</i> (IPv4)
+bzw. <i>::1</i> (IPv6) erreichbar ist.  
+</p>
+
+</aside>
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-org49bdcc0">
+<h3 id="org49bdcc0">Tunnelschnittstellen</h3>
+<p>
+Verschlüsselte Netzwerkverbindungen, sogenannte <i>Netzwerktunnel</i> können auf der <i>Anwendungsebene</i> oder über eine
+<i>virtuelle Netzwerkschnittstelle</i> bereitgestellt werden. Letzteres ermöglicht es z. B. ein
+VPN mit jeder beliebigen Clientsoftware zu nutzen. 
+</p>
+
+<aside class="notes">
+<p>
+
+</p>
+
+<p>
+Unter Linux werden <i>Netzwerkschnittstellen</i> zu <i>Netzwerktunneln</i> mit <i>tun</i> gekennzeichnet.
+</p>
+
+</aside>
+
+
+</section>
+<section id="slide-org699e3e5">
+<h4 id="org699e3e5">VPN</h4>
+<p>
+<i>Vitual Private Networks (VPNs)</i> werden noch ausführlich ein Thema sein. Zur Nutzung wird
+eine <i>viruelle Netzwerkschnittstelle</i> eingerichtet über die man sich mit dem entfernten
+Rechner oder Netzwerk verbindet. 
+</p>
+
+
+<div class="figure">
+<p><img src="Bilder/WinHardware-VPN-Adapter.png" alt="WinHardware-VPN-Adapter.png" width="50%" />  
+</p>
+<p><span class="figure-number">Abbildung 9: </span>VPN-Tunnel-Adapter im Windowsgerätemanager</p>
+</div>
+
+</section>
+<section id="slide-orgf07d0db">
+<h4 id="orgf07d0db">SSH-Tunnel</h4>
+<p>
+Es ist auch möglich über SSH <i>Netzwerktunnel</i> über eine <i>virtuelle Netzwerkschnittstelle</i>
+herzustellen. Das ist allerdings keine sehr zuverlässige Methode. Häufiger ein <i>Tunnel</i> auf
+der <i>Anwendungsebene</i> hergestellt.  
+</p>
+
+<aside class="notes">
+<p>
+
+</p>
+
+<p>
+So kann man mit dem Befehl:
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash"   ><code trim> ssh -N -L 2810:localhost:8000 user@entfer.nt 
+</code></pre>
+</div>
+
+<p>
+einen Dienst, der auf dem Rechner <i>entfer.nt</i> als lokaler Dienst nur über den <i>localhost</i>
+erreichbar ist, über einen Tunnel auf meinem Rechner an Port 2810 verfügbar machen.
+</p>
+
+<p>
+Umgekehrt kann ich mit  
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-bash"   ><code trim> ssh -N -R 2810:localhost:8000 user@entfer.nt 
+</code></pre>
+</div>
+
+<p>
+einen Dienst der auf meinem Rechner über <i>localhost:2810</i> erreichbar ist auf dem Rechner
+<i>entfer.nt</i> verfügbar machen.
+</p>
+
+</aside>
+
+
+</section>
+<section id="slide-org90f404c">
+<h4 id="org90f404c">Fernwartung</h4>
+<p>
+Auch Fernwartungssoftware erstellt zum Teil <i>virtuelle Schnittstellen</i>. Teilweise werden
+aber auch <i>VPN-Verbindungen</i> oder ein <i>Tunnel</i> auf der <i>Anwendungsebene</i> genutzt.
+</p>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org9f0982f">
+<h3 id="org9f0982f">Virtuelle Schnittstellen für Virtuelle Maschinen und Container</h3>
+<p>
+Damit <i>virtuelle Maschinen</i> mit einem Netzwerk kommunizieren können brauchen sie ebenfalls
+eine <i>virtuelle Netzwerkschnittstelle</i>.
+</p>
+
+<aside class="notes">
+<p>
+Hierfür wird häufig eine <i>virtuelle Bridge</i> genutzt. Diese ermöglicht es zwei physisch
+getrennte Netzwerke zu einem zu verbinden. Zwei <i>Netzwerkschnittstellen</i> an einem Gerät
+sind normalerweise zwei getrennten Netzwerken zugeordnet. Sie können nicht <i>direkt</i> mit
+einander kommunizieren. Eine <i>Bridge</i> überbrückt diese Trennung der Netzwerke und macht zu
+einem.  
+</p>
+
+</aside>
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-org140fd92">
+<h3 id="org140fd92">WAN Miniports (Windows)</h3>
+
+<div class="figure">
+<p><img src="Bilder/WinHardware-WAN-Miniport-Adapter.png" alt="WinHardware-WAN-Miniport-Adapter.png" width="50%" />
+</p>
+<p><span class="figure-number">Abbildung 10: </span>Microsoft Windows WAN Miniports</p>
+</div>
+
+<p>
+<i>WAN Miniports</i> sind eine spezielle Lösung von Windows mit <i>Wide Area Networks</i> also
+Weitverkehrsnetzwerken zu kommunizieren. Meist kommt hier das <i>Point to Point over Ethernet
+(PPOE)</i>- Protokoll zum Einsatz.
+</p>
+
+<aside class="notes">
+<p>
+In der Praxis wird die Verbindung zum <i>WAN</i> heute von einem zentralen Router hergestellt,
+sodass diese <i>Netzwerkschnittstellen</i> meist nicht genutzt werden. 
+</p>
+
+</aside>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes]
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+*~
+/latex.d/**
+/auto/**
+/auto/**
+*.tex
+/MVP_ITT_Net.pdf
+*.ods*
+/*.xlsx#
+/*.fls
+/IP-Subnetting/IPv6_scriptold.js

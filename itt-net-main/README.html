@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>ITT-Netzwerke</title>
+<meta name="author" content="Sebastian Meisel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/league.css" id="theme"/>
+
+<link rel="stylesheet" href="./mystyle.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">ITT-Netzwerke</h1><p class="subtitle"></p>
+<h2 class="author">Sebastian Meisel</h2><h2 class="date">November 2022</h2>
+</section>
+
+<section>
+<section id="slide-org9ae5835">
+<h2 id="org9ae5835">Inhalt</h2>
+<p>
+Hier findet ihr die Materialien zum Kurs jeweils als Org-Dokument, HTML-Präsentation und
+ausführliche PDF. 
+Im Laufe des Kurses werde ich die Materialien ergänzen und überarbeiten.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org8fa289d">
+<h3 id="org8fa289d">Kursziele</h3>
+<p>
+In diesem Kurs lernt ihr wie Netzwerke aufgebaut sind und funktionieren.
+Ihr lernt die Hardwarekomponenten kennen, die zum Aufbau eines Computernetzwerkes
+notwendig sind.
+</p>
+
+<p>
+Außerdem lernt, wie man auf Betriebsystemebene Netzwerke einrichtet, überwacht und
+absichert.
+</p>
+
+<p>
+In dem Praxiseinheiten, werden wir ein kleines hybrides Linux/Windowsnetzwerk aus VMs 
+aufbauen. 
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org060a904">
+<h3 id="org060a904">Nötige Software</h3>
+<ul>
+<li>Cisco Packettracer</li>
+<li>HyperV (alternativ VirtualBox)</li>
+<li>Powershell</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org47f238e">
+<h3 id="org47f238e">Grundbegriffe</h3>
+<ul>
+<li><a href="Grundbegriffe.html">Grundbegriffe.org</a></li>
+<li><a href="Grundbegriffe.html">Grundbegriffe.html</a></li>
+<li><a href="Grundbegriffe.pdf">Grundbegriffe.pdf</a></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org0fc41f6">
+<h3 id="org0fc41f6">Netzwerktopologien</h3>
+<ul>
+<li><a href="Netzwerktopologien.html">Netzwerktopologien.org</a></li>
+<li><a href="Netzwerktopologien.html">Netzwerktopologien.html</a></li>
+<li><a href="Netzwerktopologien.pdf">Netzwerktopologien.pdf</a></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orge7ecec9">
+<h3 id="orge7ecec9">Übertragungsmedien</h3>
+<ul>
+<li><a href="Übertragungsmedien.html">Übertragungsmedien.org</a></li>
+<li><a href="Übertragungsmedien.html">Übertragungsmedien.html</a></li>
+<li><a href="Übertragungsmedien.pdf">Übertragungsmedien.pdf</a></li>
+
+<li><a href="CAT5-8.pdf">CAT<sub>und</sub><sub>Glasefaserkabel</sub><sub>Standards</sub></a></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orge8fa023">
+<h3 id="orge8fa023">Schnittstellen</h3>
+<ul>
+<li><a href="Schnittstellen.html">Schnittstellen.org</a></li>
+<li><a href="Schnittstellen.html">Schnittstellen.html</a></li>
+<li><a href="Schnittstellen.pdf">Schnittstellen.pdf</a></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orge39c105">
+<h3 id="orge39c105">Zugriffverfahren</h3>
+<ul>
+<li><a href="Zugriffskontrolle.html">Zugriffskontrolle.org</a></li>
+<li><a href="Zugriffskontrolle.html">Zugriffskontrolle.html</a></li>
+<li><a href="Zugriffskontrolle.pdf">Zugriffskontrolle.pdf</a></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org4902a15">
+<h3 id="org4902a15">Arbeitsweise lokaler Netzwerke</h3>
+<ul>
+<li><a href="ArbeitsweiseLAN.html">ArbeitsweiseLAN.org</a></li>
+<li><a href="ArbeitsweiseLAN.html">ArbeitsweiseLAN.html</a></li>
+<li><a href="ArbeitsweiseLAN.pdf">ArbeitsweiseLAN.pdf</a></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org3ff8687">
+<h3 id="org3ff8687">Betriebssysteme und Server</h3>
+<ul>
+<li><a href="CLI.html">CLI.org</a></li>
+<li><a href="CLI.pdf">CLI.pdf</a></li>
+
+</ul>
+
+
+
+</section>
+</section>
+<section>
+<section id="slide-org754e5b1">
+<h3 id="org754e5b1">Praxis 1</h3>
+<p>
+Für diese Praxiseinheit brauchen wir zwei ISO-Images zum Bau unserer virtuellen Maschinen:
+</p>
+
+<ul>
+<li><a href="https://go.microsoft.com/fwlink/p/?LinkID=2195280&amp;clcid=0x407&amp;culture=de-de&amp;country=DE">Windows Server 2022 (Testversion)</a></li>
+
+<li><a href="WindowsserverVM.html">Windowsserver in HyperV installieren (org)</a></li>
+<li><a href="WindowsserverVM.pdf">Windowsserver in HyperV installieren (pdf)</a></li>
+
+<li><a href="https://releases.ubuntu.com/22.04.1/ubuntu-22.04.1-desktop-amd64.iso">Ubuntu Desktop 22.04.01</a></li>
+
+<li><a href="Ubuntu.html">Ubuntu Desktop 22.04 LTS in HyperV installieren (org)</a></li>
+<li><a href="Ubuntu.pdf">Ubuntu Desktop 22.04 LTS in HyperV installieren (pdf)</a></li>
+
+<li><a href="Wireshark.html">Wireshark.org</a></li>
+<li><a href="Wireshark.pdf">Wireshark.pdf</a></li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org48cbcf7">
+<h3 id="org48cbcf7">Normen und Modelle</h3>
+<ul>
+<li><a href="TCP_vs_OSI.html">TCP<sub>vs</sub><sub>OSI.org</sub></a></li>
+<li><a href="TCP_vs_OSI.html">TCP<sub>vs</sub><sub>OSI.html</sub></a></li>
+<li><a href="TCP_vs_OSI.pdf">TCP<sub>vs</sub><sub>OSI.pdf</sub></a></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org75db65a">
+<h3 id="org75db65a">Protokolle</h3>
+<div class="outline-text-3" id="text-org75db65a">
+</div>
+</section>
+<section id="slide-org7db53d0">
+<h4 id="org7db53d0">OSI 1: Physical Layer / Bitübertragunsschicht</h4>
+<ul>
+<li>Ethernet (siehe unten)</li>
+
+</ul>
+
+</section>
+<section id="slide-orgaed4bd2">
+<h4 id="orgaed4bd2">OSI 2: Data Link Layer / Sicherungsschicht</h4>
+<ul>
+<li><a href="Ethernet_ARP.html">Ethernet<sub>ARP.org</sub></a></li>
+<li><a href="Ethernet_ARP.pdf">Ethernet<sub>ARP.pdf</sub></a></li>
+
+</ul>
+
+</section>
+<section id="slide-orgdb137dd">
+<h4 id="orgdb137dd">OSI 3: Transport Layer / Transportschicht</h4>
+<ul>
+<li><a href="TCP_UDP.html">TCP<sub>UDP.org</sub></a></li>
+<li><a href="TCP_UDP.pdf">TCP<sub>UDP.pdf</sub></a></li>
+
+</ul>
+
+
+</section>
+<section id="slide-org439189f">
+<h4 id="org439189f">OSI 4: Networklayer / Netzwerkschicht</h4>
+<ul>
+<li><a href="IPv4.html">IPv4.org</a></li>
+<li><a href="IPv4.pdf">IPv4.pdf</a></li>
+<li><a href="IPv4_Netzwerkrechner.xlsx">IP-Adressrechner (xlsx)</a></li>
+<li><a href="IP4_Netzwerkklassen.pdf">Netzwerkklassen</a></li>
+
+<li><a href="IPv6.xlsx">IPv6 (xlsx)</a></li>
+
+</ul>
+
+</section>
+<section id="slide-orge262d12">
+<h4 id="orge262d12">OSI 5: Session-Layer / Sitzungsschicht | OSI 6: Graphical Layer / Darstellungsschicht | OSI 7: Application Layer / Anwendungsschicht</h4>
+<ul>
+<li><a href="DHCPv6.html">DHCPv6.org</a></li>
+<li><a href="DHCPv6.pdf">DHCPv6.pdf</a></li>
+<li><a href="DHCP.html">DHCP.org</a></li>
+<li><a href="DHCP.pdf">DHCP.pdf</a></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org002c430">
+<h3 id="org002c430">Erweiterung der Netzwerkstruktur</h3>
+
+</section>
+</section>
+<section>
+<section id="slide-org5522760">
+<h3 id="org5522760">Koppelung von Netzwerken</h3>
+<ul>
+<li><a href="Routing.html">Routing.org</a></li>
+<li><p>
+<a href="Routing.pdf">Routing.pdf</a>
+</p>
+
+<p>
+<a href="Router.pkt">Packet Tracer: Routing</a>
+</p></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org27eebec">
+<h3 id="org27eebec">Erweiterung der Geschwindigkeit</h3>
+
+</section>
+</section>
+<section>
+<section id="slide-orgb7561a4">
+<h3 id="orgb7561a4">Netzwerküberwachung und Fehlersuche</h3>
+
+</section>
+</section>
+<section>
+<section id="slide-org04bb2e9">
+<h3 id="org04bb2e9">Praxis 2</h3>
+
+</section>
+</section>
+<section>
+<section id="slide-org2290aff">
+<h3 id="org2290aff">Weitverkehrsnetze</h3>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes]
+});
+
+</script>
+</body>
+</html>

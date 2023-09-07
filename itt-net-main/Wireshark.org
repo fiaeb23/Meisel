@@ -1,0 +1,82 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: Wireshark 
+#+SUBTITLE: ITT-Netzwerke
+#+AUTHOR: Sebastian Meisel
+
+* Installation (Ubuntu)
+
+Um ein Programm unter Ubuntu zu installieren nutzt man am besten das Terminal. Zunächst
+müssen die Paketquellen aktualisiert werden:
+
+#+BEGIN_SRC bash    
+ sudo apt update
+#+END_SRC
+
+Das vorangestellte ~sudo~ versorgt uns dazu mit erweiterten Rechten und verlangt die Eingabe
+des Benutzerpassworts.
+
+Nun können wir das eigentliche Programm installieren:
+
+#+BEGIN_SRC bash    
+ sudo apt install wireshark -y
+#+END_SRC
+
+Das ~-y~ am Ende bewirkt, dass wir die Installation weiterer Paket nicht extra bestätigen müssen. Dafür müssen wir einmal auf eine Frage mit ~<OK>~ antworten und dann unter [[fig:wsconfig][Konfiguriere wireshark-common]] mit ~<Ja>~ bestätigen, dass auch mit einem normalen Benutzaccount Wireshark genutzt werden darf, solange er zu Gruppe wireshark gehört.
+#+CAPTION: Konfiguriere wireshark-common
+#+NAME: fig:wsconfig
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/wireshark_config.png]]
+
+** Gruppenzugehörigkeit
+
+Damit unser Benutzer zur Gruppe dazu gehört, fügen wir ihn mit ~usermod~ hinzu:
+
+#+BEGIN_SRC bash    
+sudo usermod -aG wireshark $USER
+#+END_SRC
+
+Das ~-aG~ steht für /append group/, also Gruppe hinzufügen.
+
+Damit die Änderung der Gruppenzugehörigkeit wirksam wird, kann man sich nun aus- und neu einloggen, oder man nutzt den Befehl:
+
+#+BEGIN_SRC bash    
+ newgrp wireshark
+#+END_SRC
+
+Nun kann man mit dem Befehl ~groups~ die Gruppenzugehörigkeit überprüfen. Die Ausgabe sollte etwa so aussehen:
+
+#+BEGIN_EXAMPLE
+wireshark sebastian adm cdrom sudo dip plugdev lpadmin lxd sambashare
+#+END_EXAMPLEx
+
+Nun kann Wireshark gestartet werden:
+
+#+BEGIN_SRC bash    
+wireshark &> /dev/null &
+#+END_SRC
+
+Das ~&> /dev/null~ bewirkt, dass eventuelle Ausgaben des Programms nicht im Terminal landen. Das finale ~&~ bewirkt die Ausführung im Hintergrund, sodass das Terminal weiter genutzt werden kann.
+
+
+
+
+
+
+ 

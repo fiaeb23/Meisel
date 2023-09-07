@@ -1,0 +1,116 @@
+:LaTeX_PROPERTIES:
+#+LANGUAGE:              de
+#+OPTIONS:     		 d:nil todo:nil pri:nil tags:nil
+#+OPTIONS:	         H:4
+#+LaTeX_CLASS: 	         orgstandard
+#+LaTeX_CMD:             xelatex
+:END:
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_THEME: league
+#+REVEAL_EXTRA_CSS: ./mystyle.css
+#+REVEAL_HLEVEL: 2
+#+OPTIONS: timestamp:nil toc:nil num:nil
+:END:
+
+#+TITLE: Netzwerkzugangs­kontrolle
+#+SUBTITLE: ITT-Netzwerke
+#+AUTHOR: Sebastian Meisel
+
+* Media Access Control (MAC)
+
+Wenn in einem Netzwerk mehrere Geräte eine gemeinsames /Übertragungsmedium/ nutzen, muss der
+Zugriff auf dieses Medium geregelt werden, damit /Kollisionen/ zwischen den Signalen
+vermieden oder wenigstens erkannt werden, da diese zu Datenverlust führen.
+
+#+BEGIN_NOTES
+ Dieses Problem entsteht vor allem /Bustopologien/ wie sie bei koaxial
+ Kabeln vorkommen (Thin-Ethernet, aber auch dLAN/PowerLAN). In anderer Form entsteht
+ dieses Problem bei kabellosen Verbindungen. Hier sind jeweils verschiedene Verfahren
+ notwendig, um Kollisionen zu erkennen oder zu vermeiden.
+
+ Bei /kabelgebundenen Verbindungen/ die mehrer Datenleitungen nutzen (Dual-Simplex), wie die
+ modernen CAT-Kabel- stellt sich dieses Problem nicht, außer wenn ein /Hub/ zur Verbindung
+ mehrerer Geräte genutzt wird-  
+#+END_NOTES
+
+
+** Carrier Sense Multiple Access/Collision Detection (CSMA/CD)
+
+Bei dieser Methode geht es darum Kollisionen zu erkennen und Datenpakete sooft zu senden,
+bis sie a) ankommen oder b) eine festgelegte maximale Anzahl von Versuchen überschritten wurde. 
+
+#+BEGIN_NOTES
+#+CAPTION: PAP für CSMA/CD, [[https://commons.wikimedia.org/w/index.php?curid=83278865][Von Heimdall793 - Eigenes Werk, CC BY-SA 4.0]] 
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/CSMA-CD.png]]
+
+
+#+END_NOTES
+
+
+
+** Carrier Sense Multiple Access/Collision Avoidance (CSMA/CA)
+
+Dieses Verfahren kommt zum Einsatz, wenn es nicht möglich das /Medium/ während des Sendens
+zu Überwachen, wie dies zum Beispiel bei Funkverbindungen wie /WLAN/ der Fall ist.
+Dazu wird zuerst ein /Request to Send (RTS)/-Signal gesendet und auf ein /Clear to Send
+(CTS)/-Signal gewartet, bevor Daten gesendet werden. 
+
+#+BEGIN_NOTES
+ Eigentlich /RTS/CTS/ eine Erweiterung zu CSMA/CA. Zunächst wurde vor allem die Zeit
+ begrenzt in der Signale gesendet wurden und der Empfang von Paketen bestätigt, um
+ Kollisionen zu erkennen. /RTS/CTS/ ist aber zuverlässiger und effektiver, weshalb es heute
+ immer mit zum Einsatz kommt.
+#+END_NOTES
+
+ 
+
+** Carrier Sense Multiple Access/Collision Resolution (CSMA/CR)
+
+
+#+BEGIN_QUOTE
+Carrier Sense Multiple Access/Collision Resolution (CSMA/CR) ist ein Verfahren, welches
+der Entdeckung und Auflösung von Kollisionen auf geteilten Medien dient. Es kommt bei
+Feldbussen wie dem Controller Area Network (CAN) zum Einsatz. 
+#+BEGIN_NOTES
+Bei CSMA/CR werden Kollisionen durch Bitarbitrierung erkannt. Dadurch wird erreicht, dass
+am Ende einer jeden Arbitrierungsphase lediglich der Teilnehmer, der über die höchste
+Nachrichtenpriorität verfügt, das Medium belegt. Kollisionen werden von Teilnehmern mit
+niedrigerer Priorität erkannt und führen dazu, dass sich diese Teilnehmer vom Kanal
+zurückziehen. Die Kollisionen haben dabei keinen Einfluss auf die Nachricht des
+Teilnehmers mit der höchsten Priorität, sodass diese Nachricht verzögerungsfrei gesendet
+werden kann. 
+#+END_NOTES
+--  [[https://de.wikipedia.org/wiki/Carrier_Sense_Multiple_Access/Collision_Resolution][Wikipedia]]
+#+END_QUOTE
+
+** Vom Shared zum Switched Network
+
+Während CAT-Kabel bei /Peer-to-Peer/- oder /Daisy-Chain/-Netzwerken durch ihren Aufbau
+Kollisionen verhindern, sieht das anders aus, wenn ein einfacher Netzwerkverteiler ein
+sogenannter /Hub/ zum Einsatz kommt. 
+
+#+BEGIN_NOTES 
+#+CAPTION: Paket-Kollision am Hub im Shared Network
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/Hub_Kollision.png]]
+#+END_NOTES
+
+
+Dies wird in modernen Netzwerken durch intelligente Netzwerkverteiler, sogenannte /Switche/
+verteilen. Diese schalten intelligent zwischen den verschiedenen Verbindungen um und
+puffern Datenpakete, sodass Kollisionen vermieden werden.
+
+#+BEGIN_NOTES 
+#+CAPTION: Im Switched-Network treten keine Kollisionen auf.
+#+ATTR_HTML: :width 50%
+#+ATTR_LATEX: :width .65\linewidth
+#+ATTR_ORG: :width 700
+[[file:Bilder/Switch_no_Kollision.png]]
+#+END_NOTES

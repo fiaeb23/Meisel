@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<title>Virtual LAN</title>
+<meta name="author" content="Sebastian Meisel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/league.css" id="theme"/>
+
+<link rel="stylesheet" href="./mystyle.css"/>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Virtual LAN</h1><p class="subtitle">IT-Technik Netzwerkgrundlagen</p>
+<h2 class="author">Sebastian Meisel</h2>
+</section>
+
+
+<section>
+<section id="slide-org539b93d">
+<h2 id="org539b93d">Virtual Local Area Network (VLAN)</h2>
+<p>
+<b>VLANs</b> stellen eine Möglichkeit dar, <i>ein</i> physisches <i>geswitchtes</i> Netzwerk in mehrere <b>virtuelle Netzwerke</b> (!nicht zu verwechseln mit virtuellen Netzwerkschnittstellen!)  aufzuteilen. 
+</p>
+
+<p>
+Das <b>VLAN</b>-Protokoll ist in der <b>IEEE 802.1Q</b> definiert. 
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgf5ff623">
+<h3 id="orgf5ff623">Port-basiertes VLAN</h3>
+<p>
+Die einfachste Möglichkeit ein <b>VLAN</b> einzurichten, besteht darin an einem <i>Switch</i>, der VLAN-fähig ist, für jeden <i>Port</i> (jede Netzwerkschnittstelle) festzulegen, zu welchen <b>VLAN</b> dieser und damit die angeschlossenen Geräte gehören.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgfa7191e">
+<h3 id="orgfa7191e">Dynamisches VLAN</h3>
+<p>
+Die alternative ist es, das <b>VLAN dynamisch</b> zu konfigurieren. Das bedeutet, dass Geräte aufgrund ihrer <b>MAC-</b> oder <b>IP-Adresse</b> einem <b>VLAN</b> zugeordnet werden.
+</p>
+
+<p>
+Es ist auch möglich einzelne Datenpakete aufgrund ihrer <b>TCP- / UDP-Portnummer</b> einem <b>VLAN</b> zuzuordnen.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org3155c69">
+<h3 id="org3155c69">Trunk: Tagged VLAN</h3>
+<p>
+Sollen Daten zwischen zwei <i>Switchen</i> oder einem <i>Switch</i> und einem <i>Router</i> für mehrere <b>VLANs</b> über eine <b>gemeinsame Datenleitung</b> transportiert werden, wird diese als <b>Trunk</b> bezeichnet. 
+</p>
+
+<p>
+Auf dem Switch wird ein <i>Port</i> als <b>Trunk-Port</b> konfiguriert und festgelegt, welche <b>VLANs</b> über diese Leitung transportiert werden.
+</p>
+
+<p>
+Jedes Datenpaket bekommt nun (pro VLAN) einen <i>Tag</i> – einen zusätzlichen Header, der als wichtigste Information die 12 Bit lange <b><a href="#/slide-orgf55b8ee">VLAN-ID</a></b> enthält. Damit können 2<sup>12</sup> = 4096 VLANs definiert werden.
+</p>
+
+</section>
+<section id="slide-org3155c69-split">
+
+
+<div id="orgf55b8ee" class="figure">
+<p><img src="Bilder/Wireshark/VLAN.png" alt="VLAN.png" width="100%" />
+</p>
+<p><span class="figure-number">Abbildung 1: </span>Datenpaket mit 2 VLAN-Tags</p>
+</div>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes]
+});
+
+</script>
+</body>
+</html>

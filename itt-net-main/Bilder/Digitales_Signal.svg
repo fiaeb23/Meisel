@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="159.55518mm"
+   height="75.269508mm"
+   viewBox="0 0 159.55518 75.269508"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="Digitales_Signal.svg"
+   inkscape:version="1.2.1 (8a69933317, 2022-10-28, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.773243"
+     inkscape:cx="226.98525"
+     inkscape:cy="172.00124"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-25.579675,-38.686261)">
+    <rect
+       style="fill:#ffffff;stroke:#a51d2d;stroke-width:0.391767;stroke-linecap:round;stroke-linejoin:round"
+       id="rect395"
+       width="159.16341"
+       height="74.448685"
+       x="25.775558"
+       y="38.882145"
+       sodipodi:insensitive="true" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="M 26.630772,48.897378 V 70.064045 H 53.570773 V 48.897378 H 78.827026 V 70.064045 H 105.34609 V 48.897378 h 26.83476 v 21.166667 h 26.9137 V 48.897378 h 25.54138 v 21.166667"
+       id="path245"
+       sodipodi:nodetypes="cccccccccccccc" />
+    <path
+       id="rect1214"
+       style="fill:none;stroke:#000000;stroke-width:0.391767;stroke-linecap:round;stroke-linejoin:round"
+       d="M 26.586538,113.75989 V 38.882145"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 26.222626,70.064046 H 184.51481"
+       id="path1217" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 26.222626,112.48396 H 184.51481"
+       id="path1219" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.52777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;stroke-width:0.264583"
+       x="105.26994"
+       y="43.688782"
+       id="text1275"><tspan
+         sodipodi:role="line"
+         id="tspan1273"
+         style="stroke-width:0.264583"
+         x="105.26994"
+         y="43.688782">niedrige Frequenz</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.52777px;line-height:0;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;stroke-width:0.264583"
+       x="105.26994"
+       y="86.02211"
+       id="text1329"><tspan
+         sodipodi:role="line"
+         id="tspan1327"
+         style="stroke-width:0.264583"
+         x="105.26994"
+         y="86.02211">hohe Frequenz</tspan></text>
+    <path
+       id="path537"
+       style="fill:none;stroke:#000000;stroke-width:0.529166;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 121.38083,112.48398 h 5.3432 V 91.317317 h 5.00925 v 21.166663 h 5.2597 V 91.317317 h 5.32233 v 21.166663 h 5.33797 V 91.317317 h 5.0658 v 21.166663 m -62.921598,0 H 95.14068 V 91.317317 h 5.00925 v 21.166663 h 5.2597 V 91.317317 h 5.32233 v 21.166663 h 5.33797 V 91.317317 h 5.0658 v 21.166663 m -62.921603,0 h 5.343195 V 91.317317 h 5.009247 v 21.166663 h 5.259709 V 91.317317 H 79.1486 v 21.166663 h 5.337979 V 91.317317 h 5.065798 v 21.166663 m 63.411803,0 h 5.3432 V 91.317317 h 5.00925 v 21.166663 h 5.2597 V 91.317317 h 5.32233 v 21.166663 h 5.33797 V 91.317317 h 5.0658 V 112.48398 M 26.630772,91.317317 v 21.166663 h 5.343195 V 91.317317 h 5.009247 v 21.166663 h 5.259709 V 91.317317 h 5.322322 v 21.166663 h 5.337979 V 91.317317 h 5.065798 v 21.166663" />
+  </g>
+</svg>
